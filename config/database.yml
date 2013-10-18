@@ -9,8 +9,6 @@ development:
   database: khan_academy_dev
   pool: 5
   timeout: 5000
-  username: khan_devs
-  password: khan_academy_169_project_fun
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -23,7 +21,8 @@ test:
   host: localhost
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql 
+  encoding: unicode
+  database: khan_academy_prod
   pool: 5
   timeout: 5000
