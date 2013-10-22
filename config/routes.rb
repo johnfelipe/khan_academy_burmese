@@ -2,8 +2,9 @@ KABT::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   
-  get '/static_pages', to: 'static_pages#index'
+  #get '/static_pages', to: 'static_pages#index'
   root :to => 'static_pages#index'
+  match '/static_pages', to: 'static_pages#index', via: 'get'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

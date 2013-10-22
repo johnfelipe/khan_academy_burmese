@@ -6,4 +6,4 @@ Feature: Create login screen
 
 Scenario: login page reders correctly
 	When I go to the login page
-	Then I should see "Welcome to KABT"
+	Then I should see "Khan Academy Burmese Translation Dashboard"
