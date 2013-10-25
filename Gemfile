@@ -6,6 +6,8 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'sass-rails',   '~> 3.2.3'
 gem 'bootstrap-sass'
+gem 'devise'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem 'sqlite3'
