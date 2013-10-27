@@ -98,3 +98,16 @@ footer {
     }
   }
 }
+
+/* notice message */
+.notice
+{
+    left: 40%;
+    top: 15%;
+    width: 20%;
+    background:rosybrown;
+    border-radius:15px;     
+    -moz-border-radius:15px;
+    padding:5px;
+    text-align:center;
+}
