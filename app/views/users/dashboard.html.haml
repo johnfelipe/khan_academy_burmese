@@ -9,7 +9,7 @@
         %li
           .welcome Hi, #{@user.name}
           -# href needs to route to users#edit
-          %a{:href=>"#"} Edit Profile
+          %a{:href=>user_path(@user.id)} Edit Profile
         %li
           %a{:href=>"#"} 
             .summ-num 5

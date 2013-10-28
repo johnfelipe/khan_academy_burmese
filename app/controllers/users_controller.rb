@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @user = User.create!(userHash)
     flash[:notice] = "Your account was successfully created"
     #Redirect to dashboard?
-    redirect_to user_path(@user)
+    redirect_to show_dashboard_path(@user)
   end
 
   def edit
