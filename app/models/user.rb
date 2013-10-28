@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  include BCrypt
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -16,7 +17,24 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, length: { minimum: 6 }
 
-	def self.from_omniauth(auth)
+	
+  def password
+    @password ||= Password.new(password_hash)
+  end
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
+
+
+
+
+
+
+
+
+
+  def self.from_omniauth(auth)
     if user = User.find_by_email(auth.info.email)
       user.provider = auth.provider
       user.uid = auth.uid
