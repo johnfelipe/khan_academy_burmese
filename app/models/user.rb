@@ -1,10 +1,12 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
+  include BCrypt
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  include BCrypt
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:google_oauth2]
+  #devise :database_authenticatable, :registerable,
+  #       :recoverable, :rememberable, :trackable, :validatable,
+  #       :omniauthable, :omniauth_providers => [:google_oauth2]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :provider, :uid
@@ -23,7 +25,7 @@ class User < ActiveRecord::Base
   end
   def password=(new_password)
     @password = Password.create(new_password)
-    self.password_hash = @password
+    self.password_digest = @password
   end
 
 

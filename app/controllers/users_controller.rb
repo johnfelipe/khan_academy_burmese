@@ -17,7 +17,8 @@ class UsersController < ApplicationController
   def create
     name = params['firstName']+" "+params['lastName']
     email = params['email']
-    userHash = [:name => name, :email => email]
+    password = params['password']
+    userHash = [:name => name, :email => email, :password => password]
     @user = User.create!(userHash)
     flash[:notice] = "Your account was successfully created"
     #Redirect to dashboard?
@@ -58,6 +59,15 @@ class UsersController < ApplicationController
       #Update password
       flash[:notice] = "Your password was updated."
       redirect_to edit_user_path(@user)
+    end
+  end
+
+  def login
+    @user = User.find_by_email(params[:email])
+    if @user.password == params[:password]
+      session[:id] = @user.uid
+    else
+      redirect_to login_path
     end
   end
 
