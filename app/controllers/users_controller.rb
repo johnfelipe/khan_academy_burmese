@@ -15,7 +15,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create!(params[:user])
+    name = params['firstName']+" "+params['lastName']
+    email = params['email']
+    userHash = [:name => name, :email => email]
+    @user = User.create!(userHash)
     flash[:notice] = "Your account was successfully created"
     #Redirect to dashboard?
     redirect_to user_path(@user)

@@ -3,7 +3,7 @@ KABT::Application.routes.draw do
   # first created -> highest priority.
 
   #get '/static_pages', to: 'static_pages#index'
-  root :to => 'static_pages#index'
+  root :to => 'static_pages#login'
   match '/static_pages', to: 'static_pages#index', via: 'get', as: :front_page
   match '/login', to: 'static_pages#login', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'

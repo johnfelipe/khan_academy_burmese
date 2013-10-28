@@ -16,13 +16,14 @@ Scenario: View the current user's account
   And  I should see "myemail@mydomain.com"
 
 Scenario: Add a new user account
-  When I am on the front page
-  And  I follow "Open account"
-  Then I should be on the create new user page
+  When I am on the login page
   Then the user "Test User" should not exist
-  When I fill in "Name" with "Test User"
+  When I fill in "First Name" with "Test"
+  When I fill in "Last Name" with "User"
   And  I fill in "Email" with "testemail@test.com"
-  And  I press "Create"
+  And  I fill in "Password" with "testpassword"
+  And  I check "I agree to all your Terms of Service"
+  And  I press "Sign Up"
   Then I should be on the user page for "Test User"
   And  I should see "testemail@test.com"
   And  I should see "Test User"
@@ -98,7 +99,7 @@ Scenario: Old password does not match current password
 Scenario: Delete a user account
   When I am on the user page for "Me"
   And  I press "Delete account"
-  Then I should be on the front page
+  Then I should be on the login page
   And  I should see "Your account was successfully deleted"
   And  the user "Me" should not exist
 
