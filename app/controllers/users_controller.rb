@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "Your account was successfully deleted"
-    redirect_to root_path
+    redirect_to login_page_path
   end
 
   def change_password
