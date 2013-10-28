@@ -7,7 +7,16 @@ class UsersController < ApplicationController
 
   def index
     #redirect to current user? (stored in session?)
-    @users = User.find(:all)
+    type = params['type']
+    current_id = session[:id]
+    case type
+    when 'Available' then @videos = Video.find(:all)
+    when 'Translate' then @videos = Video.find(:all, :translator_id => current_id)
+    when 'Digitize' then @videos = Video.find(:all, :translator_id => current_id)
+    when 'QA' then @videos = Video.find(:all, :translator_id => current_id)
+    when 'Completed' then @videos = Video.find(:all, :translator_id => current_id)
+    else redirect_to users_path(:id => current_id, :type => 'Available')
+    end
   end
 
   def new
