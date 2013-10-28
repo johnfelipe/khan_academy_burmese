@@ -1,6 +1,10 @@
 KABT::Application.routes.draw do
+  devise_for :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
+
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
 
   #get '/static_pages', to: 'static_pages#index'
   root :to => 'static_pages#index'
@@ -12,6 +16,7 @@ KABT::Application.routes.draw do
   match 'users/:id/change_password' => 'users#change_password', via: 'get', as: :change_password
   match 'users/:id/update_password' => 'users#update_password', via: 'put', as: :update_password
   match 'users/:id/dashboard' => 'users#dashboard', via: 'get', as: :show_dashboard
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
