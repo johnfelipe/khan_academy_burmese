@@ -34,6 +34,11 @@ module NavigationHelpers
         id = User.find_by_name($1).id
         change_password_path(id)
       end
+    when /^the dashboard page for "(.*)"$/
+      begin
+        id = User.find_by_name($1).id
+        show_dashboard_path(id)
+      end
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
