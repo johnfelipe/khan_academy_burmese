@@ -5,5 +5,5 @@ Feature: Create login screen
 	I want to have a login screen
 
 Scenario: login page reders correctly
-	When I go to the login page
+	When I go to the front page
 	Then I should see "Khan Academy Burmese Translation Dashboard"

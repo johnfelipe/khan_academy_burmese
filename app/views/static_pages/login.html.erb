@@ -15,6 +15,7 @@
         <h3 class="text-muted">Khan Academy Burmese Translation Dashboard Login</h3>
         <ul class="nav navbar nav-justified">
           <li class="active"><a href="/">Home</a></li>
+          <li><a href="/login">Login</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
@@ -65,7 +66,7 @@
 
                 <div class="span6">
                     <div class="area">
-                        <form class="form-horizontal">
+                        <form action="users" method="post" class="form-horizontal" >
                             <div class="heading">
                                 <h4 class="form-heading">Sign Up</h4>
                             </div>
@@ -75,7 +76,7 @@
                                 Name</label>
 
                                 <div class="controls">
-                                    <input id="inputFirst" type="text">
+                                    <input id="inputFirst" name="firstName" type="text">
                                 </div>
                             </div>
 
@@ -84,7 +85,7 @@
                                 Name</label>
 
                                 <div class="controls">
-                                    <input id="inputLast"
+                                    <input id="inputLast" name="lastName"
                                     type="text">
                                 </div>
                             </div>
@@ -94,25 +95,25 @@
                                 "inputEmail">Email</label>
 
                                 <div class="controls">
-                                    <input id="inputEmail" type="text">
+                                    <input id="inputEmail" name="email" type="text">
                                 </div>
                             </div>
 
-                            <div class="control-group">
+<!--                            <div class="control-group">
                                 <label class="control-label" for=
                                 "inputUser">Username</label>
 
                                 <div class="controls">
                                     <input id="inputUser" type="text">
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="control-group">
                                 <label class="control-label" for=
                                 "inputPassword">Password</label>
 
                                 <div class="controls">
-                                    <input id="inputPassword" placeholder=
+                                    <input id="inputPassword" name="password" placeholder=
                                     "Min. 8 Characters" type="password">
                                 </div>
                             </div>

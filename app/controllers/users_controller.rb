@@ -15,7 +15,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create!(params[:user])
+    name = params['firstName']+" "+params['lastName']
+    email = params['email']
+    userHash = [:name => name, :email => email]
+    @user = User.create!(userHash)
     flash[:notice] = "Your account was successfully created"
     #Redirect to dashboard?
     redirect_to user_path(@user)
@@ -36,7 +39,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "Your account was successfully deleted"
-    redirect_to root_path
+    redirect_to login_page_path
   end
 
   def change_password

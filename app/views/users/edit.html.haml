@@ -1,6 +1,6 @@
 -# edit.html.haml using partial
 
-%h1 Update account
+%h1 Update account for #{@user.name}
 
 = form_tag user_path(@user), :method => :put do
 
