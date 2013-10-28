@@ -49,6 +49,7 @@ class UsersController < ApplicationController
     redirect_to login_page_path
   end
 
+=begin
   def change_password
     @user = User.find(params[:id])
   end
@@ -61,8 +62,7 @@ class UsersController < ApplicationController
     if current_password != @user.password
       flash[:notice] = "Incorrect current password"
       redirect_to change_password_path(@user)
-    end
-    if new_password != params[:confirmation]
+    elsif new_password != params[:confirmation]
       flash[:notice] = "Your confirmation did not match the new password you entered."
       redirect_to change_password_path(@user)
     else
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(@user)
     end
   end
-
+=end
   def login
     @user = User.find_by_email(params[:email])
     if @user.nil?
