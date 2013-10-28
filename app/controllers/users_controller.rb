@@ -9,13 +9,10 @@ class UsersController < ApplicationController
     #redirect to current user? (stored in session?)
     type = params['type']
     current_id = session[:id]
-    case type
-    when 'Available' then @videos = Video.find(:all)
-    when 'Translate' then @videos = Video.find(:all, :translator_id => current_id)
-    when 'Digitize' then @videos = Video.find(:all, :translator_id => current_id)
-    when 'QA' then @videos = Video.find(:all, :translator_id => current_id)
-    when 'Completed' then @videos = Video.find(:all, :translator_id => current_id)
-    else redirect_to users_path(:id => current_id, :type => 'Available')
+    if current_id.nil?
+      redirect_to login_page_path
+    else
+      redirect_to show_dashboard_path
     end
   end
 
@@ -31,7 +28,6 @@ class UsersController < ApplicationController
     @user = User.create!(userHash)
     flash[:notice] = "Your account was successfully created"
     #Redirect to dashboard?
-    #redirect_to user_path(@user)
     redirect_to login_page_path
   end
 
@@ -62,11 +58,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     current_password = params[:current]
     new_password = params[:new]
+    if current_password != @user.password
+      flash[:notice] = "Incorrect current password"
+      redirect_to change_password_path(@user)
+    end
     if new_password != params[:confirmation]
       flash[:notice] = "Your confirmation did not match the new password you entered."
       redirect_to change_password_path(@user)
     else
-      #Update password
+      @user.password = new_password
+      @user.save
       flash[:notice] = "Your password was updated."
       redirect_to edit_user_path(@user)
     end
@@ -85,7 +86,7 @@ class UsersController < ApplicationController
       redirect_to login_page_path
     end
   end
-  
+
   def dashboard
     if session[:id].nil?
       redirect_to login_page_path
