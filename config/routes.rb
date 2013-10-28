@@ -1,11 +1,13 @@
 KABT::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  
+
   #get '/static_pages', to: 'static_pages#index'
   root :to => 'static_pages#index'
   match '/static_pages', to: 'static_pages#index', via: 'get'
-
+  resources :users
+  match 'users/:id/change_password' => 'users#change_password', via: 'get', as: :change_password
+  match 'users/:id/update_password' => 'users#update_password', via: 'put', as: :update_password
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
