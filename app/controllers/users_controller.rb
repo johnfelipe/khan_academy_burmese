@@ -85,6 +85,9 @@ class UsersController < ApplicationController
     end
   end
   def dashboard
+    if session[:id].nil?
+      redirect_to login_page_path
+    @user = User.find(session[:id])
   end
 
 end
