@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index
+=begin
     #redirect to current user? (stored in session?)
     type = params['type']
     current_id = session[:id]
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
     else
       redirect_to show_dashboard_path
     end
+=end
   end
 
   def new

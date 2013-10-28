@@ -44,13 +44,5 @@ Scenario: Delete a user account
   And  I should see "Your account was successfully deleted"
   And  the user "Me" should not exist
 
-Scenario: log in to an account
-  When I am on the login page
-  Then I should see "Sign In"
-  When  I fill in "Email" with "myemail@mydomain.com"
-  And  I fill in "loginPassword" with "mypassword"
-  And  I press "Sign In"
-  Then I should be on the dashboard page for "Me"
-  And I should see "To Translate"
 
 #Scenario: Attempt to view another user's account (?)
