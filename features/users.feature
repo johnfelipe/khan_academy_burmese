@@ -7,8 +7,8 @@ Feature: Something something users something
 Background: users in database
 
   Given the following users exist:
-  | name                     | email                  |
-  | Me                       | myemail@mydomain.com   |
+  | name                     | email                  | password   |
+  | Me                       | myemail@mydomain.com   | mypassword |
 
 Scenario: View the current user's account
   When I am on the user page for "Me"

@@ -13,7 +13,8 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the front page$/ then front_page_path
+    when /^the front page$/ then login_page_path
+    when /^the login page/ then login_page_path
     when /^the create new user page/
       begin
         new_user_path
