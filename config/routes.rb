@@ -1,5 +1,5 @@
 KABT::Application.routes.draw do
-  devise_for :users
+#  devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -19,7 +19,7 @@ KABT::Application.routes.draw do
   match 'users/:id/change_password' => 'users#change_password', via: 'get', as: :change_password
   match 'users/:id/update_password' => 'users#update_password', via: 'put', as: :update_password
   match 'users/:id/dashboard' => 'users#dashboard', via: 'get', as: :show_dashboard
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+#  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

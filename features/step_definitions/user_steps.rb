@@ -24,8 +24,9 @@ Given /the following movies exist/ do |movies_table|
 #  flunk "Unimplemented"
 end
 
-Then /the "(.*)" for "(.*)" should be "(.*)"/ do |field, username, value|
-  User.where(:name => username)[field].should == value
+Then /the password for "(.*)" should be "(.*)"/ do |username, value|
+  puts User.where(:name => username)['password']
+  User.where(:name => username)['password'].should == value
 end
 
 # Make sure that one string (regexp) occurs before or after another one
