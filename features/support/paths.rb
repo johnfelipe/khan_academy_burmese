@@ -13,8 +13,26 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the login page$/ then '/static_pages#index'
-
+    when /^the front page$/ then front_page_path
+    when /^the create new user page/
+      begin
+        new_user_path
+      end
+    when /^the edit user page for "(.*)"/
+      begin
+        id = User.find_by_name($1).id
+        edit_user_path(id)
+      end
+    when /^the user page for "(.*)"/
+      begin
+        id = User.find_by_name($1).id
+        user_path(id)
+      end
+    when /^the change password page for "(.*)"/
+      begin
+        id = User.find_by_name($1).id
+        change_password_path(id)
+      end
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

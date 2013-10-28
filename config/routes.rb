@@ -3,11 +3,12 @@ KABT::Application.routes.draw do
   # first created -> highest priority.
 
   #get '/static_pages', to: 'static_pages#index'
-  root :to => 'users#dashboard'
-  match '/static_pages', to: 'static_pages#index', via: 'get'
+  root :to => 'static_pages#login'
+  match '/static_pages', to: 'static_pages#index', via: 'get', as: :front_page
   match '/login', to: 'static_pages#login', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
+
   resources :users
   match 'users/:id/change_password' => 'users#change_password', via: 'get', as: :change_password
   match 'users/:id/update_password' => 'users#update_password', via: 'put', as: :update_password
