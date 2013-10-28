@@ -70,4 +70,7 @@ class UsersController < ApplicationController
     end
   end
 
+  def dashboard
+  end
+
 end
