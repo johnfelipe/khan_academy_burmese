@@ -12,7 +12,7 @@ Scenario: Open a new account
   When I fill in "First Name" with "Test"
   When I fill in "Last Name" with "User"
   And  I fill in "Email" with "testemail@test.com"
-  And  I fill in "Password" with "testpassword"
+  And  I fill in "createPassword" with "testpassword"
   And  I check "I agree to all your Terms of Service"
   And  I press "Sign Up"
   Then I should be on the login page
