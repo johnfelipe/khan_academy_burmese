@@ -1,0 +1,17 @@
+-# in app/views/movies/show.html.haml
+
+%h2 Details about #{@user.name}
+
+%ul#details
+  %li
+    Email:
+    = @user.email
+  %li
+    Joined on:
+    = @user.created_at.strftime("%B %d, %Y")
+  %li
+    Account last updated on:
+    = @user.updated_at.strftime("%B %d, %Y")
+
+= button_to 'Edit', edit_user_path(@user), :method => :get
+= button_to 'Delete', user_path(@user), :method => :delete, :confirm => 'Are you sure?'
