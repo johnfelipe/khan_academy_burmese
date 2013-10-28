@@ -16,7 +16,7 @@ Scenario: View the current user's account
   And  I should see "myemail@mydomain.com"
 
 Scenario: Add a new user account
-  When I am on the login page
+  When I am on the front page
   And  I follow "Open account"
   Then I should be on the create new user page
   Then the user "Test User" should not exist
@@ -98,7 +98,7 @@ Scenario: Old password does not match current password
 Scenario: Delete a user account
   When I am on the user page for "Me"
   And  I press "Delete account"
-  Then I should be on the login page
+  Then I should be on the front page
   And  I should see "Your account was successfully deleted"
   And  the user "Me" should not exist
 

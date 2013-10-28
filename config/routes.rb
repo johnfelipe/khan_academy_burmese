@@ -4,10 +4,15 @@ KABT::Application.routes.draw do
 
   #get '/static_pages', to: 'static_pages#index'
   root :to => 'static_pages#index'
-  match '/static_pages', to: 'static_pages#index', via: 'get', :as => :login_page
+  match '/static_pages', to: 'static_pages#index', via: 'get', as: :front_page
+  match '/login', to: 'static_pages#login', via: 'get'
+  match '/about', to: 'static_pages#about', via: 'get'
+  match '/contact', to: 'static_pages#contact', via: 'get'
+
   resources :users
   match 'users/:id/change_password' => 'users#change_password', via: 'get', as: :change_password
   match 'users/:id/update_password' => 'users#update_password', via: 'put', as: :update_password
+  match 'users/:id/dashboard' => 'users#dashboard', via: 'get', as: :show_dashboard
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
