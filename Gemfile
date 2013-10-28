@@ -8,10 +8,12 @@ gem 'sass-rails',   '~> 3.2.3'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'omniauth'
+gem 'bcrypt-ruby', '3.0.1'
+
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'pg'
   gem 'rails_12factor'
   gem 'ruby-debug19'
   gem 'database_cleaner'

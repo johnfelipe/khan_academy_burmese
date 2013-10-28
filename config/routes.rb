@@ -1,4 +1,12 @@
 KABT::Application.routes.draw do
+  #get "omniauth_callbacks/google_oauth2"
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
+  devise_scope :user do
+    get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
+    get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
   
