@@ -4,11 +4,6 @@ Feature: Create an account
   So that I can translate videos
   I want to open an account
 
-Background: users in database
-
-  Given the following users exist:
-  | name                     | email                  |
-  | Me                       | myemail@mydomain.com   |
 
 Scenario: Open a new account
   Given I am on the login page
