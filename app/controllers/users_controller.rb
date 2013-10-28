@@ -7,7 +7,16 @@ class UsersController < ApplicationController
 
   def index
     #redirect to current user? (stored in session?)
-    @users = User.find(:all)
+    type = params['type']
+    current_id = session[:id]
+    case type
+    when 'Available' then @videos = Video.find(:all)
+    when 'Translate' then @videos = Video.find(:all, :translator_id => current_id)
+    when 'Digitize' then @videos = Video.find(:all, :translator_id => current_id)
+    when 'QA' then @videos = Video.find(:all, :translator_id => current_id)
+    when 'Completed' then @videos = Video.find(:all, :translator_id => current_id)
+    else redirect_to users_path(:id => current_id, :type => 'Available')
+    end
   end
 
   def new
@@ -64,11 +73,18 @@ class UsersController < ApplicationController
 
   def login
     @user = User.find_by_email(params[:email])
-    if @user.password == params[:password]
-      session[:id] = @user.uid
+    if @user.nil?
+      #add flash message
+      flash[:notice] = params
+      redirect_to login_page_path
+    elsif @user.password == params[:password]
+      session[:id] = @user.id
+      redirect_to show_dashboard_path(@user)
     else
-      redirect_to login_path
+      redirect_to login_page_path
     end
+  end
+  def dashboard
   end
 
 end

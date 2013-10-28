@@ -1,0 +1,84 @@
+-# dashboard view for user
+%html
+  %head
+    = stylesheet_link_tag 'users'
+  %body 
+    %h1 Khan Academy Burmese Translations Portal
+    .container
+      %ul.nav.nav-bar.nav-justified 
+        %li
+          .welcome Hi, User
+          -# href needs to route to users#edit
+          %a{:href=>"#"} Edit Profile
+        %li
+          %a{:href=>"#"} 
+            .summ-num 5
+            .summ-cat To Translate
+        %li
+          %a{:href=>"#"}
+            .summ-num 5
+            .summ-cat To Digitize
+        %li
+          %a{:href=>"#"}
+            .summ-num 5
+            .summ-cat To QA
+        %li
+          %a{:href=>"#"}
+            .summ-num 5
+            .summ-cat Completed
+    .table-container
+      .table-title To Translate
+      %table.table.table-striped.table-bordered
+        %tr
+          %th.left
+            %span.course Course:
+            %i.title Title
+          %th Due Date
+          %th Actions
+          %th Status
+          
+        -# @videos.each do |vid|
+        -# %tr
+        -#  %td
+        -#    %span.course= vid.course
+        -#    %span.title= vid.title
+        -#  %td= vid.dueDate
+        -#  %td= vid.actions
+        -#  %td
+        -#    %a{:href=>"#"} edit
+        -#    %a{:href=>"#"} record
+        -#    %a{:href=>"#"} download
+
+        %tr
+          %td.left
+            %span.course The why of algebra:
+            %i.title Why we do the same thing to both sides of simple equtions
+          %td 25/09/2013
+          %td 09/10/2013
+          %td
+            %a.glyphicon.glyphicon-pencil{:href=>"#"}
+            %a.glyphicon.glyphicon-facetime-video{:href=>"#"}
+            %a.glyphicon.glyphicon-download{:href=>"#"}
+    .table-container
+      .table-title Available
+      %table.table.table-striped.table-bordered
+        %tr
+          %th.left
+            %span.course Course:
+            %i.title Title
+          %th Actions
+         
+        -# @videos.each do |vid|
+        -# %tr
+        -#  %td
+        -#    %span.course= vid.course
+        -#    %span.title= vid.title
+        -#  %td
+        -#    %a{:href=>"#"} Assign to Me
+        
+        %tr
+          %td.left
+            %span.course The why of algebra:
+            %i.title Why we do the same thing to both sides of simple equtions
+          %td
+            %button Assign to Me
