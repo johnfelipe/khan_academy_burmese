@@ -8,6 +8,7 @@
       %ul.nav.nav-bar.nav-justified 
         %li
           .welcome Hi, #{@user.name}
+        %li
           -# href needs to route to users#edit
           %a{:href=>user_path(@user.id)} Edit Profile
         %li

@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user.nil?
       #add flash message
-      flash[:notice] = params
+      flash[:notice] = "Login credentials are incorrect. Please try again."
       redirect_to login_page_path
     elsif @user.password == params[:password]
       session[:id] = @user.id
