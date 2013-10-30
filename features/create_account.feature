@@ -1,8 +1,8 @@
 Feature: Create an account
 
-  As a user
+  As a new translator
   So that I can translate videos
-  I want to open an account
+  I want to create a new account
 
 
 Scenario: Open a new account
@@ -11,14 +11,8 @@ Scenario: Open a new account
   And  I should see "Sign In"
   When I fill in "First Name" with "Test"
   When I fill in "Last Name" with "User"
-  And  I fill in "Email" with "testemail@test.com"
+  And  I fill in "inputEmail" with "testemail@test.com"
   And  I fill in "createPassword" with "testpassword"
   And  I press "Sign Up"
   Then I should be on the login page
   And I should see "Your account was successfully created"
-  Then I should see "Sign In"
-  When  I fill in "Email" with "testemail@test.com"
-  And  I fill in "loginPassword" with "12345678"
-  And  I press "Sign In"
-  Then I should be on the login page
-  And I should see "Sign Up"

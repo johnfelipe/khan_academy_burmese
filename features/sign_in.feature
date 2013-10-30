@@ -7,14 +7,25 @@ Feature: Sign in to an account
 Background: users in database
 
   Given the following users exist:
-  | name                     | email@mydomain.com     | password   |
-  | Me                       | myemail@mydomain.com   | mypassword |
+  | name                     | email                  | password    |
+  | Me                       | myemail@mydomain.com   | mypassword  |
 
+  And I am on the login page
+
+# happy path
 Scenario: log in to an account
-  When I am on the login page
   Then I should see "Sign In"
-  When  I fill in "Email" with "email@mydomain.com"
-  And  I fill in "loginPassword" with "password"
+  When  I fill in "inputUsername" with "myemail@mydomain.com"
+  And  I fill in "loginPassword" with "mypassword"
   And  I press "Sign In"
-  Then I should be on my dashboard page
+  Then I should be on the dashboard page for "Me"
   And I should see "To Translate"
+
+# sad path
+Scenario: try to log in with incorrect password
+  Then I should see "Sign In"
+  When  I fill in "inputUsername" with "myemail@mydomain.com"
+  And  I fill in "loginPassword" with "wrongpassword"
+  And  I press "Sign In"
+  Then I should be on the login page
+  And I should see "Please try again"
