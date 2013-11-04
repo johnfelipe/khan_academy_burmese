@@ -1,0 +1,142 @@
+// Place all the styles related to the videos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#list_table
+{
+position: relative;
+margin-left:120px;
+bottom: 5px;
+right: 25px;
+}
+
+.icon
+{
+font-size: x-large;
+}
+
+tr
+{
+padding:15px;
+}
+
+#list_title{
+font-size: 20pt;
+position: relative;
+top: 20px;
+right: 210px;
+color: black;
+
+}
+
+.button{
+color: #ACACAC;
+position: fixed;
+
+font-weight:bold;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+left: 10px;
+font-size: 12pt;
+background-color:#2E2E2E;
+width: 155px;
+height: 75px;
+line-height: 75px;
+text-align: center;
+
+
+
+
+border-color:#2E2E2E;
+
+}
+
+.aval_button{
+top: 125px;
+}
+
+.trans_button{
+top: 200px;
+}
+
+.digi_button{
+top: 275px;
+}
+
+.qa_button{
+top: 350px;
+}
+.compl_button{
+top: 425px;
+}
+
+.background_bar{
+position: absolute;
+left: 0px;
+top: 10px;
+width: 100%;
+background-color: #808080;
+z-index: -3;
+height: 70px;
+color:#96E0F2;
+font-size: 30pt;
+font-weight: bold;
+text-align: center;
+padding-left: 425px;
+line-height: 70px;
+
+    text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;  
+}
+
+.button:hover{
+color:White;
+background-color:black;
+border-color: black;
+}
+
+tr:hover td{
+background-color: #8099E6
+;
+}
+
+.welcome
+{
+position: absolute;
+top: 15px;
+left: 20px;
+color: White;
+font-weight:bold;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 13pt;
+
+}
+
+#a_link{
+display: block;
+color: white;
+}
+
+#ab {
+background-color:black;
+}
+
+#tb {
+background-color:black;
+}
+
+#db {
+background-color:black;
+}
+
+#qb{
+background-color:black;
+}
+
+#cb{
+background-color:black;
+}
+
+

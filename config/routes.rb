@@ -19,6 +19,13 @@ KABT::Application.routes.draw do
   match 'users/:id/change_password' => 'users#change_password', via: 'get', as: :change_password
   match 'users/:id/update_password' => 'users#update_password', via: 'put', as: :update_password
   match 'users/:id/dashboard' => 'users#dashboard', via: 'get', as: :show_dashboard
+
+
+  match 'users/:id/videos/translate' => 'videos#translate', via: 'get'
+  match 'users/:id/videos/available' => 'videos#available', via: 'get'
+  match 'users/:id/videos/digitize' => 'videos#digitize', via: 'get'
+  match 'users/:id/videos/qa' => 'videos#qa', via: 'get'
+  match 'users/:id/videos/completed' => 'videos#completed', via: 'get'
 #  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   # Sample of regular route:
