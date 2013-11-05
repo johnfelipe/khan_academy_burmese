@@ -16,14 +16,14 @@
           %th Due Date
           %th Actions
 
-        -@trans_vids.each do |video| 
-          %td video.video_id
-          %td video.title
-          %td
-            %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-            %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
-      end
-           
+        - @trans_vids.each do |video|
+          %tr 
+            %td= video.video_id
+            %td= video.title
+            %td 12/25/2013
+            %td 
+              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
+              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
   .aval_button{:class => "button"} 
     %a{:id => 'a_link', :href => 'available'} Available(#{@avail.count})
 

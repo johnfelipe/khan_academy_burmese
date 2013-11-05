@@ -8,7 +8,7 @@
     .welcome Hi, #{@user.name}
     
     .table-container
-      %h2{:id => "list_title"} Videos Assigned To Me To Translate
+      %h2{:id => "list_title"} Videos Assigned To Me To QA
       %table.table.table-striped.table-bordered{:id => "list_table"}
         %tr
           %th KABT ID
@@ -16,7 +16,7 @@
           %th Due Date
           %th Actions
 
-        - @comp.each do |video|
+        - @qa_trans.each do |video|
           %tr 
             %td= video.video_id
             %td= video.title
@@ -24,7 +24,7 @@
             %td 
               %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
               %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
-
+           
   .aval_button{:class => "button"}
     %a{:id => 'a_link', :href => 'available'} Available(#{@avail.count})
 
@@ -34,10 +34,10 @@
   .digi_button{:class => "button"}
     %a{:id => 'a_link', :href => 'digitize'} Digitize(#{@digi_vids.count})
  
-  .qa_button{:class => "button"}
+  .qa_button{:class => "button", :id => "qb"}
     %a{:id => 'a_link', :href => 'qa'} QA(#{@qa_vids.count})
 
-  .compl_button{:class => "button", :id => "cb"}
+  .compl_button{:class => "button"}
     %a{:id => 'a_link', :href => 'completed'} Completed(#{@comp.count})
 
   .background_bar Khan Academy Burmese Translations Portal

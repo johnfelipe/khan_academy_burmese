@@ -8,7 +8,7 @@
     .welcome Hi, #{@user.name}
     
     .table-container
-      %h2{:id => "list_title"} Videos Assigned To Me To Translate
+      %h2{:id => "list_title"} Videos Available To Translate
       %table.table.table-striped.table-bordered{:id => "list_table"}
         %tr
           %th KABT ID
@@ -16,14 +16,52 @@
           %th Due Date
           %th Actions
 
-        -@avail.each do |video| 
-          %td video.video_id
-          %td video.title
-          %td
-            %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-            %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
-      end
-           
+        - @avail_trans.each do |video|
+          %tr 
+            %td= video.video_id
+            %td= video.title
+            %td 12/25/2013
+            %td 
+              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
+              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+
+    .table-container
+      %h2{:id => "list_title"} Videos Available To Digitize
+      %table.table.table-striped.table-bordered{:id => "list_table"}
+        %tr
+          %th KABT ID
+          %th Course Title
+          %th Due Date
+          %th Actions
+
+        - @avail_digi.each do |video|
+          %tr 
+            %td= video.video_id
+            %td= video.title
+            %td 12/25/2013
+            %td
+              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
+              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+
+    .table-container
+      %h2{:id => "list_title"} Videos Available To QA
+      %table.table.table-striped.table-bordered{:id => "list_table"}
+        %tr
+          %th KABT ID
+          %th Course Title
+          %th Due Date
+          %th Actions
+
+        - @avail_qa.each do |video|
+          %tr 
+            %td= video.video_id
+            %td= video.title
+            %td 12/25/2013
+            %td
+              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
+              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+
+  end
   .aval_button{:class => "button", :id => "ab"} 
     %a{:id => 'a_link', :href => 'available'} Available(#{@avail.count})
 
