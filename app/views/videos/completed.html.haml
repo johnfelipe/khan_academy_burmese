@@ -8,7 +8,7 @@
     .welcome Hi, #{@user.name}
     
     .table-container
-      %h2{:id => "list_title"} Videos Completed By Me
+      %h2{:id => "list_title"} Completed Translated Videos
       %table.table.table-striped.table-bordered{:id => "list_table"}
         %tr
           %th KABT ID
@@ -16,12 +16,48 @@
           %th Due Date
           %th Actions
 
-        - @comp.each do |video|
+        - @comp_trans.each do |video|
           %tr 
             %td= video.video_id
             %td= video.title
             %td 12/25/2013
             %td 
+              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
+              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+
+    .table-container
+      %h2{:id => "list_title"} Completed Digitized Videos
+      %table.table.table-striped.table-bordered{:id => "list_table"}
+        %tr
+          %th KABT ID
+          %th Course Title
+          %th Due Date
+          %th Actions
+
+        - @comp_digi.each do |video|
+          %tr 
+            %td= video.video_id
+            %td= video.title
+            %td 12/25/2013
+            %td
+              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
+              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+
+    .table-container
+      %h2{:id => "list_title"} Completed QA Videos
+      %table.table.table-striped.table-bordered{:id => "list_table"}
+        %tr
+          %th KABT ID
+          %th Course Title
+          %th Due Date
+          %th Actions
+
+        - @comp_qa.each do |video|
+          %tr 
+            %td= video.video_id
+            %td= video.title
+            %td 12/25/2013
+            %td
               %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
               %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
 
