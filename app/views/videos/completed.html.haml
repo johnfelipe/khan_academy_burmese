@@ -8,7 +8,7 @@
     .welcome Hi, #{@user.name}
     
     .table-container
-      %h2{:id => "list_title"} Completed Translated Videos
+      %h2{:id => "list_title"} Videos I Have Translated
       %table.table.table-striped.table-bordered{:id => "list_table"}
         %tr
           %th KABT ID
@@ -26,7 +26,8 @@
               %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
 
     .table-container
-      %h2{:id => "list_title"} Completed Digitized Videos
+
+      %h2{:id => "list_title"} Videos I Have Digitized
       %table.table.table-striped.table-bordered{:id => "list_table"}
         %tr
           %th KABT ID
@@ -44,7 +45,8 @@
               %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
 
     .table-container
-      %h2{:id => "list_title"} Completed QA Videos
+
+      %h2{:id => "list_title"} Videos I Have QAed
       %table.table.table-striped.table-bordered{:id => "list_table"}
         %tr
           %th KABT ID

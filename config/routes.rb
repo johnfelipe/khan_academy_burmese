@@ -18,11 +18,13 @@ KABT::Application.routes.draw do
   resources :users
   match 'users/:id/change_password' => 'users#change_password', via: 'get', as: :change_password
   match 'users/:id/update_password' => 'users#update_password', via: 'put', as: :update_password
-  match 'users/:id/dashboard' => 'users#dashboard', via: 'get', as: :show_dashboard
+  #match 'users/:id/dashboard' => 'users#dashboard', via: 'get', as: :show_dashboard
+  # TODO decide which view to render for dashboard
+  #match 'users/:id/available' => 'videos#available', via: 'get'
 
 
   match 'users/:id/videos/translate' => 'videos#translate', via: 'get'
-  match 'users/:id/videos/available' => 'videos#available', via: 'get'
+  match 'users/:id/videos/available' => 'videos#available', via: 'get', as: :show_dashboard
   match 'users/:id/videos/digitize' => 'videos#digitize', via: 'get'
   match 'users/:id/videos/qa' => 'videos#qa', via: 'get'
   match 'users/:id/videos/completed' => 'videos#completed', via: 'get'
