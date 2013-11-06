@@ -39,6 +39,37 @@ module NavigationHelpers
         id = User.find_by_name($1).id
         show_dashboard_path(id)
       end
+
+    when /^the Available Videos View for "(.*)"$/
+      begin
+        id = User.find_by_name($1).id
+        show_dashboard_path(id)
+      end
+
+    when /^the Translation Videos View for "(.*)"$/
+      begin
+        id = User.find_by_name($1).id
+        "/users/#{id}/videos/translate"
+      end
+
+    when /^the Digitize Videos View for "(.*)"$/
+      begin
+        id = User.find_by_name($1).id
+        "/users/#{id}/videos/digitize"
+      end
+
+    when /^the QA Videos View for "(.*)"$/
+      begin
+        id = User.find_by_name($1).id
+        "/users/#{id}/videos/qa"
+      end
+
+    when /^the Completed Videos View for "(.*)"$/
+      begin
+        id = User.find_by_name($1).id
+        "/users/#{id}/videos/completed"
+      end
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
