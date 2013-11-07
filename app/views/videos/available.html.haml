@@ -13,17 +13,14 @@
         %tr
           %th KABT ID
           %th Course Title
-          %th Due Date
           %th Actions
 
         - @avail_trans.each do |video|
           %tr 
             %td= video.video_id
             %td= video.title
-            %td 12/25/2013
-            %td 
-              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+            %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_translator"
+
 
     .table-container
       %h2{:id => "list_title"} Videos Available To Digitize
@@ -31,17 +28,13 @@
         %tr
           %th KABT ID
           %th Course Title
-          %th Due Date
           %th Actions
 
         - @avail_digi.each do |video|
           %tr 
             %td= video.video_id
             %td= video.title
-            %td 12/25/2013
-            %td
-              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+            %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_typer"
 
     .table-container
       %h2{:id => "list_title"} Videos Available To QA
@@ -49,17 +42,13 @@
         %tr
           %th KABT ID
           %th Course Title
-          %th Due Date
           %th Actions
 
         - @avail_qa.each do |video|
           %tr 
             %td= video.video_id
             %td= video.title
-            %td 12/25/2013
-            %td
-              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+            %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_qa"
 
   .aval_button{:class => "button", :id => "ab"} 
     %a{:class => 'a_link', :href => 'available'} Available(#{@avail.count})
