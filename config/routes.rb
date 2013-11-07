@@ -28,7 +28,7 @@ KABT::Application.routes.draw do
   match 'users/:id/videos/digitize' => 'videos#digitize', via: 'get'
   match 'users/:id/videos/qa' => 'videos#qa', via: 'get'
   match 'users/:id/videos/completed' => 'videos#completed', via: 'get'
-#  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

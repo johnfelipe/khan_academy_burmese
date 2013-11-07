@@ -73,5 +73,8 @@
                                         %a{:href=>"#"} Terms of Services
                                     %button.btn.btn-success{:type=>"submit"} Sign Up
                                     %button.btn{:type=>"button"} Help
+                                    
+                                    %p= link_to "log in with google", user_omniauth_authorize_path(:google_oauth2)
+                                
     .footer
         %p Khan Academy Burmese
