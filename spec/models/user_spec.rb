@@ -94,5 +94,10 @@ describe User do
 		end
 	end
 
+	describe User do
+		subject { create(:user) }
+		its(:name) { should == 'Bob Jones' }
+		its(:email) { should == 'bob.jones@example.com'}
+	end
 
 end
