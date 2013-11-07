@@ -22,6 +22,10 @@ KABT::Application.routes.draw do
   # TODO decide which view to render for dashboard
   #match 'users/:id/available' => 'videos#available', via: 'get'
 
+  match 'users/:id/videos/:video_id/assign_translator' => 'users#assign_translator', via: 'post'
+  match 'users/:id/videos/:video_id/assign_typer' => 'users#assign_typer', via: 'post'
+  match 'users/:id/videos/:video_id/assign_qa' => 'users#assign_qa', via: 'post'
+
 
   match 'users/:id/videos/translate' => 'videos#translate', via: 'get'
   match 'users/:id/videos/available' => 'videos#available', via: 'get', as: :show_dashboard
