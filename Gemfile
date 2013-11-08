@@ -20,6 +20,8 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
 end
 
 group :test do

@@ -28,5 +28,18 @@ describe Video do
   	it { should_not be_valid }
   end
   
+  describe Video do
+		subject { create(:video) }
+		its(:video_id) { should == 'Video1' }
+    its(:subject) { should == 'Math' }
+    its(:course) { should == 'Algebra' }
+    its(:title) { should == 'I Love Algebra' }
+    its(:translator_id) { should == 1 }
+    its(:typer_id) { should == 1 }
+    its(:qa_id) { should == nil }
+    it { should == be_translate_complete }
+    it { should be_type_complete }
+    it { should_not be_qa_complete }
+	end
   
 end

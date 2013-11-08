@@ -22,13 +22,20 @@ KABT::Application.routes.draw do
   # TODO decide which view to render for dashboard
   #match 'users/:id/available' => 'videos#available', via: 'get'
 
+  match 'users/:id/videos/:video_id/assign_translator' => 'users#assign_translator', via: 'post'
+  match 'users/:id/videos/:video_id/assign_typer' => 'users#assign_typer', via: 'post'
+  match 'users/:id/videos/:video_id/assign_qa' => 'users#assign_qa', via: 'post'
+  match 'users/:id/videos/:video_id/set_translate_complete' => 'users#set_translate_complete', via: 'post'
+  match 'users/:id/videos/:video_id/set_type_complete' => 'users#set_type_complete', via: 'post'
+  match 'users/:id/videos/:video_id/set_qa_complete' => 'users#set_qa_complete', via: 'post'
 
-  match 'users/:id/videos/translate' => 'videos#translate', via: 'get'
+
+  match 'users/:id/videos/translate' => 'videos#translate', via: 'get', as: :translate
   match 'users/:id/videos/available' => 'videos#available', via: 'get', as: :show_dashboard
-  match 'users/:id/videos/digitize' => 'videos#digitize', via: 'get'
-  match 'users/:id/videos/qa' => 'videos#qa', via: 'get'
-  match 'users/:id/videos/completed' => 'videos#completed', via: 'get'
-#  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  match 'users/:id/videos/digitize' => 'videos#digitize', via: 'get', as: :digitize
+  match 'users/:id/videos/qa' => 'videos#qa', via: 'get', as: :qa
+  match 'users/:id/videos/completed' => 'videos#completed', via: 'get', as: :completed
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
