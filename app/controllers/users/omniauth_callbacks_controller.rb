@@ -24,17 +24,32 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 =end
 
-  def google_oauth2
-      # find_for_google_oauth2 is implemented in app/models/user.rb
-      @user = User.find_for_google_oauth2(request.env["omniauth.auth"], current_user)
 
-      if @user.persisted?
-        flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
-        redirect_to show_dashboard_path(@user)
+  #should we find users by email or uid + provider?
+  def google_oauth2
+    @user = User.find_for_google_oauth2(request.env["omniauth.auth"], current_user)
+
+    if @user.persisted?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
+      redirect_to show_dashboard_path(@user)
         #sign_in_and_redirect @user, :event => :authentication
-      else
-        session["devise.google_data"] = request.env["omniauth.auth"]
-        redirect_to new_user_registration_url
-      end
+    else
+      session["devise.google_data"] = request.env["omniauth.auth"]
+      redirect_to login_page_path #new_user_registration_url
+    end
   end
+
+  def facebook
+    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
+
+    if @user.persisted?
+      #sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
+      redirect_to show_dashboard_path(@user)
+      set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
+    else
+      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      redirect_to login_page_path #new_user_registration_url
+    end
+  end
+
 end

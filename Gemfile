@@ -9,6 +9,7 @@ gem 'bootstrap-sass'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'sqlite3'

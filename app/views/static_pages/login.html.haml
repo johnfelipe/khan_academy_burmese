@@ -26,7 +26,7 @@
                             .heading
                                 %h4.form-heading Sign In
                             .control-group
-                                %label.control-label{:for=>"inputUsername"} Username
+                                %label.control-label{:for=>"inputUsername"} Email
                                 .controls
                                     %input#inputUsername{:type=>"text", :name=>"email"}
                             .control-group
@@ -58,10 +58,6 @@
                                 .controls
                                     %input#inputEmail{:name=>"email", :type=>"text"}
                             .control-group
-                                %label.control-label{:for=>"inputUsername"} Username
-                                .controls
-                                    %input#inputUsername{:type=>"text", :name=>"email"}
-                            .control-group
                                 %label.control-label{:for=>"loginPassword"} Password
                                 .controls
                                     %input#loginPassword{:placeholder=>"Min. 6 Characters", :type=>"password", :name=>"password"}
@@ -73,8 +69,8 @@
                                         %a{:href=>"#"} Terms of Services
                                     %button.btn.btn-success{:type=>"submit"} Sign Up
                                     %button.btn{:type=>"button"} Help
-                                    
-                                    %p= link_to "log in with google", user_omniauth_authorize_path(:google_oauth2)
+                                    %p= link_to "Sign in with google", user_omniauth_authorize_path(:google_oauth2)
+                                    %p= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
                                 
     .footer
         %p Khan Academy Burmese
