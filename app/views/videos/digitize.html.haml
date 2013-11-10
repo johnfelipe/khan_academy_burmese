@@ -1,27 +1,31 @@
 -#view for translations
 
 %html
+  = render :partial => "shared/head"
   %head
     = stylesheet_link_tag 'videos'
   %body
 
-    .welcome Hi, #{@user.name}
+    = render :partial => "shared/dashhead"
     
     .table-container
-      %h2{:id => "list_title"} Videos Assigned To Me To Digitize
-      %table.table.table-striped.table-bordered{:id => "list_table"}
-        %tr
-          %th KABT ID
-          %th Course Title
-          %th Due Date
-          %th Actions
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            %h2{:class => "list_title"} Videos Assigned To Me To Digitize
+            %table.table.table-striped.table-bordered{:id => "list_table"}
+              %tr
+                %th KABT ID
+                %th Course Title
+                %th Due Date
+                %th Actions
 
-        - @digi_vids.each do |video|
-          %tr 
-            %td= video.video_id
-            %td= video.title
-            %td 12/25/2013
-            %td= button_to 'Complete', "/users/#{@user.id}/videos/#{video.video_id}/set_type_complete"
+              - @digi_vids.each do |video|
+                %tr 
+                  %td= video.video_id
+                  %td= video.title
+                  %td 12/25/2013
+                  %td= button_to 'Complete', "/users/#{@user.id}/videos/#{video.video_id}/set_type_complete"
             / %td 
             / %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
             / %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
@@ -41,4 +45,4 @@
   .compl_button{:class => "button"}
     %a{:id => 'a_link', :href => 'completed'} Completed(#{@comp.count})
 
-  .background_bar Khan Academy Burmese Translations Portal
+

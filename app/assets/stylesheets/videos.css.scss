@@ -2,13 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#list_table
-{
-position: relative;
-margin-left:120px;
-bottom: 5px;
-right: 25px;
-}
+
 
 .icon
 {
@@ -20,15 +14,7 @@ tr
 padding:15px;
 }
 
-#list_title{
-font-size: 20pt;
-position: relative;
-top: 20px;
-right: 210px;
-color: black;
 
-
-}
 
 .button{
 
@@ -51,28 +37,28 @@ border-radius: 4px;
 box-shadow: 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5) inset;
 -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.5) inset;
 -webkit-border-radius: 4px;
-
-
-
 }
+
+
+
 
 .aval_button{
-top: 100px;
-}
-
-.trans_button{
 top: 175px;
 }
 
-.digi_button{
+.trans_button{
 top: 250px;
 }
 
-.qa_button{
+.digi_button{
 top: 325px;
 }
-.compl_button{
+
+.qa_button{
 top: 400px;
+}
+.compl_button{
+top: 475px;
 }
 
 .background_bar{
@@ -109,15 +95,11 @@ background-color: #8099E6
 ;
 }
 
-.welcome
+#welcome
 {
-position: absolute;
-top: 15px;
-left: 20px;
+
 color: White;
-font-weight:bold;
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 13pt;
+
 
 }
 

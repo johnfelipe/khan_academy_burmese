@@ -1,67 +1,70 @@
 -#view for translations
 
 %html
+  = render :partial => "shared/head"
   %head
     = stylesheet_link_tag 'videos'
   %body
 
-    .welcome Hi, #{@user.name}
+    = render :partial => "shared/dashhead"
     
     .table-container
-      %h2{:id => "list_title"} Videos I Have Translated
-      %table.table.table-striped.table-bordered{:id => "list_table"}
-        %tr
-          %th KABT ID
-          %th Course Title
-          %th Due Date
-          %th Actions
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            %h2{:class => "list_title"} Videos I Have Translated
+            %table.table.table-striped.table-bordered{:id => "list_table"}
+              %tr
+                %th KABT ID
+                %th Course Title
+                %th Due Date
+                /%th Actions
 
-        - @comp_trans.each do |video|
-          %tr 
-            %td= video.video_id
-            %td= video.title
-            %td 12/25/2013
-            %td 
-              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
-
-    .table-container
-
-      %h2{:id => "list_title"} Videos I Have Digitized
-      %table.table.table-striped.table-bordered{:id => "list_table"}
-        %tr
-          %th KABT ID
-          %th Course Title
-          %th Due Date
-          %th Actions
-
-        - @comp_digi.each do |video|
-          %tr 
-            %td= video.video_id
-            %td= video.title
-            %td 12/25/2013
-            %td
-              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+              - @comp_trans.each do |video|
+                %tr 
+                  %td= video.video_id
+                  %td= video.title
+                  %td 12/25/2013
+              /%td 
+              /%a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
+              /%a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
 
     .table-container
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            %h2{:class => "list_title"} Videos I Have Digitized
+            %table.table.table-striped.table-bordered{:id => "list_table"}
+              %tr
+                %th KABT ID
+                %th Course Title
+                %th Due Date
+                /%th Actions
 
-      %h2{:id => "list_title"} Videos I Have QAed
-      %table.table.table-striped.table-bordered{:id => "list_table"}
-        %tr
-          %th KABT ID
-          %th Course Title
-          %th Due Date
-          %th Actions
+              - @comp_digi.each do |video|
+                %tr 
+                  %td= video.video_id
+                  %td= video.title
+                  %td 12/25/2013
 
-        - @comp_qa.each do |video|
-          %tr 
-            %td= video.video_id
-            %td= video.title
-            %td 12/25/2013
-            %td
-              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+
+    .table-container
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            %h2{:class => "list_title"} Videos I Have QAed
+            %table.table.table-striped.table-bordered{:id => "list_table"}
+              %tr
+                %th KABT ID
+                %th Course Title
+                %th Due Date
+                /%th Actions
+
+              - @comp_qa.each do |video|
+                %tr 
+                  %td= video.video_id
+                  %td= video.title
+                  %td 12/25/2013
 
   .aval_button{:class => "button"}
     %a{:id => 'a_link', :href => 'available'} Available(#{@avail.count})
@@ -78,4 +81,4 @@
   .compl_button{:class => "button", :id => "cb"}
     %a{:id => 'a_link', :href => 'completed'} Completed(#{@comp.count})
 
-  .background_bar Khan Academy Burmese Translations Portal
+
