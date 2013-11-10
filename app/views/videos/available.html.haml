@@ -19,7 +19,7 @@
           %tr 
             %td= video.video_id
             %td= video.title
-            %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_translator"
+            %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_translator" , :id => "#{video.video_id}_translate_button"
 
 
     .table-container
@@ -34,7 +34,7 @@
           %tr 
             %td= video.video_id
             %td= video.title
-            %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_typer"
+            %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_typer" , :id => "#{video.video_id}_digitize_button"
 
     .table-container
       %h2{:id => "list_title"} Videos Available To QA
@@ -48,21 +48,21 @@
           %tr 
             %td= video.video_id
             %td= video.title
-            %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_qa"
+            %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_qa" , :id => "#{video.video_id}_qa_button"
 
   .aval_button{:class => "button", :id => "ab"} 
-    %a{:class => 'a_link', :href => 'available'} Available(#{@avail.count})
+    %a{:id => 'a_link', :href => 'available'} Available(#{@avail.count})
 
   .trans_button{:class => "button"}
-    %a{:class => 'a_link', :id => "the_translate_button", :href => 'translate'} Translate(#{@trans_vids.count})
+    %a{:id => 'a_link', :href => 'translate'} Translate(#{@trans_vids.count})
 
   .digi_button{:class => "button"}
-    %a{:class => 'a_link', :href => 'digitize'} Digitize(#{@digi_vids.count})
+    %a{:id => 'a_link', :href => 'digitize'} Digitize(#{@digi_vids.count})
  
   .qa_button{:class => "button"}
-    %a{:class => 'a_link',:id=> 'the_qa_button', :href => 'qa'} QA(#{@qa_vids.count})
+    %a{:id => 'a_link', :href => 'qa'} QA(#{@qa_vids.count})
 
   .compl_button{:class => "button"}
-    %a{:class => 'a_link',:id => 'the_completed_button', :href => 'completed'} Completed(#{@comp.count})
+    %a{:id => 'a_link', :href => 'completed'} Completed(#{@comp.count})
 
   .background_bar Khan Academy Burmese Translations Portal

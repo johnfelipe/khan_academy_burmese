@@ -1,8 +1,8 @@
-Feature: Something something users something
+Feature: Modify user account
 
-  As a something
-  So that I can something
-  I want to something
+  As a user
+  So that I can update my account
+  I want to make modifications to my account information
 
 Background: users in database
 
