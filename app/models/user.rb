@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #devise :database_authenticatable, :registerable,
   #       :recoverable, :rememberable, :trackable, :validatable,
-  devise :omniauthable, :omniauth_providers => [:google_oauth2]
+  devise :omniauthable, :omniauth_providers => [:google_oauth2, :facebook]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :provider, :uid
@@ -34,10 +34,25 @@ class User < ActiveRecord::Base
     user = User.where(:email => data["email"]).first
 
     unless user
-        user = User.create(name: data["name"],
-             email: data["email"],
-             password: Devise.friendly_token[0,20]
-            )
+      user = User.create(
+          name: data["name"],
+          email: data["email"],
+          password: Devise.friendly_token[0,20]
+          )
+    end
+    user
+  end
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    data = auth.info
+    user = User.where(:email => data["email"]).first
+
+    unless user
+      user = User.create(
+          name: data["name"],
+          email: data["email"],
+          password: Devise.friendly_token[0,20]
+          )
     end
     user
   end

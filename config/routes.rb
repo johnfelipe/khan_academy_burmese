@@ -36,6 +36,14 @@ KABT::Application.routes.draw do
   match 'users/:id/videos/qa' => 'videos#qa', via: 'get', as: :qa
   match 'users/:id/videos/completed' => 'videos#completed', via: 'get', as: :completed
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_scope :user do
+    get 'sign_in', :to => 'users#login', :as => :new_session
+    get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_session
+  end
+
+  #get '/auth/:provider/callback' => 'sessions#create'
+  #get '/auth/failure' => 'users/sessions#failure'
+  #match '/logout' => 'sessions#destroy'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

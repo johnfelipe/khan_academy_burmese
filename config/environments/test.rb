@@ -34,4 +34,26 @@ KABT::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # 3rd party login testing
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+    :provider => 'google',
+    :uid => '123545',
+    :info => {
+      :name => 'kabttest account',
+      :email => 'kabtdashboardtest5364@gmail.com',
+      :password_digest => 'howY238Y4NHIOUQWEHRY983NJKCWYE8D'
+    }
+  })
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+    :provider => 'facebook',
+    :uid => '123545',
+    :info => {
+      :name => 'kabttest account',
+      :email => 'kabtdashboardtest5364@gmail.com',
+      :password_digest => 'jaskfun98ayufnisduf93hifpau98nujlk'
+    }
+  })
+
 end
