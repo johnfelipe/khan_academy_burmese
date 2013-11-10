@@ -1,18 +1,16 @@
 !!!
 %html
-  %head
-    %link{:type=>"text/css", :rel=>"stylesheet", :href=>"/css/application.css"}
-    %link{:type=>"text/css", :rel=>"shortcut icon", :href=>"../../assets/ico/favicon.png"}
-    %link{:type=>"text/css", :rel=>"stylesheet", :href=>"assets/bootstrap.css"}
+  = render :partial => "shared/head"
   %body
     -#<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
     .container
-      .col-xs-12.col-sm-6.col-md-6.right-border
-        #title
-          %div Khan<br/>
-          %div Academy<br/>
-          %div Translations
+      .masthead
+        .page-header
+          %img{:src=>'/assets/leaf-green.png'} 
+          %span.title <b>Khan</b>Academy Translations
+         
       .col-xs-12.col-sm-6.col-md-6
-        %a.col-xs-6.col-sm-6.col-md-6.custom_button{:href=>"#"}About
-        %a.col-xs-6.col-sm-6.col-md-6.custom_button{:href=>"#"}Contact
-        %a.col-xs-12.col-sm-12.col-md-12.sign_button{:href=>"#"}Sign in/Sign up
+        -#%a.col-xs-6.col-sm-6.col-md-6.custom_button{:href=>"#"}About
+        -#%a.col-xs-6.col-sm-6.col-md-6.custom_button{:href=>"#"}Contact
+        .sign_button
+          %a.col-xs-12.col-sm-12.col-md-12{:href=>"#"}Sign in/Sign up

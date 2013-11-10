@@ -1,27 +1,17 @@
 !!!
 %html
-  %head
-    %link{:rel=>"shortcut icon", :href=>"../../assets/ico/favicon.png"}
-    %link{:type=>"text/css", :rel=>"stylesheet", :href=>"assets/bootstrap.css"}
+  = render :partial => "shared/head"
 
   %body
+    = render :partial => "shared/masthead"
     .container
-      .masthead
-        %h3.text-muted Khan Academy Burmese Translation
-        %ul.nav.navbar.nav-justified
-          %li.active 
-            %a{:href=>"/"}Home
-          %li
-            %a{:href=>"/login_page"}Login
-          %li
-            %a{:href=>"/about"}About
-          %li
-            %a{:href=>"/contact"}Contact
+      .row
+        .col-lg-12.col.md-12.col-sm-12
+          %h1 Contact Us
+          .col-lg-6.col.md-6.col-sm-12
+            %p Have any questions regarding how to become a translator for KhanAcademy? Let us know and we'd be glad to answer any questions.
+            %p <b>Email:</b> kabt_help@gmail.com
+          .col-lg-6.col.md-6.col-sm-12
+            %p Problems with the site? Let us know what went wrong and we'll get back to you promptly!
+            %p <b>Email:</b> kabt_webmaster@gmail.com
 
-      .jumbotron.center
-        %h1 Contact Us
-        %p.lead Email:
-
-
-      .footer
-        %p Khan Academy Burmese

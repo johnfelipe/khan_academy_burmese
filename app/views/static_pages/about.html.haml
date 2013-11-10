@@ -1,33 +1,10 @@
 !!!
 %html
-  %head
-    %link{:rel=>"shortcut icon", :href=>"../../assets/ico/favicon.png"}
-    %link{:type=>"text/css", :rel=>"stylesheet", :href=>"assets/bootstrap.css"}
-
-    -#Custom styles for this template
-    -# <link href="assets/justified-nav.css" rel="stylesheet">
-
-    -# HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    -#<!--[if lt IE 9]>
-    -#  <script src="../../assets/js/html5shiv.js"></script>
-    -#  <script src="../../assets/js/respond.min.js"></script>
-    -#<![endif]-->
+  = render :partial => "shared/head"
 
   %body
+    = render :partial => "shared/masthead"
     .container
-      .masthead
-        %h3.text-muted Khan Academy Burmese Translation
-        %ul.nav.navbar.nav-justified
-          %li.active 
-            %a{:href=>"/"}Home
-          %li
-            %a{:href=>"/login_page"}Login
-          %li
-            %a{:href=>"/about"}About
-          %li
-            %a{:href=>"/contact"}Contact
-
-      -# Example row of columns
       .row
         .col-lg-4
           %h2 Mission
@@ -40,7 +17,3 @@
           %p KABT is an organization made 100% out of volunteers from all over the world.  Here are a few of our volunteers.  We come together via internet and contribute our skills and knowledge to help out with the project.  This may be by translating an algebra video, typing up a handwritten subtitle, adding pictures to our facebook page, or simply spreading the word.
 
       <br/><br/>
-
-      -#Site footer
-      .footer
-        %p Khan Academy Burmese
