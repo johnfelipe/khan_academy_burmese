@@ -10,8 +10,8 @@ Background: users in database
   | name                     | email                  | password   |
   | Me                       | myemail@mydomain.com   | mypassword |
 
-  When I am on the user page for "Me"
-  And I am logged in as "Me"
+  When I am logged in with email: "myemail@mydomain.com" and password: "mypassword"
+  And I am on the user page for "Me"
 
 Scenario: View the current user's account
   Then I should see "Me"

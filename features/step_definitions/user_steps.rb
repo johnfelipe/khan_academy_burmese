@@ -7,11 +7,10 @@ Given /the following users exist/ do |users_table|
   end
 end
 
-Given /I am logged in as "(.*)"/ do |username|
-  current_user = User.find_by_name(username)
-  email = current_user['email']
+Given /I am logged in with email: "(.*)" and password: "(.*)"/ do |email, password|
+  visit login_page_path
   fill_in('inputUsername', :with => email)
-  fill_in('loginPassword', :with => current_user['password'])
+  fill_in('loginPassword', :with => password)
   click_button('Sign In')
 end
 

@@ -48,7 +48,7 @@ And the following videos exist:
 |2641    |Good Movie     |nil          |nil     |1    |nil               |nil          |true       |
 
 
-
+ And I am logged in with email: "user@gmail.com" and password: "mypassword"
  And I am on the dashboard page for "User"
 
 
