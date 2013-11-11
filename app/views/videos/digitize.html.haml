@@ -18,14 +18,14 @@
                 %th KABT ID
                 %th Course Title
                 %th Due Date
-                %th Actions
+                / %th Actions
 
               - @digi_vids.each do |video|
                 %tr 
                   %td= video.video_id
                   %td= video.title
                   %td 12/25/2013
-                  %td= button_to 'Complete', "/users/#{@user.id}/videos/#{video.video_id}/set_type_complete"
+                  / %td= button_to 'Complete', "/users/#{@user.id}/videos/#{video.video_id}/set_type_complete"
             / %td 
             / %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
             / %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
