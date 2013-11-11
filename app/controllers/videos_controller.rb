@@ -64,27 +64,27 @@ class VideosController < ApplicationController
   	end
 
   	def set_translate_complete
-	    v = Video.find_by_video_id params[:video_id]
-	    v.update_attributes!(
-	      :translate_complete => true
-	    )
-	    redirect_to translate_path(params[:id])
+	    # v = Video.find_by_video_id params[:video_id]
+	    # v.update_attributes!(
+	    #   :translate_complete => true
+	    # )
+	    # redirect_to translate_path(params[:id])
   	end
 
   	def set_type_complete
-	    v = Video.find_by_video_id params[:video_id]
-	    v.update_attributes!(
-	      :type_complete => true
-	    )
-	    redirect_to digitize_path(params[:id])
+	    # v = Video.find_by_video_id params[:video_id]
+	    # v.update_attributes!(
+	    #   :type_complete => true
+	    # )
+	    # redirect_to digitize_path(params[:id])
   	end
 
   	def set_qa_complete
-	    v = Video.find_by_video_id params[:video_id]
-	    v.update_attributes!(
-	      :qa_complete => true
-	    )
-	    redirect_to qa_path(params[:id])
+	    # v = Video.find_by_video_id params[:video_id]
+	    # v.update_attributes!(
+	    #   :qa_complete => true
+	    # )
+	    # redirect_to qa_path(params[:id])
   	end
 
 end
