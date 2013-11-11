@@ -17,6 +17,8 @@
                             %label.checkbox
                                 %input{:type=>"checkbox", :value=>"remember-me"}Remember Me
                             %button.custom-btn.green{:type=>"submit"}Sign In
+                            .third-party-login= link_to image_tag('/assets/goog-red-signin-base.png', :id=>"google-login"), user_omniauth_authorize_path(:google_oauth2)
+                            .third-party-login= link_to image_tag('/assets/face-signin-base.png', :id=>"facebook-login"), user_omniauth_authorize_path(:facebook)
                             -#%button.custom-btn.help{:type=>"button"}Help
 
                     .col-md-6.col-sm-6.col-xs-6
@@ -31,5 +33,3 @@
                             %label.checkbox
                                 %input{:type=>"checkbox", :value=>"tos-agree"}I agree to the <a href="#">Terms of Services</a>
                             %button.custom-btn.green{:type=>"submit"}Sign Up
-                            .third-party-login#google-login= link_to image_tag('/assets/goog-red-signin-base.png'), user_omniauth_authorize_path(:google_oauth2)
-                            .third-party-login#facebook-login= link_to image_tag('/assets/face-signin-base.png'), user_omniauth_authorize_path(:facebook)
