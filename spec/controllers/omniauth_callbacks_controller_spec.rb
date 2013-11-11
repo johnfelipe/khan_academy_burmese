@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe "OmniAuth Callbacks Controller" do
 
-	before(:each) { visit '/' }	
+	before { visit '/' }	
 
-	describe "Home page should have link to sign in with facebook" do
+	describe "Home page should have links to sign in with facebook and google" do
 		it "should have the link to sign in with facebook" do
-			page.should have_content('Sign in with Facebook')
+			page.should have_selector(:id, 'facebook-login')
+		end
+		it "should have the link to sign it with google" do
+			page.should have_selector(:id, 'google-login')
 		end
 	end
 
@@ -16,7 +19,7 @@ describe "OmniAuth Callbacks Controller" do
 			request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook] 
 		end
 		it "should be successfull" do
-			click_link 'facebook-login'
+			find('#facebook-login').click
 			page.should have_content 'Successfully authenticated from Facebook account'
 			page.should have_content 'Welcome, kabttest account'
 		end
@@ -28,7 +31,7 @@ describe "OmniAuth Callbacks Controller" do
 			request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2] 
 		end
 		it "should be successfull" do
-			click_link 'google-login'
+			find('#google-login').click
 			page.should have_content 'Successfully authenticated from Google account'
 			page.should have_content 'Welcome, kabttest account'
 		end
