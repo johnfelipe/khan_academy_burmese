@@ -17,8 +17,8 @@
                             %label.checkbox
                                 %input{:type=>"checkbox", :value=>"remember-me"}Remember Me
                             %button.custom-btn.green{:type=>"submit"}Sign In
-                            .third-party-login= link_to image_tag('/assets/goog-red-signin-base.png'), user_omniauth_authorize_path(:google_oauth2), :id=>'google-login'
-                            .third-party-login= link_to image_tag('/assets/face-signin-base.png'), user_omniauth_authorize_path(:facebook), :id=>'facebook-login'
+                            .third-party-login#google-button= link_to image_tag('/assets/goog-red-signin-base.png'), user_omniauth_authorize_path(:google_oauth2), :id=>'google-login'
+                            .third-party-login#facebook-button= link_to image_tag('/assets/facebook-signin-base.png'), user_omniauth_authorize_path(:facebook), :id=>'facebook-login'
                             -#%button.custom-btn.help{:type=>"button"}Help
 
                     .col-md-6.col-sm-6.col-xs-6
@@ -29,7 +29,7 @@
                             %input.form-control.top#inputFirst{:name=>"firstName", :type=>"text", :placeholder=>"First Name"}
                             %input.form-control#inputLast{:name=>"lastName", :type=>"text", :placeholder=>"Last Name"}
                             %input.form-control#inputEmail{:name=>"email", :type=>"text", :placeholder=>"Email Address"}
-                            %input.form-control.bottom#loginPassword{:name=>"password", :type=>"password", :placeholder=>"Password"}
+                            %input.form-control.bottom#createPassword{:name=>"password", :type=>"password", :placeholder=>"Password"}
                             %label.checkbox
                                 %input{:type=>"checkbox", :value=>"tos-agree"}I agree to the <a href="#">Terms of Services</a>
                             %button.custom-btn.green{:type=>"submit"}Sign Up
