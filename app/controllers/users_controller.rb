@@ -26,11 +26,13 @@ class UsersController < ApplicationController
     name = params['firstName']+" "+params['lastName']
     email = params['email']
     password = params['password']
-    userHash = [:name => name, :email => email, :password => password]
-    @user = User.create!(userHash)
-    flash[:notice] = "Your account was successfully created"
-    #Redirect to dashboard?
-    redirect_to login_page_path
+    @user = User.new(:name => name, :email => email, :password => password)
+    if @user.save # create!(userHash)
+      flash[:success] = "Your account was successfully created"
+      redirect_to show_dashboard_path(@user)
+    else
+      redirect_to login_page_path
+    end
   end
 
   def edit
@@ -40,14 +42,14 @@ class UsersController < ApplicationController
   def update
     @user = User.find params[:id]
     @user.update_attributes!(params[:user])
-    flash[:notice] = "Your account was successfully updated"
+    flash[:success] = "Your account was successfully updated"
     redirect_to user_path(@user)
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "Your account was successfully deleted"
+    flash[:success] = "Your account was successfully deleted"
     redirect_to login_page_path
   end
 
