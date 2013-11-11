@@ -22,12 +22,12 @@ KABT::Application.routes.draw do
   # TODO decide which view to render for dashboard
   #match 'users/:id/available' => 'videos#available', via: 'get'
 
-  match 'users/:id/videos/:video_id/assign_translator' => 'users#assign_translator', via: 'post'
-  match 'users/:id/videos/:video_id/assign_typer' => 'users#assign_typer', via: 'post'
-  match 'users/:id/videos/:video_id/assign_qa' => 'users#assign_qa', via: 'post'
-  match 'users/:id/videos/:video_id/set_translate_complete' => 'users#set_translate_complete', via: 'post'
-  match 'users/:id/videos/:video_id/set_type_complete' => 'users#set_type_complete', via: 'post'
-  match 'users/:id/videos/:video_id/set_qa_complete' => 'users#set_qa_complete', via: 'post'
+  match 'users/:id/videos/:video_id/assign_translator' => 'videos#assign_translator', via: 'post'
+  match 'users/:id/videos/:video_id/assign_typer' => 'videos#assign_typer', via: 'post'
+  match 'users/:id/videos/:video_id/assign_qa' => 'videos#assign_qa', via: 'post'
+  match 'users/:id/videos/:video_id/set_translate_complete' => 'videos#set_translate_complete', via: 'post'
+  match 'users/:id/videos/:video_id/set_type_complete' => 'videos#set_type_complete', via: 'post'
+  match 'users/:id/videos/:video_id/set_qa_complete' => 'videos#set_qa_complete', via: 'post'
 
 
   match 'users/:id/videos/translate' => 'videos#translate', via: 'get', as: :translate
