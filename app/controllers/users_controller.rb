@@ -27,11 +27,12 @@ class UsersController < ApplicationController
     email = params['email']
     password = params['password']
     @user = User.new(:name => name, :email => email, :password => password)
-    if @user.save # create!(userHash)
+    if @user.save
       flash[:success] = "Your account was successfully created"
 #      redirect_to show_dashboard_path(@user)
       login
     else
+      flash[:error] = "Problem creating account. Please try again."
       redirect_to login_page_path
     end
   end
