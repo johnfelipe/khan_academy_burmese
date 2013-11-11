@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_filter :require_user, :except => [:new, :create, :login]
   def show
     id = params[:id] # retrieve user id
     @user = User.find(id) # look up user by unique ID
@@ -29,7 +29,8 @@ class UsersController < ApplicationController
     @user = User.new(:name => name, :email => email, :password => password)
     if @user.save # create!(userHash)
       flash[:success] = "Your account was successfully created"
-      redirect_to show_dashboard_path(@user)
+#      redirect_to show_dashboard_path(@user)
+      login
     else
       redirect_to login_page_path
     end
