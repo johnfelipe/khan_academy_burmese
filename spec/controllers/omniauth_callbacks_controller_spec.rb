@@ -16,9 +16,9 @@ describe "OmniAuth Callbacks Controller" do
 			request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook] 
 		end
 		it "should be successfull" do
-			click_link 'Sign in with Facebook'
+			click_link 'facebook-login'
 			page.should have_content 'Successfully authenticated from Facebook account'
-			page.should have_content 'Hi, kabttest account'
+			page.should have_content 'Welcome, kabttest account'
 		end
 	end
 
@@ -28,9 +28,9 @@ describe "OmniAuth Callbacks Controller" do
 			request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2] 
 		end
 		it "should be successfull" do
-			click_link 'Sign in with google'
+			click_link 'google-login'
 			page.should have_content 'Successfully authenticated from Google account'
-			page.should have_content 'Hi, kabttest account'
+			page.should have_content 'Welcome, kabttest account'
 		end
 	end
 
