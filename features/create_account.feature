@@ -14,5 +14,5 @@ Scenario: Open a new account
   And  I fill in "inputEmail" with "testemail@test.com"
   And  I fill in "createPassword" with "testpassword"
   And  I press "Sign Up"
-  Then I should be on the login page
+  Then I should be on the dashboard page for "Test User"
   And I should see "Your account was successfully created"

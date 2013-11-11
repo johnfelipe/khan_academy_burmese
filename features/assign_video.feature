@@ -17,6 +17,7 @@ Background: users and videos in database
   | To_Qa        | SubjectC | CourseC  | TitleC | 2             | 2        |       | true               | true          | false       | 
 
   And I am on the dashboard page for "Me"
+  And I am logged in as "Me"
 
 Scenario: assign a video to translate
   When I press "To_Translate_translate_button"
