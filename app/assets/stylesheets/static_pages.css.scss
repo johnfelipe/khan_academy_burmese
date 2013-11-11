@@ -120,15 +120,20 @@ body, html {
   }
 }
 
-.google {
-  &:hover {
-    background-color: rgba(50, 118, 177, 0.6);
-  }
-}
-
 .help {
   &:hover {
     background-color: rgba(255, 255, 0, 0.6);
   }
 }
 
+.third-party-login {
+  width: 48%;
+  margin-top: 15px;
+}
+#google-button {
+  float: left;
+  padding-right: 2%;
+}
+#facebook-button {
+  float: right;
+}
