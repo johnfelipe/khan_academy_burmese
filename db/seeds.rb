@@ -66,18 +66,18 @@ videos = [{:video_id => 'Video1', :subject => 'Math', :course => 'Algebra', :tit
             :typer_id => 1, :qa_id => 1, :translate_complete => 'true', :type_complete => 'true', :qa_complete => 'false'},
           {:video_id => 'Video19', :subject => 'Math', :course => 'Algebra', :title => 'I love algebra 11', :translator_id => 1, 
             :typer_id => 1, :qa_id => 1, :translate_complete => 'true', :type_complete => 'true', :qa_complete => 'true'},
-          {:video_id => 'Video21', :subject => 'Math', :course => 'Algebra', :title => 'I love algebra 13', :translator_id => 1, 
-            :typer_id => 1, :qa_id => nil, :translate_complete => 'true', :type_complete => 'true', :qa_complete => 'false'},
+          {:video_id => 'Video21', :subject => 'Math', :course => 'Algebra', :title => 'I love algebra 13', :translator_id => nil, 
+            :typer_id => nil, :qa_id => nil, :translate_complete => 'false', :type_complete => 'false', :qa_complete => 'false'},
           {:video_id => 'Video22', :subject => 'Math', :course => 'Algebra', :title => 'I love algebra 14', :translator_id => 1, 
             :typer_id => 1, :qa_id => nil, :translate_complete => 'false', :type_complete => 'false', :qa_complete => 'false'},
           {:video_id => 'Video23', :subject => 'Math', :course => 'Algebra', :title => 'I love algebra 15', :translator_id => 1, 
             :typer_id => 1, :qa_id => nil, :translate_complete => 'true', :type_complete => 'true', :qa_complete => 'false'},
           {:video_id => 'Video24', :subject => 'Math', :course => 'Algebra', :title => 'I love algebra 14', :translator_id => 1, 
-            :typer_id => 1, :qa_id => nil, :translate_complete => 'false', :type_complete => 'false', :qa_complete => 'false'},
+            :typer_id => 1, :qa_id => nil, :translate_complete => 'true', :type_complete => 'true', :qa_complete => 'false'},
           {:video_id => 'Video25', :subject => 'Math', :course => 'Algebra', :title => 'I love algebra 16', :translator_id => 1, 
-            :typer_id => 1, :qa_id => nil, :translate_complete => 'false', :type_complete => 'false', :qa_complete => 'false'},
+            :typer_id => 1, :qa_id => nil, :translate_complete => 'true', :type_complete => 'true', :qa_complete => 'false'},
           {:video_id => 'Video26', :subject => 'Math', :course => 'Calculus', :title => 'Calc 1B', :translator_id => 1, 
-            :typer_id => 1, :qa_id => nil, :translate_complete => 'false', :type_complete => 'false', :qa_complete => 'false'}
+            :typer_id => 1, :qa_id => nil, :translate_complete => 'true', :type_complete => 'true', :qa_complete => 'false'}
      ]
 
 users.each do |user|
