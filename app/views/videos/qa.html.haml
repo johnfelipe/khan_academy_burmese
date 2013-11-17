@@ -25,7 +25,7 @@
                 %tr 
                   %td= video.video_id
                   %td= video.title
-                  %td 12/25/2013
+                  %td= video.due_date
                   / %td= button_to 'Complete', "/users/#{@user.id}/videos/#{video.video_id}/set_qa_complete"
             / %td 
             /   %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}

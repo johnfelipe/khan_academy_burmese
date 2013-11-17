@@ -50,7 +50,8 @@ class VideosController < ApplicationController
   def assign_translator
       v = Video.find_by_video_id params[:video_id]
       v.update_attributes!(
-        :translator_id => params[:id]
+        :translator_id => params[:id],
+        :due_date => 1.month.from_now.strftime('%b %d %Y')
       )
       redirect_to show_dashboard_path(params[:id])
   end
@@ -58,15 +59,17 @@ class VideosController < ApplicationController
   def assign_typer
       v = Video.find_by_video_id params[:video_id]
       v.update_attributes!(
-        :typer_id => params[:id]
-      )
+        :typer_id => params[:id],
+        :due_date => 1.month.from_now.strftime('%b %d %Y')       
+        )
       redirect_to show_dashboard_path(params[:id])
     end
 
   def assign_qa
       v = Video.find_by_video_id params[:video_id]
       v.update_attributes!(
-        :qa_id => params[:id]
+        :qa_id => params[:id],
+        :due_date => 1.month.from_now.strftime('%b %d %Y')
       )
       redirect_to show_dashboard_path(params[:id])
     end

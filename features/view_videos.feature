@@ -17,35 +17,35 @@ And the following videos exist:
 
 
 
-|video_id|title          |translator_id|typer_id|qa_id|translate_complete|type_complete|qa_complete|
+|video_id|title          |translator_id|typer_id|qa_id|translate_complete|type_complete|qa_complete|due_date|
 
-|1234    |This Is A Video|             |nil     |nil  |false             |nil          |nil        |
+|1234    |This Is A Video|             |nil     |nil  |false             |nil          |nil        |		|
 
-|5679    |Best Vid Ever  |             |        |     |false             |nil          |           |
+|5679    |Best Vid Ever  |             |        |     |false             |nil          |           |		|
 
-|7849    |A Great Video  |1            |nil     |nil  |nil               |nil          |nil        |
+|7849    |A Great Video  |1            |nil     |nil  |nil               |nil          |nil        |		|
 
-|2647    |Volleyball Vid |1            |nil     |nil  |nil               |nil          |nil        |
+|2647    |Volleyball Vid |1            |nil     |nil  |nil               |nil          |nil        |		|
 
-|9018    |Math Video     |nil          |1       |nil  |nil               |nil          |nil        |
+|9018    |Math Video     |nil          |1       |nil  |nil               |nil          |nil        |		|
  
-|9564    |Documentary    |nil          | 1      |nil  |nil               |nil          |nil        |
+|9564    |Documentary    |nil          | 1      |nil  |nil               |nil          |nil        |		|
 
-|7758    |Science Video  |nil          |nil     |1    |nil               |nil          |nil        |
+|7758    |Science Video  |nil          |nil     |1    |nil               |nil          |nil        |		|
 
-|0182    |Info Video     |nil          |nil     |1    |nil               |nil          |nil        |
+|0182    |Info Video     |nil          |nil     |1    |nil               |nil          |nil        |		|
 
-|5869    |Hello World    |1            |nil     |nil  |true              |nil          |nil        |
+|5869    |Hello World    |1            |nil     |nil  |true              |nil          |nil        |		|
 
-|3343    |Learn English  |1            |nil     |nil  |true              |nil          |nil        |
+|3343    |Learn English  |1            |nil     |nil  |true              |nil          |nil        |		|
 
-|0495    |Learn Math     |nil          |1       |nil  |nil               |true         |nil        |
+|0495    |Learn Math     |nil          |1       |nil  |nil               |true         |nil        |		|
 
-|1111    |Chemistry Vid  |nil          |1       |nil  |nil               |true         |nil        |
+|1111    |Chemistry Vid  |nil          |1       |nil  |nil               |true         |nil        |		|
 
-|4095    |Learn Fractions|nil          |nil     |1    |nil               |nil          |true       |
+|4095    |Learn Fractions|nil          |nil     |1    |nil               |nil          |true       |		|
 
-|2641    |Good Movie     |nil          |nil     |1    |nil               |nil          |true       |
+|2641    |Good Movie     |nil          |nil     |1    |nil               |nil          |true       |		|
 
 
  And I am logged in with email: "user@gmail.com" and password: "mypassword"

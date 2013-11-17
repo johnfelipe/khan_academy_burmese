@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131111012618) do
+ActiveRecord::Schema.define(:version => 20131117013556) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20131111012618) do
     t.boolean  "qa_complete"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "due_date"            #convert from string to DateTime by calling due_date.to_time
   end
 
 end

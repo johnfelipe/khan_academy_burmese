@@ -17,14 +17,14 @@
               %tr
                 %th KABT ID
                 %th Course Title
-                %th Due Date
+                / %th Due Date
                 /%th Actions
 
               - @comp_trans.each do |video|
                 %tr 
                   %td= video.video_id
                   %td= video.title
-                  %td 12/25/2013
+                  / %td 12/25/2013
               /%td 
               /%a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
               /%a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
