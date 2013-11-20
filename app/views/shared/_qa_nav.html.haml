@@ -1,0 +1,14 @@
+.aval_button{:class => "button"}
+ %a{:class => 'a_link', :href => 'available'} Available(#{@avail.count})
+
+.trans_button{:class => "button"}
+ %a{:class => 'a_link', :href => 'translate'} Translate(#{@trans_vids.count})
+
+.digi_button{:class => "button"}
+ %a{:class => 'a_link', :href => 'digitize'} Digitize(#{@digi_vids.count})
+ 
+.qa_button{:class => "button", :id => "qb"}
+ %a{:class => 'a_link', :href => 'qa'} QA(#{@qa_vids.count})
+
+.compl_button{:class => "button"}
+ %a{:class => 'a_link', :href => 'completed'} Completed(#{@comp.count})

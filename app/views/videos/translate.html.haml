@@ -30,19 +30,6 @@
   /%a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
   /%a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
 
-  .aval_button{:class => "button"} 
-    %a{:class => 'a_link', :href => 'available'} Available(#{@avail.count})
-
-  .trans_button{:class => "button", :id => "tb"}
-    %a{:class => 'a_link', :href => 'translate'} Translate(#{@trans_vids.count})
-
-  .digi_button{:class => "button"}
-    %a{:class => 'a_link', :href => 'digitize', :id => "the_digitize_button"} Digitize(#{@digi_vids.count})
- 
-  .qa_button{:class => "button"}
-    %a{:class => 'a_link', :href => 'qa'} QA(#{@qa_vids.count})
-
-  .compl_button{:class => "button"}
-    %a{:class => 'a_link', :href => 'completed'} Completed(#{@comp.count})
+= render :partial => "shared/trans_nav"
 
 
