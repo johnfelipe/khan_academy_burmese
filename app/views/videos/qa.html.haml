@@ -17,6 +17,7 @@
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
                 %th KABT ID
+                %th Video Title
                 %th Course Title
                 %th Due Date
                 / %th Actions
@@ -25,6 +26,7 @@
                 %tr 
                   %td= video.video_id
                   %td= video.title
+                  %td= video.course
                   %td= video.due_date
                   / %td= button_to 'Complete', "/users/#{@user.id}/videos/#{video.video_id}/set_qa_complete"
             / %td 

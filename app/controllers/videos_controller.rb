@@ -26,6 +26,10 @@ class VideosController < ApplicationController
     @comp = @comp_trans + @comp_digi + @comp_qa
   end
 
+  def info
+    Logger.info("CRON JOB RUNNING")
+  end
+
   def available
     video_setup()
   end
@@ -46,56 +50,106 @@ class VideosController < ApplicationController
     video_setup()
   end
 
-
+  #TODO: add notices to inform user of seccessful assign/unassign/complete
   def assign_translator
-      v = Video.find_by_video_id params[:video_id]
-      v.update_attributes!(
-        :translator_id => params[:id],
-        :due_date => 1.month.from_now.strftime('%b %d %Y')
-      )
-      redirect_to show_dashboard_path(params[:id])
+    assign_translator_by_ids(params[:video_id], params[:id])
+    redirect_to show_dashboard_path(params[:id])
+  end
+
+  def assign_translator_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :translator_id => user_id,
+      :due_date => 1.month.from_now.strftime('%b %d %Y')
+    )
+  end
+
+  def unassign_translator
+    unassign_translater_by_ids(video_id, user_id)
+    redirect_to translate_path(params[:id])
+  end
+
+  def unassign_translater_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :translator_id => nil
+    )
   end
 
   def assign_typer
-      v = Video.find_by_video_id params[:video_id]
-      v.update_attributes!(
-        :typer_id => params[:id],
-        :due_date => 1.month.from_now.strftime('%b %d %Y')       
-        )
-      redirect_to show_dashboard_path(params[:id])
-    end
+    assign_typer_by_ids(params[:video_id], params[:id])    
+    redirect_to show_dashboard_path(params[:id])
+  end
+
+  def assign_typer_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :typer_id => user_id,
+      :due_date => 1.month.from_now.strftime('%b %d %Y')       
+      )
+  end
+
+  def unassign_typer
+    unassign_typer_by_ids(params[:video_id], params[:id])
+    redirect_to digitize_path(params[:id])
+  end
+
+  def unassign_typer_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :typer_id => nil
+    )
+  end
 
   def assign_qa
-      v = Video.find_by_video_id params[:video_id]
-      v.update_attributes!(
-        :qa_id => params[:id],
-        :due_date => 1.month.from_now.strftime('%b %d %Y')
-      )
-      redirect_to show_dashboard_path(params[:id])
-    end
+    assign_qa_by_ids(params[:video_id], params[:id])
+    redirect_to show_dashboard_path(params[:id])
+  end
 
-    def set_translate_complete
-      # v = Video.find_by_video_id params[:video_id]
-      # v.update_attributes!(
-      #   :translate_complete => true
-      # )
-      # redirect_to translate_path(params[:id])
-    end
+  def assign_qa_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :qa_id => user_id,
+      :due_date => 1.month.from_now.strftime('%b %d %Y')
+    )
+  end
 
-    def set_type_complete
-      # v = Video.find_by_video_id params[:video_id]
-      # v.update_attributes!(
-      #   :type_complete => true
-      # )
-      # redirect_to digitize_path(params[:id])
-    end
+  def unassign_qa
+    unassign_qa_by_ids(params[:video_id], params[:id])
+    redirect_to qa_path(params[:id])
+  end
 
-    def set_qa_complete
-      # v = Video.find_by_video_id params[:video_id]
-      # v.update_attributes!(
-      #   :qa_complete => true
-      # )
-      # redirect_to qa_path(params[:id])
-    end
+  def unassign_qa_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :qa_id => nil
+    )
+  end
+
+
+
+  def set_translate_complete
+    # v = Video.find_by_video_id params[:video_id]
+    # v.update_attributes!(
+    #   :translate_complete => true
+    # )
+    # redirect_to translate_path(params[:id])
+  end
+
+  def set_type_complete
+    # v = Video.find_by_video_id params[:video_id]
+    # v.update_attributes!(
+    #   :type_complete => true
+    # )
+    # redirect_to digitize_path(params[:id])
+  end
+
+  def set_qa_complete
+    # v = Video.find_by_video_id params[:video_id]
+    # v.update_attributes!(
+    #   :qa_complete => true
+    # )
+    # redirect_to qa_path(params[:id])
+  end
 
 end

@@ -16,6 +16,7 @@
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
                 %th KABT ID
+                %th Video Title
                 %th Course Title
                 / %th Due Date
                 /%th Actions
@@ -24,6 +25,7 @@
                 %tr 
                   %td= video.video_id
                   %td= video.title
+                  %td= video.course
                   / %td 12/25/2013
               /%td 
               /%a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
@@ -37,15 +39,15 @@
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
                 %th KABT ID
+                %th Video Title
                 %th Course Title
-                %th Due Date
                 /%th Actions
 
               - @comp_digi.each do |video|
                 %tr 
                   %td= video.video_id
                   %td= video.title
-                  %td 12/25/2013
+                  %td= video.course
 
 
     .table-container
@@ -56,15 +58,15 @@
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
                 %th KABT ID
+                %th Video Title
                 %th Course Title
-                %th Due Date
                 /%th Actions
 
               - @comp_qa.each do |video|
                 %tr 
                   %td= video.video_id
                   %td= video.title
-                  %td 12/25/2013
+                  %td= video.course
 
 = render :partial => "shared/comp_nav"
 
