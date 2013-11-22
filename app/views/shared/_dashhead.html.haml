@@ -1,11 +1,9 @@
 .container
-  .masthead
-    %a.title{:href=>"/"}
-      %div
-        %img{:src=>'/assets/leaf-green.png'} <span><b>Khan</b>Academy Translations</span>
-    %nav
-      %ul
-        %li
-          #welcome Welcome, #{@user.name}!
-        %li
-          =link_to("Logout", "/logout", :method => :delete, :confirm => "Are you sure?")
+	.masthead
+		%a.title{:href=>"/"}
+			%div
+				%p <b>Khan</b>Academy Translations
+		%nav
+			%ul
+				%li.welcome
+					Welcome, <span class="welcome-name">#{@user.name}</span>!
