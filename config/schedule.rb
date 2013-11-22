@@ -19,5 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 every 1.minute do
+	puts "CRON FUCKING JOB"
 	rake "db:reset"
 end
