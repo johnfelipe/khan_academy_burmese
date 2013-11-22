@@ -19,5 +19,5 @@
 
 # Learn more: http://github.com/javan/whenever
 every 1.minute do
-	runner "Video.unassign_overdue_videos"
+	rake "db:reset"
 end
