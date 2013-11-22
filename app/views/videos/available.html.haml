@@ -1,69 +1,52 @@
 -#view for translations
 
 %html
-  = render :partial => "shared/head"
   %head
     = stylesheet_link_tag 'videos'
   %body
     = render :partial => "shared/dashhead"
 
-    
-    .table-container
-      .row
-        .col-md-12
-          .col-md-12.col-sm-12.col-xs-12
-            %h2{:class => "list_title"} Videos Available To Translate
-            %table.table.table-striped.table-bordered{:id => "list_table"}
-              %tr
-                %th KABT ID
-                %th Video Title
-                %th Course Title
-                %th Actions
+    .row
+      .col-xs-12.col-sm-12.col-md-2.col-lg-2
+      .col-xs-12.col-sm-12.col-md-10.col-lg-10
+        .col-xs-12.col-sm-12.col-md-12.col-lg-12
+          %h3 Videos Available To Translate
+          %table.table.table-striped.table-bordered
+            %tr
+              %th.kabt_id KABT ID
+              %th.crs_ttl Course Title
+              %th Actions
 
-              - @avail_trans.each do |video|
-                %tr 
-                  %td= video.video_id
-                  %td= video.title
-                  %td= video.course
-                  %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_translator" , :id => "#{video.video_id}_translate_button"
+            - @avail_trans.each do |video|
+              %tr 
+                %td= video.video_id
+                %td= video.title
+                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_translator" , :id => "#{video.video_id}_translate_button"
 
+        .col-xs-12.col-sm-12.col-md-12.col-lg-12
+          %h3 Videos Available To Digitize
+          %table.table.table-striped.table-bordered
+            %tr
+              %th.kabt_id KABT ID
+              %th.crs_ttl Course Title
+              %th Actions
 
-    .table-container
-      .row
-        .col-md-12
-          .col-md-12.col-sm-12.col-xs-12
-            %h2{:class => "list_title"} Videos Available To Digitize
-            %table.table.table-striped.table-bordered{:id => "list_table"}
-              %tr
-                %th KABT ID
-                %th Video Title
-                %th Course Title
-                %th Actions
+            - @avail_digi.each do |video|
+              %tr 
+                %td= video.video_id
+                %td= video.title
+                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_typer" , :id => "#{video.video_id}_digitize_button"
 
-              - @avail_digi.each do |video|
-                %tr 
-                  %td= video.video_id
-                  %td= video.title
-                  %td= video.course
-                  %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_typer" , :id => "#{video.video_id}_digitize_button"
+        .col-xs-12.col-sm-12.col-md-12.col-lg-12
+          %h3 Videos Available To QA
+          %table.table.table-striped.table-bordered
+            %tr
+              %th.kabt_id KABT ID
+              %th.crs_ttl Course Title
+              %th Actions
 
-    .table-container
-      .row
-        .col-md-12
-          .col-md-12.col-sm-12.col-xs-12
-            %h2{:class => "list_title"} Videos Available To QA
-            %table.table.table-striped.table-bordered{:id => "list_table"}
-              %tr
-                %th KABT ID
-                %th Video Title
-                %th Course Title
-                %th Actions
-
-              - @avail_qa.each do |video|
-                %tr 
-                  %td= video.video_id
-                  %td= video.title
-                  %td= video.course
-                  %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_qa" , :id => "#{video.video_id}_qa_button"
-
-  = render :partial => "shared/aval_nav"
+            - @avail_qa.each do |video|
+              %tr 
+                %td= video.video_id
+                %td= video.title
+                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_qa" , :id => "#{video.video_id}_qa_button"

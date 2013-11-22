@@ -29,6 +29,7 @@ body, html {
     nav {
       margin: 15px auto;
       height: 40px;
+      width: 80%;
       ul {
         text-align: center;
         margin: 0px;
@@ -63,9 +64,7 @@ body, html {
       text-decoration: none;
     }
   }
-  
 }
-
 
 .form-sign {
   max-width: 330px;
@@ -111,12 +110,12 @@ body, html {
   -moz-transition: all 0.3s;
   transition: all 0.3s;
   width: 100%;
-  background: #d1d1d1;
 }
 
-.green {  
+.green {
+  background-color: #47a447;
   &:hover {
-    background-color: rgba(0, 255, 0, 0.6);
+    background-color: #47a447;
   }
 }
 
@@ -129,7 +128,11 @@ body, html {
 .third-party-login {
   width: 48%;
   margin-top: 15px;
+  img {
+    width: 100%;
+  }
 }
+
 #google-button {
   float: left;
   padding-right: 2%;

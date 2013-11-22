@@ -1,143 +1,26 @@
 // Place all the styles related to the videos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-#list_table
-{
-position: relative;
-margin-left:120px;
-bottom: 5px;
-right: 25px;
+html, body {
+	overflow-x: hidden;
+}
+.kabt_id {
+	width: 15%;
 }
 
-
-.icon
-{
-font-size: x-large;
+.crs_ttl {
+	width: 65%;
 }
 
-tr
-{
-padding:15px;
+tr:hover td {
+	background-color: #fff;
 }
 
-
-
-.button{
-
-position: fixed;
-text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-
-font-weight:bold;
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-left: 10px;
-font-size: 12pt;
-background-color:#5bb65b;
-width: 155px;
-height: 75px;
-line-height: 75px;
-text-align: center;
-
-dislay: inline-block;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-shadow: 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5) inset;
--webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.5) inset;
--webkit-border-radius: 4px;
+.welcome {
+	float: left;
+	color: #fff;
+	margin: 0 15px;
+	.welcome-name {
+		text-decoration: underline;
+	}
 }
-
-
-
-
-.aval_button{
-top: 175px;
-}
-
-.trans_button{
-top: 250px;
-}
-
-.digi_button{
-top: 325px;
-}
-
-.qa_button{
-top: 400px;
-}
-.compl_button{
-top: 475px;
-}
-
-.background_bar{
-position: absolute;
-left: 0px;
-top: 10px;
-width: 100%;
-background-color: #999;
-z-index: -3;
-height: 70px;
-color:#08c;
-font-size: 30pt;
-font-weight: bold;
-text-align: center;
-padding-left: 425px;
-line-height: 70px;
-text-shadow: 0 1px 0 rgba(0,0,0,0.25);
-    text-shadow:
-    -1px -1px 0 white,
-    1px -1px 0 white,
-    -1px 1px 0 white,
-    1px 1px 0 white;  
-
-}
-
-.button:hover{
-
-background-color:#006400;
-
-}
-
-tr:hover td{
-background-color: #8099E6
-;
-}
-
-#welcome
-{
-
-color: White;
-
-
-}
-
-.a_link{
-display: block;
-color: white;
-}
-
-.a_link:visited {
-color: white;
-}
-
-#ab {
-background-color:#006400;
-}
-
-#tb {
-background-color:#006400;
-}
-
-#db {
-background-color:#006400;
-}
-
-#qb{
-background-color:#006400;
-}
-
-#cb{
-background-color:#006400;
-}
-
-

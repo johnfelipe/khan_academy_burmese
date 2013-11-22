@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_user, :except => [:new, :create, :login]
+  before_filter :require_user, :except => [:new, :create, :login, :logout]
   def show
     id = params[:id] # retrieve user id
     @user = User.find(id) # look up user by unique ID
@@ -90,4 +90,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+    reset_session
+    flash[:notice] = "You have successfully logged out."
+    redirect_to login_page_path
+    #show_dashboard_path(User.find_by_id(session[:id]))
+  end
 end

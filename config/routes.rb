@@ -14,6 +14,7 @@ KABT::Application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
 
   match '/login', to: 'users#login', via: 'post'
+  match '/logout', to: 'users#logout', via: 'delete'
 
   resources :users
   match 'users/:id/change_password' => 'users#change_password', via: 'get', as: :change_password
