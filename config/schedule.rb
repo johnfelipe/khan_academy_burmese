@@ -19,5 +19,5 @@
 
 # Learn more: http://github.com/javan/whenever
 every 1.minute do
-	runner "videos_controller.info"
+	runner "videos_controller.unassign_overdue_videos"
 end
