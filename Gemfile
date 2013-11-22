@@ -10,6 +10,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'sqlite3'
@@ -23,6 +24,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'factory_girl_rails'
   gem 'ffaker'
+  gem 'whenever'
 end
 
 group :test do

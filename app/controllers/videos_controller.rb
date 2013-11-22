@@ -26,6 +26,10 @@ class VideosController < ApplicationController
     @comp = @comp_trans + @comp_digi + @comp_qa
   end
 
+  def info
+    Logger.info("CRON JOB RUNNING")
+  end
+
   def available
     video_setup()
   end
@@ -46,56 +50,120 @@ class VideosController < ApplicationController
     video_setup()
   end
 
-
+  #TODO: add notices to inform user of seccessful assign/unassign/complete
   def assign_translator
-      v = Video.find_by_video_id params[:video_id]
-      v.update_attributes!(
-        :translator_id => params[:id],
-        :due_date => 1.month.from_now.strftime('%b %d %Y')
-      )
-      redirect_to show_dashboard_path(params[:id])
+    assign_translator_by_ids(params[:video_id], params[:id])
+    redirect_to show_dashboard_path(params[:id])
+  end
+
+  def assign_translator_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :translator_id => user_id,
+      :due_date => 1.month.from_now.strftime('%b %d %Y')
+    )
+  end
+
+  def unassign_translator
+    unassign_translater_by_ids(video_id, user_id)
+    redirect_to translate_path(params[:id])
+  end
+
+  def unassign_translater_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :translator_id => nil
+    )
   end
 
   def assign_typer
-      v = Video.find_by_video_id params[:video_id]
-      v.update_attributes!(
-        :typer_id => params[:id],
-        :due_date => 1.month.from_now.strftime('%b %d %Y')       
-        )
-      redirect_to show_dashboard_path(params[:id])
-    end
+    assign_typer_by_ids(params[:video_id], params[:id])    
+    redirect_to show_dashboard_path(params[:id])
+  end
+
+  def assign_typer_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :typer_id => user_id,
+      :due_date => 1.month.from_now.strftime('%b %d %Y')       
+      )
+  end
+
+  def unassign_typer
+    unassign_typer_by_ids(params[:video_id], params[:id])
+    redirect_to digitize_path(params[:id])
+  end
+
+  def unassign_typer_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :typer_id => nil
+    )
+  end
 
   def assign_qa
-      v = Video.find_by_video_id params[:video_id]
-      v.update_attributes!(
-        :qa_id => params[:id],
-        :due_date => 1.month.from_now.strftime('%b %d %Y')
-      )
-      redirect_to show_dashboard_path(params[:id])
-    end
+    assign_qa_by_ids(params[:video_id], params[:id])
+    redirect_to show_dashboard_path(params[:id])
+  end
 
-    def set_translate_complete
-      # v = Video.find_by_video_id params[:video_id]
-      # v.update_attributes!(
-      #   :translate_complete => true
-      # )
-      # redirect_to translate_path(params[:id])
-    end
+  def assign_qa_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :qa_id => user_id,
+      :due_date => 1.month.from_now.strftime('%b %d %Y')
+    )
+  end
 
-    def set_type_complete
-      # v = Video.find_by_video_id params[:video_id]
-      # v.update_attributes!(
-      #   :type_complete => true
-      # )
-      # redirect_to digitize_path(params[:id])
-    end
+  def unassign_qa
+    unassign_qa_by_ids(params[:video_id], params[:id])
+    redirect_to qa_path(params[:id])
+  end
 
-    def set_qa_complete
-      # v = Video.find_by_video_id params[:video_id]
-      # v.update_attributes!(
-      #   :qa_complete => true
-      # )
-      # redirect_to qa_path(params[:id])
+  def unassign_qa_by_ids(video_id, user_id)
+    v = Video.find_by_video_id video_id
+    v.update_attributes!(
+      :qa_id => nil
+    )
+  end
+
+  def unassign_overdue_videos
+    @all_assigned_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ?', false)
+    @all_assigned_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ?', true, false)
+    @all_assigned_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ?', true, false)
+    @all_assigned_trans_vids.each do |video|
+      unassign_translater_by_ids(video.video_id, video.translator_id)
     end
+    @all_assigned_digi_vids.each do |video|
+      unassign_typer_by_ids(video.video_id, video.typer_id)
+    end
+    @all_assigned_qa_vids.each do |video|
+      unassign_qa_by_ids(video.video_id, video.qa_id)
+    end
+    redirect_to translate_path(params[:id])
+  end
+
+  def set_translate_complete
+    # v = Video.find_by_video_id params[:video_id]
+    # v.update_attributes!(
+    #   :translate_complete => true
+    # )
+    # redirect_to translate_path(params[:id])
+  end
+
+  def set_type_complete
+    # v = Video.find_by_video_id params[:video_id]
+    # v.update_attributes!(
+    #   :type_complete => true
+    # )
+    # redirect_to digitize_path(params[:id])
+  end
+
+  def set_qa_complete
+    # v = Video.find_by_video_id params[:video_id]
+    # v.update_attributes!(
+    #   :qa_complete => true
+    # )
+    # redirect_to qa_path(params[:id])
+  end
 
 end
