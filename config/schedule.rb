@@ -18,6 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.minutes do
-	runner "db:reset"
+every 1.minute do
+	rake "db:reset", :environment => "development"
 end
