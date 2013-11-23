@@ -19,5 +19,5 @@
 
 # Learn more: http://github.com/javan/whenever
 every 1.minute do
-	rake "db:reset", :environment => "development"
+	rake "redistribute:unassign_overdue_videos", :environment => "development"
 end
