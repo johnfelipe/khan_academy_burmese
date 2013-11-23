@@ -22,7 +22,7 @@
               %tr 
                 %td= video.video_id
                 %td= video.title
-                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_translator" , :id => "#{video.video_id}_translate_button"
+                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_translator" , :id => "#{video.video_id}_translate_button", :class => "assign_button"
 
         .col-xs-12.col-sm-12.col-md-12.col-lg-12
           %h3 Videos Available To Digitize
@@ -36,7 +36,7 @@
               %tr 
                 %td= video.video_id
                 %td= video.title
-                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_typer" , :id => "#{video.video_id}_digitize_button"
+                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_typer" , :id => "#{video.video_id}_digitize_button", :class => "assign_button"
 
         .col-xs-12.col-sm-12.col-md-12.col-lg-12
           %h3 Videos Available To QA
@@ -50,4 +50,4 @@
               %tr 
                 %td= video.video_id
                 %td= video.title
-                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_qa" , :id => "#{video.video_id}_qa_button"
+                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_qa" , :id => "#{video.video_id}_qa_button", :class => "assign_button"
