@@ -30,6 +30,12 @@ KABT::Application.routes.draw do
   match 'users/:id/videos/:video_id/set_type_complete' => 'videos#set_type_complete', via: 'post'
   match 'users/:id/videos/:video_id/set_qa_complete' => 'videos#set_qa_complete', via: 'post'
 
+match 'users/:id/videos/:video_id/qa_video' => 'videos#qa_video', via: 'get', as: :qa_video
+  match 'users/:id/videos/:video_id/translate_video' => 'videos#translate_video', via: 'get', as: :translate_video
+  match 'users/:id/videos/:video_id/translate_video_handwritten' => 'videos#translate_video_handwritten', via: 'get', as: :translate_video_handwritten
+  match 'users/:id/videos/:video_id/digitize_video' => 'videos#digitize_video', via: 'get', as: :digitize_video
+
+
 
   match 'users/:id/videos/translate' => 'videos#translate', via: 'get', as: :translate
   match 'users/:id/videos/available' => 'videos#available', via: 'get', as: :show_dashboard

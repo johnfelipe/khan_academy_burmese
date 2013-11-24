@@ -1,53 +1,78 @@
 -#view for translations
 
 %html
+
   %head
     = stylesheet_link_tag 'videos'
   %body
     = render :partial => "shared/dashhead"
 
-    .row
-      .col-xs-12.col-sm-12.col-md-2.col-lg-2
-        = render :partial => "shared/aval_nav"
-      .col-xs-12.col-sm-12.col-md-10.col-lg-10
-        .col-xs-12.col-sm-12.col-md-12.col-lg-12
-          %h3 Videos Available To Translate
-          %table.table.table-striped.table-bordered
-            %tr
-              %th.kabt_id KABT ID
-              %th.crs_ttl Course Title
-              %th Actions
+    
+    .table-container
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            %h4{:class => "list_title"} Videos Available To Translate
+            %table.table.table-striped.table-bordered{:id => "list_table"}
+              %tr
+                %th KABT ID
+                %th Course
+                %th Title
+                %th Actions
 
-            - @avail_trans.each do |video|
-              %tr 
-                %td= video.video_id
-                %td= video.title
-                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_translator" , :id => "#{video.video_id}_translate_button", :class => "assign_button"
+              - @avail_trans.each do |video|
+                %tr 
+                  %td= video.video_id
+                  %td= video.course
+                  %td= video.title
+                  %td
+                    %button_to.btn.btn-primary{:id => "#{video.video_id}_translate_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_translator", {:method => :post,:style=> 'color:white;'}
 
-        .col-xs-12.col-sm-12.col-md-12.col-lg-12
-          %h3 Videos Available To Digitize
-          %table.table.table-striped.table-bordered
-            %tr
-              %th.kabt_id KABT ID
-              %th.crs_ttl Course Title
-              %th Actions
 
-            - @avail_digi.each do |video|
-              %tr 
-                %td= video.video_id
-                %td= video.title
-                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_typer" , :id => "#{video.video_id}_digitize_button", :class => "assign_button"
 
-        .col-xs-12.col-sm-12.col-md-12.col-lg-12
-          %h3 Videos Available To QA
-          %table.table.table-striped.table-bordered
-            %tr
-              %th.kabt_id KABT ID
-              %th.crs_ttl Course Title
-              %th Actions
 
-            - @avail_qa.each do |video|
-              %tr 
-                %td= video.video_id
-                %td= video.title
-                %td= button_to 'Assign To Me', "/users/#{@user.id}/videos/#{video.video_id}/assign_qa" , :id => "#{video.video_id}_qa_button", :class => "assign_button"
+    .table-container
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            %h4{:class => "list_title"} Videos Available To Digitize
+            %table.table.table-striped.table-bordered{:id => "list_table"}
+              %tr
+                %th KABT ID
+                %th Course
+                %th Title
+                %th Actions
+
+              - @avail_digi.each do |video|
+                %tr 
+                  %td= video.video_id
+                  %td= video.course
+                  %td= video.title
+                  %td
+                    %button_to.btn.btn-primary{:id => "#{video.video_id}_digitize_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_typer",{:style=> 'color:white;', :method => :post}
+
+
+    .table-container
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            %h4{:class => "list_title"} Videos Available To QA
+            %table.table.table-striped.table-bordered{:id => "list_table"}
+              %tr
+                %th KABT ID
+                %th Course
+                %th Title
+                %th Actions
+
+              - @avail_qa.each do |video|
+                %tr 
+                  %td= video.video_id
+                  %td= video.course
+                  %td= video.title
+                  %td
+                    %button_to.btn.btn-primary{:id => "#{video.video_id}_qa_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_qa",{:style=> 'color:white;', :method => :post}
+
+
+
+
+  = render :partial => "shared/nav"

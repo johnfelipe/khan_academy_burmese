@@ -16,22 +16,21 @@
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
                 %th KABT ID
-                %th Video Title
-                %th Course Title
+                %th Course
+                %th Title
                 %th Due Date
-                / %th Actions
+                %th Actions
 
               - @qa_vids.each do |video|
                 %tr 
                   %td= video.video_id
-                  %td= video.title
                   %td= video.course
+                  %td= video.title
                   %td= video.due_date
-                  / %td= button_to 'Complete', "/users/#{@user.id}/videos/#{video.video_id}/set_qa_complete"
-            / %td 
-            /   %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-            /   %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+                  %td
+                    %button_to.btn.btn-primary= link_to "QA", qa_video_path(:id => @user.id, :video_id => video.video_id),{:style=> 'color:white;'}
+
            
-= render :partial => "shared/qa_nav"
+= render :partial => "shared/nav"
 
 

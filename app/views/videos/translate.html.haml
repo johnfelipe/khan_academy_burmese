@@ -1,6 +1,7 @@
 -#view for translations
-
+= javascript_include_tag 'application'
 %html
+
   %head
     = stylesheet_link_tag 'videos'
   %body
@@ -11,26 +12,26 @@
       .row
         .col-md-12
           .col-md-12.col-sm-12.col-xs-12
-            %h2{:class => "list_title"} Videos Assigned To Me To Translate
+            %h4{:class => "list_title"} Videos Assigned To Me To Translate
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
                 %th KABT ID
-                %th Video Title
-                %th Course Title
+                %th Course
+                %th Title
                 %th Due Date
-                / %th Actions
+                %th Actions
 
               - @trans_vids.each do |video|
                 %tr 
                   %td= video.video_id
-                  %td= video.title
                   %td= video.course
+                  %td= video.title
                   %td= video.due_date
-                  / %td= button_to 'Complete', "/users/#{@user.id}/videos/#{video.video_id}/set_translate_complete"
+                  %td
+                    %button_to.btn.btn-primary= link_to "Translate", translate_video_path(:id => @user.id, :video_id => video.video_id),{:style=> 'color:white;'}
 
-  /%a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-  /%a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
 
-= render :partial => "shared/trans_nav"
+
+= render :partial => "shared/nav"
 
 

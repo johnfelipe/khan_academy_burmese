@@ -165,4 +165,28 @@ class VideosController < ApplicationController
     # redirect_to qa_path(params[:id])
   end
 
+
+    def qa_video
+        video_setup()
+        @user = User.find_by_id(params[:id])
+        @video = Video.find_by_video_id(params[:video_id])
+    end
+
+    def translate_video
+        video_setup()
+        @user = User.find_by_id(params[:id])
+        @video = Video.find_by_video_id(params[:video_id])
+    end
+
+    def translate_video_handwritten
+        video_setup()
+        @user = User.find_by_id(params[:id])
+        @video = Video.find_by_video_id(params[:video_id])
+    end
+
+    def digitize_video
+        video_setup()
+        @user = User.find_by_id(params[:id])
+        @video = Video.find_by_video_id(params[:video_id])
+    end
 end
