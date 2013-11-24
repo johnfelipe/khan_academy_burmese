@@ -28,6 +28,9 @@ class User < ActiveRecord::Base
     self.password_digest = @password
   end
 
+  def printIt
+    puts "Printint"
+  end
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     find_for_provider(access_token, signed_in_resource)

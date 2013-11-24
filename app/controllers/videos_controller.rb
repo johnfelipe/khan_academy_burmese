@@ -9,8 +9,7 @@ class VideosController < ApplicationController
     @digi_vids  = Video.where(:type_complete => false, :typer_id => @user.id)
     @qa_vids = Video.where(:qa_complete => false, :qa_id => @user.id)
 
-    find_comp(@user)
-  end
+    find_comp(@user) end
 
   def find_avail(user)
     @avail_trans = Video.where(:translator_id => nil, :translate_complete => false)
@@ -139,7 +138,7 @@ class VideosController < ApplicationController
     @all_assigned_qa_vids.each do |video|
       unassign_qa_by_ids(video.video_id, video.qa_id)
     end
-    redirect_to translate_path(params[:id])
+    #redirect_to translate_path(session[:id])
   end
 
   def set_translate_complete
