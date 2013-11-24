@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :require_user, :except => [:new, :create, :login, :logout]
+  before_filter :require_user, :except => [:new, :create, :login, :logout, :users_index]
+  before_filter :admin_user, only: [:destroy, :users_index]
+  
   def show
     id = params[:id] # retrieve user id
     @user = User.find(id) # look up user by unique ID
@@ -32,7 +34,7 @@ class UsersController < ApplicationController
 #      redirect_to show_dashboard_path(@user)
       login
     else
-      flash[:error] = "Problem creating account. Please try again."
+      flash[:danger] = "Problem creating account. Please try again."
       redirect_to login_page_path
     end
   end
@@ -79,12 +81,19 @@ class UsersController < ApplicationController
     end
   end
 =end
+
+  def users_index
+    @user = current_user 
+    @users = User.all
+  end
+
   def login
     @user = User.find_by_email(params[:email])
     if @user.nil? or @user.password != params[:password]
-      flash[:notice] = "Login credentials are incorrect. Please try again."
+      flash[:warning] = "Login credentials are incorrect. Please try again."
       redirect_to login_page_path
     else
+      @current_user = @user
       session[:id] = @user.id
       redirect_to show_dashboard_path(@user)
     end
@@ -92,8 +101,16 @@ class UsersController < ApplicationController
 
   def logout
     reset_session
-    flash[:notice] = "You have successfully logged out."
+    flash[:warning] = "You have successfully logged out."
     redirect_to login_page_path
     #show_dashboard_path(User.find_by_id(session[:id]))
   end
+
+  ################################## Private Methods ################################
+  private
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
+
 end
