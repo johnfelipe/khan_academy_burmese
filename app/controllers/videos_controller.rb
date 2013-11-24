@@ -1,5 +1,8 @@
 class VideosController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user#, :except => [:assign_translate_to_someone_else, :assign_translator]
+  before_filter :admin_user, :only => [:assign_translate_to_someone_else, 
+    :assign_type_to_someone_else, :assign_qa_to_someone_else ]
+
   def video_setup
     @user = User.find_by_id(params[:id])
 
@@ -52,7 +55,7 @@ class VideosController < ApplicationController
   #TODO: add notices to inform user of seccessful assign/unassign/complete
   def assign_translator
     assign_translator_by_ids(params[:video_id], params[:id])
-    redirect_to show_dashboard_path(params[:id])
+    redirect_to show_dashboard_path(current_user)
   end
 
   def assign_translator_by_ids(video_id, user_id)
@@ -65,7 +68,7 @@ class VideosController < ApplicationController
 
   def unassign_translator
     unassign_translater_by_ids(video_id, user_id)
-    redirect_to translate_path(params[:id])
+    redirect_to translate_path(current_user)
   end
 
   def unassign_translater_by_ids(video_id, user_id)
@@ -77,7 +80,7 @@ class VideosController < ApplicationController
 
   def assign_typer
     assign_typer_by_ids(params[:video_id], params[:id])    
-    redirect_to show_dashboard_path(params[:id])
+    redirect_to show_dashboard_path(current_user)
   end
 
   def assign_typer_by_ids(video_id, user_id)
@@ -164,5 +167,28 @@ class VideosController < ApplicationController
     # )
     # redirect_to qa_path(params[:id])
   end
+
+  def assign_translate_to_someone_else
+    @users = User.all
+    @video = Video.find_by_video_id(params[:video_id])
+  end
+
+  def assign_type_to_someone_else
+    @users = User.all
+    @video = Video.find_by_video_id(params[:video_id])
+  end
+
+  def assign_qa_to_someone_else
+    @users = User.all
+    @video = Video.find_by_video_id(params[:video_id])
+  end
+
+
+  ################################## Private Methods ################################
+  private
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 
 end

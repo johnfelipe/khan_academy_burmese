@@ -93,7 +93,6 @@ class UsersController < ApplicationController
       flash[:warning] = "Login credentials are incorrect. Please try again."
       redirect_to login_page_path
     else
-      @current_user = @user
       session[:id] = @user.id
       redirect_to show_dashboard_path(@user)
     end

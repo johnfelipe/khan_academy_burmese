@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     end
 
     self.current_user = User.find(session[:id])
-    if params[:id] != "#{session[:id]}" #and not current_user.admin?
+    if params[:id] != "#{session[:id]}" and not current_user.admin?
       render :status => :forbidden, :text => "You do not have permission to access that page"
       return
     end

@@ -6,9 +6,9 @@
     %nav
       %ul
         %li.welcome
-          Welcome, <span class="welcome-name">#{@user.name}</span>!
+          Welcome, <span class="welcome-name">#{current_user.name}</span>!
         %li.logout
-          =link_to("Logout", "/logout", :method => :delete, :confirm => "Are you sure?")
-        - if @user.admin?
+          =link_to("Logout", "/logout", :method => :delete) #, :confirm => "Are you sure?")
+        - if current_user.admin?
           %li{ :class => 'pull-right'}
             = link_to 'All users', users_index_path

@@ -1,0 +1,16 @@
+-#view for admins
+%html
+  %head
+    = stylesheet_link_tag 'users'
+  %body
+    = render :partial => "shared/dashhead"
+    %h2 Assign video - #{@video.course}, #{@video.title} to:
+
+    %ul{ :class => "users" }
+      - @users.each do |user|
+        %li
+          = user.name
+          ,
+          = user.email
+          | 
+          = button_to 'Assign as QA', "/users/#{user.id}/videos/#{@video.video_id}/assign_qa" , :id => "#{@video.video_id}_qa_button", :class => "assign_button"
