@@ -37,3 +37,14 @@ td, th {
     }
   }
 }
+
+div.profile {
+  text-align: center;
+}
+
+ul.profile_actions {
+  li {
+    display: inline-block;
+    margin: 10px;
+  }
+}

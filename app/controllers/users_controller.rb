@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_user, :except => [:new, :create, :login, :logout, :users_index]
-  before_filter :admin_user, only: [:destroy, :users_index]
-  
+  before_filter :admin_user, only: [:users_index]
+
   def show
     id = params[:id] # retrieve user id
     @user = User.find(id) # look up user by unique ID
@@ -51,39 +51,45 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    delete_self = "#{current_user.id}" == "#{params[:id]}"
     @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = "Your account was successfully deleted"
-    redirect_to login_page_path
+    if delete_self
+      reset_session
+      flash[:success] = "Your account was successfully deleted"
+      redirect_to login_page_path
+    else
+      flash[:success] = "The account was successfully deleted"
+      redirect_to users_index_path
+    end
   end
 
-=begin
+
   def change_password
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def update_password
-    #Needs more checks once OAuth is in place
-    @user = User.find(params[:id])
+    @user = current_user
     current_password = params[:current]
     new_password = params[:new]
-    if current_password != @user.password
-      flash[:notice] = "Incorrect current password"
+    if @user.password != current_password
+      flash[:warning] = "Incorrect current password"
       redirect_to change_password_path(@user)
     elsif new_password != params[:confirmation]
-      flash[:notice] = "Your confirmation did not match the new password you entered."
+      flash[:warning] = "Your confirmation did not match the new password you entered."
       redirect_to change_password_path(@user)
     else
       @user.password = new_password
       @user.save
-      flash[:notice] = "Your password was updated."
+      flash[:success] = "Your password was updated."
       redirect_to edit_user_path(@user)
     end
   end
-=end
+
 
   def users_index
-    @user = current_user 
+    @user = current_user
     @users = User.all
   end
 

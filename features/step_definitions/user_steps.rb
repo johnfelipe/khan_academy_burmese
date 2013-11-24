@@ -24,8 +24,7 @@ end
 
 
 Then /the password for "(.*)" should be "(.*)"/ do |username, value|
-  puts User.where(:name => username)['password']
-  User.where(:name => username)['password'].should == value
+  User.where(:name => username)[0].password.eql?(value)
 end
 
 # Make sure that one string (regexp) occurs before or after another one

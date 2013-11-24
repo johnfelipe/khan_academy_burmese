@@ -1,6 +1,6 @@
 .container
   .masthead
-    %a.title{:href=>"/"}
+    %a.title{:href=>show_dashboard_path(current_user)}
       %div
         %p <b>Khan</b>Academy Translations
     %nav
@@ -9,6 +9,8 @@
           Welcome, <span class="welcome-name">#{current_user.name}</span>!
         %li.logout
           =link_to("Logout", "/logout", :method => :delete) #, :confirm => "Are you sure?")
+        %li.profile
+          =link_to("Profile", user_path(current_user))
         - if current_user.admin?
           %li{ :class => 'pull-right'}
             = link_to 'All users', users_index_path

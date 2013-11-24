@@ -1,18 +1,27 @@
 -# in app/views/movies/show.html.haml
 
-%h2 Details about #{@user.name}
-
-%ul#details
-  %li
-    Email:
-    = @user.email
-  %li
-    Joined on:
-    = @user.created_at.strftime("%B %d, %Y")
-  %li
-    Account last updated on:
-    = @user.updated_at.strftime("%B %d, %Y")
-
-= button_to 'Edit account information', edit_user_path(@user), :method => :get
-= button_to 'Delete account', user_path(@user), :method => :delete, :confirm => 'Are you sure?'
-= button_to 'Back to dashboard', show_dashboard_path(@user), :method => :get
+%html
+  %head
+    = stylesheet_link_tag 'users'
+  %body
+    = render :partial => "shared/dashhead"
+    %div.profile
+    
+      %h1 Details about #{@user.name}
+      
+      <strong>Email:</strong>
+      = @user.email
+      %br
+      %br
+      <strong>Joined on:</strong>
+      = @user.created_at.strftime("%B %d, %Y")
+      %br
+      %br
+      <strong>Account last updated on:</strong>
+      = @user.updated_at.strftime("%B %d, %Y")
+      %div
+        %ul.profile_actions
+          %li
+            = button_to 'Edit account information', edit_user_path(@user), :method => :get
+          %li
+            = button_to 'Delete account', user_path(@user), :method => :delete

@@ -1,15 +1,25 @@
--# edit.html.haml using partial
+-# User profile page
 
-%h1 Update account for #{@user.name}
+%html
+  %head
+    = stylesheet_link_tag 'users'
+  %body
+    = render :partial => "shared/dashhead"
+ 
+    %div.profile
+      %h1 Update account for #{@user.name}
 
-= form_tag user_path(@user), :method => :put do
+      = form_tag user_path(@user), :method => :put do
 
-  = label :user, :name, 'Name'
-  = text_field :user, 'name'
-
-  = label :user, :email, 'Email'
-  = text_field :user, 'email'
-
-  = submit_tag 'Update Account Info'
-
--#= button_to 'Change password', change_password_path(@user), :method => :get
+        = label :user, :name, 'Name'
+        = text_field :user, 'name'
+        %br
+        %br
+        = label :user, :email, 'Email'
+        = text_field :user, 'email'
+        %br
+        %ul.profile_actions
+          %li
+            = link_to 'Change password', change_password_path(@user), :method => :get
+          %li
+            = submit_tag 'Update Account Info'
