@@ -89,8 +89,7 @@ class UsersController < ApplicationController
 
 
   def users_index
-    @user = current_user
-    @users = User.all
+    @users = User.order('email ASC')
   end
 
   def login

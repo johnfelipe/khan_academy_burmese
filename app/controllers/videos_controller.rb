@@ -193,17 +193,17 @@ class VideosController < ApplicationController
   end
 
   def assign_translate_to_someone_else
-    @users = User.all
+    @users = User.order('email ASC')
     @video = Video.find_by_video_id(params[:video_id])
   end
 
   def assign_type_to_someone_else
-    @users = User.all
+    @users = User.order('email ASC')
     @video = Video.find_by_video_id(params[:video_id])
   end
 
   def assign_qa_to_someone_else
-    @users = User.all
+    @users = User.order('email ASC')
     @video = Video.find_by_video_id(params[:video_id])
   end
 

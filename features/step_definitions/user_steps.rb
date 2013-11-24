@@ -14,6 +14,10 @@ Given /I am logged in with email: "(.*)" and password: "(.*)"/ do |email, passwo
   click_button('Sign In')
 end
 
+Given /"(.*)" is an admin user/ do |email|
+  User.find_by_email(email).toggle!(:admin)
+end
+
 Then /the user "(.*)" should not exist/ do |username|
   User.where(:name => username).should be_blank
 end

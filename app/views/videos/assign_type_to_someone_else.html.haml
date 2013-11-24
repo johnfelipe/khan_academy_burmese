@@ -13,4 +13,4 @@
           ,
           = user.email
           | 
-          = button_to 'Assign as Typer', "/users/#{user.id}/videos/#{@video.video_id}/assign_typer" , :id => "#{@video.video_id}_type_button", :class => "assign_button"
+          = button_to 'Assign as Typer', "/users/#{user.id}/videos/#{@video.video_id}/assign_typer" , :id => "#{user.id}_type_#{@video.video_id}", :class => "assign_button"
