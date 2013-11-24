@@ -35,6 +35,12 @@ KABT::Application.routes.draw do
   match '/assign_type_to_someone_else/:video_id', to: 'videos#assign_type_to_someone_else', via: 'get', as: :assign_type_to_someone_else
   match '/assign_qa_to_someone_else/:video_id', to: 'videos#assign_qa_to_someone_else', via: 'get', as: :assign_qa_to_someone_else
 
+  match 'users/:id/videos/:video_id/qa_video' => 'videos#qa_video', via: 'get', as: :qa_video
+  match 'users/:id/videos/:video_id/translate_video' => 'videos#translate_video', via: 'get', as: :translate_video
+  match 'users/:id/videos/:video_id/translate_video_handwritten' => 'videos#translate_video_handwritten', via: 'get', as: :translate_video_handwritten
+  match 'users/:id/videos/:video_id/digitize_video' => 'videos#digitize_video', via: 'get', as: :digitize_video
+
+
   match 'users/:id/videos/translate' => 'videos#translate', via: 'get', as: :translate
   match 'users/:id/videos/available' => 'videos#available', via: 'get', as: :show_dashboard
   match 'users/:id/videos/digitize' => 'videos#digitize', via: 'get', as: :digitize

@@ -1,0 +1,51 @@
+
+%html
+
+  %head
+    = stylesheet_link_tag 'videos'
+  %body
+    = render :partial => "shared/dashhead"
+    = render :partial => "shared/nav"
+    
+    .table-container
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            .panel.panel-success{:id => "list_table"}
+              .panel-heading
+                Video Details
+              .panel-body
+                %ul.list-group
+                  .list-group-item.h5= "Subject: #{@video.subject}"
+                  .list-group-item.h5= "Course: #{@video.course}"
+                  .list-group-item.h5= link_to "Title: #{@video.title}", "#"
+
+
+
+
+            .panel.panel-info{:id => "list_table"}
+              .panel-heading
+                Video Status
+              .panel-body
+                .list-group
+                  .list-group-item.h5= "Assigned to: #{@user.name}"
+                  .list-group-item.h5= "Due Date: #{@video.due_date}"
+                  .list-group-item
+                    %button_to.btn.btn-danger= link_to "Unassign Video To Me", "#",{:style=> 'color:white;', :confirm => "Are you sure you want to unassign #{@video.title} as your video?"}
+  
+                  %h4 Available ---> Translate ---> Digitize ---> QA ---> Complete
+                  .col-md-10
+                    .progress.progress-striped.active
+                      .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "45", role: "progressbar", style: "width: 50%"}
+                        %span.sr-only
+
+                  %button_to.btn.btn-primary= link_to "Ready for QA", "/users/#{@user.id}/videos/#{@video.video_id}/set_type_complete",{:style=> 'color:white;', :confirm => "Are you sure #{@video.title} has been propery digitized?"}
+
+
+
+
+                
+
+
+    
+

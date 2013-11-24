@@ -11,62 +11,61 @@
       .row
         .col-md-12
           .col-md-12.col-sm-12.col-xs-12
-            %h2{:class => "list_title"} Videos I Have Translated
+            %h4{:class => "list_title"} Videos I Have Translated
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
                 %th KABT ID
-                %th Video Title
-                %th Course Title
-                / %th Due Date
-                /%th Actions
+                %th Course
+                %th Title
+                %th Due Date
+
 
               - @comp_trans.each do |video|
                 %tr 
                   %td= video.video_id
-                  %td= video.title
                   %td= video.course
-                  / %td 12/25/2013
-              /%td 
-              /%a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-              /%a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
+                  %td= video.title
+                  %td= video.due_date
 
     .table-container
       .row
         .col-md-12
           .col-md-12.col-sm-12.col-xs-12
-            %h2{:class => "list_title"} Videos I Have Digitized
+            %h4{:class => "list_title"} Videos I Have Digitized
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
                 %th KABT ID
-                %th Video Title
-                %th Course Title
-                /%th Actions
+                %th Course
+                %th Title
+                %th Due Date
 
               - @comp_digi.each do |video|
                 %tr 
                   %td= video.video_id
-                  %td= video.title
                   %td= video.course
+                  %td= video.title
+                  %td= video.due_date
 
 
     .table-container
       .row
         .col-md-12
           .col-md-12.col-sm-12.col-xs-12
-            %h2{:class => "list_title"} Videos I Have QAed
+            %h4{:class => "list_title"} Videos I Have QAed
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
                 %th KABT ID
-                %th Video Title
-                %th Course Title
-                /%th Actions
+                %th Course
+                %th Title
+                %th Due Date
 
               - @comp_qa.each do |video|
                 %tr 
                   %td= video.video_id
-                  %td= video.title
                   %td= video.course
+                  %td= video.title
+                  %td= video.due_date
 
-= render :partial => "shared/comp_nav"
+= render :partial => "shared/nav"
 
 

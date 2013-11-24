@@ -29,25 +29,182 @@ tr:hover td {
 	float: right;
 }
 
-.assign_button {
-	color: #fff;
-	background-color: #47a447;
-	border: none;
-  font-family: inherit;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 0;
-  padding: 3px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  outline: none;
-  position: relative;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-  width: 75%;
-  &:hover {
-    background-color: #47a447;
-  }
+#list_table
+{
+position: relative;
+margin-left:120px;
+bottom: 5px;
+right: 25px;
 }
+
+
+.icon
+{
+font-size: x-large;
+}
+
+tr
+{
+padding:15px;
+}
+
+
+
+
+
+
+
+
+.avail_button{
+top: 175px;
+
+position: fixed;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+
+font-weight:bold;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+left: 10px;
+font-size: 12pt;
+background-color: #47a447;
+width: 155px;
+height: 75px;
+line-height: 75px;
+text-align: center;
+
+dislay: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-shadow: 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-border-radius: 4px;
+}
+
+.trans_button{
+top: 250px;
+
+position: fixed;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+
+font-weight:bold;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+left: 10px;
+font-size: 12pt;
+background-color: #47a447;
+width: 155px;
+height: 75px;
+line-height: 75px;
+text-align: center;
+
+dislay: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-shadow: 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-border-radius: 4px;
+}
+
+.digi_button{
+top: 325px;
+
+position: fixed;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+
+font-weight:bold;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+left: 10px;
+font-size: 12pt;
+background-color: #47a447;
+width: 155px;
+height: 75px;
+line-height: 75px;
+text-align: center;
+
+dislay: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-shadow: 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-border-radius: 4px;
+}
+
+.qa_button{
+top: 400px;
+
+position: fixed;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+
+font-weight:bold;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+left: 10px;
+font-size: 12pt;
+background-color: #47a447;
+width: 155px;
+height: 75px;
+line-height: 75px;
+text-align: center;
+
+dislay: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-shadow: 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-border-radius: 4px;
+}
+.compl_button{
+top: 475px;
+
+position: fixed;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+
+font-weight:bold;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+left: 10px;
+font-size: 12pt;
+background-color: #47a447;
+width: 155px;
+height: 75px;
+line-height: 75px;
+text-align: center;
+
+dislay: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-shadow: 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.5) inset;
+-webkit-border-radius: 4px;
+
+}
+
+
+
+.button:hover{
+
+background-color:#006400;
+
+}
+
+
+
+#welcome
+{
+
+color: White;
+
+
+}
+
+.a_link{
+display: block;
+color: white;
+}
+
+.a_link:visited {
+color: white;
+}
+
+.list_title{
+position:relative;
+left: 300px;
+}
+
+
