@@ -11,6 +11,8 @@
           =link_to("Logout", "/logout", :method => :delete) #, :confirm => "Are you sure?")
         %li.profile
           =link_to("Profile", user_path(current_user))
+        %li.dashboard
+          =link_to "Dashboard", show_dashboard_path(current_user)
         - if current_user.admin?
           %li{ :class => 'pull-right'}
             = link_to 'All users', users_index_path
