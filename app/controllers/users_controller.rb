@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_user, :except => [:new, :create, :login, :logout, :users_index]
+  before_filter :require_user, :except => [:new, :create, :login, :logout, :destroy, :users_index]
   before_filter :admin_user, only: [:destroy, :users_index]
   
   def show
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = "Your account was successfully deleted"
+    flash[:success] = "Account was successfully deleted"
     redirect_to login_page_path
   end
 
@@ -83,8 +83,7 @@ class UsersController < ApplicationController
 =end
 
   def users_index
-    @user = current_user 
-    @users = User.all
+    @users = User.order('email ASC')
   end
 
   def login
