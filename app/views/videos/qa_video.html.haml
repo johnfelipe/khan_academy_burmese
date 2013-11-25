@@ -32,7 +32,7 @@
                   .list-group-item.h5= "Due Date: #{@video.due_date}"
 
                   .list-group-item
-                    %button_to.btn.btn-danger= link_to "Unassign Video To Me", "#",{:style=> 'color:white;', :confirm => "Are you sure you want to unassign #{@video.title} as your video?"}
+                    %button_to.btn.btn-danger= link_to "Unassign Video To Me",unassign_qa_path(),{:style=> 'color:white;', :confirm => "Are you sure you want to unassign #{@video.title} as your video to QA?", :method => :post}
   
                   %h4 Available ---> Translate ---> Digitize ---> QA ---> Complete
                   .col-md-10
@@ -40,7 +40,7 @@
                       .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "45", role: "progressbar", style: "width: 70%"}
                         %span.sr-only
 
-                  %button_to.btn.btn-primary= link_to "Quality Assurance Complete", "#",{:style=> 'color:white;', :confirm => "Do you assure the qaulity of #{@video.title}?"}
+                  %button_to.btn.btn-primary= link_to "Quality Assurance Complete", set_qa_complete_path(),{:style=> 'color:white;', :confirm => "Do you assure the qaulity of #{@video.title}?", :method => :post}
 
 
 

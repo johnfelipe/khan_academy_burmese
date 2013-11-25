@@ -27,9 +27,16 @@ KABT::Application.routes.draw do
   match 'users/:id/videos/:video_id/assign_translator' => 'videos#assign_translator', via: 'post'
   match 'users/:id/videos/:video_id/assign_typer' => 'videos#assign_typer', via: 'post'
   match 'users/:id/videos/:video_id/assign_qa' => 'videos#assign_qa', via: 'post'
-  match 'users/:id/videos/:video_id/set_translate_complete' => 'videos#set_translate_complete', via: 'post'
-  match 'users/:id/videos/:video_id/set_type_complete' => 'videos#set_type_complete', via: 'post'
-  match 'users/:id/videos/:video_id/set_qa_complete' => 'videos#set_qa_complete', via: 'post'
+
+ match 'users/:id/videos/:video_id/unassign_translator' => 'videos#unassign_translator', via: 'post', as: :unassign_translator
+  match 'users/:id/videos/:video_id/unassign_typer' => 'videos#unassign_typer', via: 'post', as: :unassign_typer
+  match 'users/:id/videos/:video_id/unassign_qa' => 'videos#unassign_qa', via: 'post', as: :unassign_qa
+
+  match 'users/:id/videos/:video_id/set_translate_complete' => 'videos#set_digital_translate_complete', via: 'post', as: :set_digital_translate_complete 
+  match 'users/:id/videos/:video_id/set_handwritten_translate_complete' => 'videos#set_digital_translate_complete', via: 'post', as: :set_handwritten_translate_complete 
+  match 'users/:id/videos/:video_id/set_type_complete' => 'videos#set_type_complete', via: 'post', as: :set_type_complete
+  match 'users/:id/videos/:video_id/set_qa_complete' => 'videos#set_qa_complete', via: 'post', as: :set_qa_complete
+
 
   match '/assign_translate_to_someone_else/:video_id', to: 'videos#assign_translate_to_someone_else', via: 'get', as: :assign_translate_to_someone_else
   match '/assign_type_to_someone_else/:video_id', to: 'videos#assign_type_to_someone_else', via: 'get', as: :assign_type_to_someone_else
