@@ -175,6 +175,13 @@ class VideosController < ApplicationController
       @video = Video.find_by_video_id(params[:video_id])
   end
 
+  def upload_video
+      @video = Video.find_by_video_id(params[:video_id])
+      flash[:success] = "Your translation has been successfully uploaded"
+      translate_video_handwritten
+      redirect_to translate_video_handwritten_path
+  end
+
   def translate_video
       video_setup()
       @user = User.find_by_id(params[:id])
