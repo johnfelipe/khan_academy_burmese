@@ -1,0 +1,20 @@
+
+
+.avail_button{:class => "button", :id => "avail"} 
+ %a{:class => 'a_link', :href => show_dashboard_path, :id => "the_avail_button"} Available(#{@avail.count})
+
+.trans_button{:class => "button"}
+ %a{:class => 'a_link', :href => translate_path, :id => "the_trans_button"} Translate(#{@trans_vids.count})
+
+.digi_button{:class => "button", :id => "digi"}
+ %a{:class => 'a_link', :href => digitize_path, :id => "the_digitize_button"} Digitize(#{@digi_vids.count})
+ 
+.qa_button{:class => "button", :id => "qa"}
+ %a{:class => 'a_link', :href => qa_path, :id => "the_qa_button"} QA(#{@qa_vids.count})
+
+.compl_button{:class => "button", :id => "compl"}
+ %a{:class => 'a_link', :href => completed_path, :id => "the_compl_button"} Completed(#{@comp.count})
+
+ .compl_button{:class => "button", :id => "assigned_to_others"}
+ %a{:class => 'a_link', :href => assigned_to_others_path, :id => "assigned_to_others_button"} Assigned To Others
+
