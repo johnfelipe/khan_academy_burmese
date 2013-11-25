@@ -18,6 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.minute do
+every 1.day, :at => '12:30 am' do
 	rake "redistribute:unassign_overdue_videos", :environment => "development"
 end

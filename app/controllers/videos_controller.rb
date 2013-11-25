@@ -127,10 +127,30 @@ class VideosController < ApplicationController
     )
   end
 
+  def admin_unassign_overdue_videos
+    unassign_overdue_videos
+    redirect_to users_index_path
+  end
+
+  # def unassign_overdue_videos
+  #   @all_overdue_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ?', false)
+  #   @all_overdue_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ?', true, false)
+  #   @all_overdue_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ?', true, false)
+  #   @all_overdue_trans_vids.each do |video|
+  #     unassign_translater_by_ids(video.video_id, video.translator_id)
+  #   end
+  #   @all_overdue_digi_vids.each do |video|
+  #     unassign_typer_by_ids(video.video_id, video.typer_id)
+  #   end
+  #   @all_overdue_qa_vids.each do |video|
+  #     unassign_qa_by_ids(video.video_id, video.qa_id)
+  #   end
+  # end
+
   def unassign_overdue_videos
-    @all_overdue_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ? and due_date < ?', false, Date.today)
-    @all_overdue_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ? and due_date > ?', true, false, Date.today)
-    @all_overdue_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ? and due_date < ?', true, false, Date.today)
+    @all_overdue_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ?', false)
+    @all_overdue_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ?', true, false)
+    @all_overdue_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ?', true, false)
     @all_overdue_trans_vids.each do |video|
       unassign_translater_by_ids(video.video_id, video.translator_id)
     end
