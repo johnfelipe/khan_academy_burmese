@@ -28,7 +28,7 @@
                   %td= video.title
                   %td= video.due_date.strftime('%b %d %Y')
                   %td
-                    %button_to.btn.btn-primary= link_to "Translate", translate_video_path(:id => @user.id, :video_id => video.video_id),{:style=> 'color:white;'}
+                    %button_to.btn.btn-primary.translate_button= link_to "Translate", translate_video_path(:id => @user.id, :video_id => video.video_id),{:style=> 'color:white;'}
 
 
 
