@@ -1,0 +1,6 @@
+<%= form_for @video.video_id, :html => {:multipart => true} do |f| %>
+  <p>
+    <%= f.file_field :translation_handwritten %>
+  </p>
+  <p> <%= f.submit "Upload" %></p>
+<% end %>

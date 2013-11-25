@@ -11,6 +11,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'whenever', :require => false
+gem 'carrierwave'
 
 group :development, :test do
   gem 'sqlite3'

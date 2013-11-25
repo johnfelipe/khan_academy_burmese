@@ -51,11 +51,7 @@
               .panel-body
                 .list-group
                   .list-group-item
-                    %form{role: "form"}
-                    .form-group
-                      %label.h4{for: "handwrittenTranslation"} Upload Handwritten Translation
-                      %input#inputFile{type: "file"}
-                    %button.btn.btn-default{type: "submit"} Upload
+                    =render :partial => "shared/form"
                   .list-group-item
                     %button_to.btn.btn-primary= link_to "Ready for Digitization", set_handwritten_translate_complete_path(),{:style=> 'color:white;', :confirm => "Are you sure #{@video.title} has been propery translated and submitted on Amara?", :method => :post}
 

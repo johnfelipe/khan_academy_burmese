@@ -4,6 +4,8 @@ class Video < ActiveRecord::Base
 
   validates :video_id, :presence => true, :uniqueness => true #add uniqueness in db too
 
+  mount_uploader :translation_handwritten, TranslationsUploader
+
   before_create :set_due_date_to_month_from_now
 
   #prevent null due dates
