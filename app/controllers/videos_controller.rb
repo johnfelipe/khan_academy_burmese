@@ -28,10 +28,6 @@ class VideosController < ApplicationController
     @comp = @comp_trans + @comp_digi + @comp_qa
   end
 
-  def info
-    Logger.info("CRON JOB RUNNING")
-  end
-
   def available
     video_setup()
   end
@@ -62,7 +58,7 @@ class VideosController < ApplicationController
     v = Video.find_by_video_id video_id
     v.update_attributes!(
       :translator_id => user_id,
-      :due_date => 1.month.from_now.strftime('%b %d %Y')
+      :due_date => 1.month.from_now
     )
   end
 
@@ -87,7 +83,7 @@ class VideosController < ApplicationController
     v = Video.find_by_video_id video_id
     v.update_attributes!(
       :typer_id => user_id,
-      :due_date => 1.month.from_now.strftime('%b %d %Y')       
+      :due_date => 1.month.from_now  
       )
   end
 
@@ -112,7 +108,7 @@ class VideosController < ApplicationController
     v = Video.find_by_video_id video_id
     v.update_attributes!(
       :qa_id => user_id,
-      :due_date => 1.month.from_now.strftime('%b %d %Y')
+      :due_date => 1.month.from_now
     )
   end
 
@@ -129,19 +125,18 @@ class VideosController < ApplicationController
   end
 
   def unassign_overdue_videos
-    @all_assigned_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ?', false)
-    @all_assigned_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ?', true, false)
-    @all_assigned_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ?', true, false)
-    @all_assigned_trans_vids.each do |video|
+    @all_overdue_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ? and due_date < ?', false, Date.today)
+    @all_overdue_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ? and due_date > ?', true, false, Date.today)
+    @all_overdue_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ? and due_date < ?', true, false, Date.today)
+    @all_overdue_trans_vids.each do |video|
       unassign_translater_by_ids(video.video_id, video.translator_id)
     end
-    @all_assigned_digi_vids.each do |video|
+    @all_overdue_digi_vids.each do |video|
       unassign_typer_by_ids(video.video_id, video.typer_id)
     end
-    @all_assigned_qa_vids.each do |video|
+    @all_overdue_qa_vids.each do |video|
       unassign_qa_by_ids(video.video_id, video.qa_id)
     end
-    #redirect_to translate_path(session[:id])
   end
 
   def set_translate_complete
