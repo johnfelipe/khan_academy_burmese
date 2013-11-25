@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125034043) do
+ActiveRecord::Schema.define(:version => 20131125071818) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -35,9 +35,10 @@ ActiveRecord::Schema.define(:version => 20131125034043) do
     t.boolean  "translate_complete"
     t.boolean  "type_complete"
     t.boolean  "qa_complete"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.date     "due_date",           :limit => 255
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.date     "due_date",                :limit => 255
+    t.string   "translation_handwritten"
   end
 
 end

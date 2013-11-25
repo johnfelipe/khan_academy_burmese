@@ -26,7 +26,7 @@
                   %td= video.video_id
                   %td= video.course
                   %td= video.title
-                  %td= video.due_date
+                  %td= video.due_date.strftime('%b %d %Y')
                   %td
                     %button_to.btn.btn-primary= link_to "QA", qa_video_path(:id => @user.id, :video_id => video.video_id),{:style=> 'color:white;'}
 
