@@ -20,19 +20,19 @@ Background: users and videos in database
   And I am on the dashboard page for "Me"
 
 Scenario: assign a video to translate
-  When I press "To_Translate_translate_button"
+  When I follow "To_Translate_translate_button"
   Then I should not see "TitleA"
   When I follow "Translate"
   Then I should see "TitleA"
 
 Scenario: assign a video to digitize
-  When I press "To_Digitize_digitize_button"
+  When I follow "To_Digitize_digitize_button"
   Then I should not see "TitleB"
   When I follow "Digitize"
   Then I should see "TitleB"
 
 Scenario: assign a video to qa
-  When I press "To_Qa_qa_button"
+  When I follow "To_Qa_qa_button"
   Then I should not see "TitleC"
   When I follow "QA"
   Then I should see "TitleC"
