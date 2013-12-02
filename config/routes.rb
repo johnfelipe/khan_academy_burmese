@@ -49,6 +49,7 @@ KABT::Application.routes.draw do
   match 'users/:id/videos/:video_id/digitize_video' => 'videos#digitize_video', via: 'get', as: :digitize_video
 
   match '/admin_unassign_overdue_videos' => 'videos#admin_unassign_overdue_videos', via: 'post', as: :admin_unassign_overdue_videos
+  match '/admin_send_deadline_approaching_reminders' => 'videos#admin_send_deadline_approaching_reminders', via: 'post', as: :admin_send_deadline_approaching_reminders
 
   match 'users/:id/videos/translate' => 'videos#translate', via: 'get', as: :translate
   match 'users/:id/videos/available' => 'videos#available', via: 'get', as: :show_dashboard

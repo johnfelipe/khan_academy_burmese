@@ -3,6 +3,6 @@ class Reminder < ActionMailer::Base
 
   def deadline_approaching(recipient)
   	@account = recipient
-  	mail(to: "asafaa-22@hotmail.com", subject: "Video Deadlines Approaching!")
+  	mail(to: recipient.email, subject: "Video Deadlines Approaching!")
   end
 end

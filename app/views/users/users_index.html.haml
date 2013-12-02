@@ -7,6 +7,8 @@
     %h1 All users
 
     %button_to= link_to "Unassign All Overdue Videos", admin_unassign_overdue_videos_path(), {:method => :post}
+    <br>
+    %button_to= link_to "Email users with approaching deadlines", admin_send_deadline_approaching_reminders_path(), {:method => :post}
 
     %ul{ :class => "users" }
       - @users.each do |user|
