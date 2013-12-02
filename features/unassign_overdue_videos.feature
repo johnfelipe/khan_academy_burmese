@@ -28,4 +28,4 @@ Background: users and videos in database
 Scenario: unassign all overdue videos
   And I follow "Unassign All Overdue Videos"
   And I follow "Dashboard"
-  Then I should see "Available(3)"
+  Then I should see "Available(0)"

@@ -12,6 +12,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'whenever', :require => false
 gem 'carrierwave'
+gem "mail", "2.5.4"
 
 group :development, :test do
   gem 'sqlite3'

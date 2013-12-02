@@ -58,7 +58,8 @@ class VideosController < ApplicationController
     v = Video.find_by_video_id video_id
     v.update_attributes!(
       :translator_id => user_id,
-      :due_date => 1.month.from_now
+      # :due_date => 1.month.from_now
+      :due_date => 1.month.ago
     )
   end
 
@@ -148,9 +149,11 @@ class VideosController < ApplicationController
   # end
 
   def unassign_overdue_videos
-    @all_overdue_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ?', false)
-    @all_overdue_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ?', true, false)
-    @all_overdue_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ?', true, false)
+    user = User.find_by_id(session[:id])
+    Reminder.deadline_approaching(user).deliver
+    @all_overdue_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ? and due_date < ?', false, Date.today)
+    @all_overdue_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ? and due_date < ?', true, false, Date.today)
+    @all_overdue_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ? and due_date < ?', true, false, Date.today)
     @all_overdue_trans_vids.each do |video|
       unassign_translater_by_ids(video.video_id, video.translator_id)
     end
