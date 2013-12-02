@@ -21,3 +21,7 @@
 every 1.day, :at => '12:30 am' do
 	rake "redistribute:unassign_overdue_videos", :environment => "development"
 end
+
+every 1.week do
+	rake "deadline_reminder:email_deadline_reminder", :environment => "development"
+end

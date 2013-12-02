@@ -60,8 +60,8 @@ class VideosController < ApplicationController
     v = Video.find_by_video_id video_id
     v.update_attributes!(
       :translator_id => user_id,
-      # :due_date => 1.month.from_now
-      :due_date => 3.days.from_now
+      :due_date => 1.month.from_now
+      # :due_date => 3.days.from_now
     )
   end
 
@@ -72,7 +72,7 @@ class VideosController < ApplicationController
 
   def unassign_translater_by_ids(video_id, user_id)
     v = Video.find_by_video_id video_id
-    flash[:notice] = "You have been unassigned as the translator for #{v.title}."
+    # flash[:notice] = "You have been unassigned as the translator for #{v.title}."
     v.update_attributes!(
       :translator_id => nil
     )
@@ -98,7 +98,7 @@ class VideosController < ApplicationController
 
   def unassign_typer_by_ids(video_id, user_id)
     v = Video.find_by_video_id video_id
-    flash[:notice] = "You have been unassigned as the digitizer for #{v.title}."
+    # flash[:notice] = "You have been unassigned as the digitizer for #{v.title}."
     v.update_attributes!(
       :typer_id => nil
     )
@@ -124,7 +124,7 @@ class VideosController < ApplicationController
 
   def unassign_qa_by_ids(video_id, user_id)
     v = Video.find_by_video_id video_id
-    flash[:notice] = "You have been unassigned as the Quality Assurer for #{v.title}."
+    # flash[:notice] = "You have been unassigned as the Quality Assurer for #{v.title}."
     v.update_attributes!(
       :qa_id => nil
     )
@@ -179,13 +179,13 @@ class VideosController < ApplicationController
       @users_to_email << video.translator_id
     end
     @all_deadline_approaching_digi_vids.each do |video|
-      # @users_to_email << video.typer_id
+      @users_to_email << video.typer_id
     end
     @all_deadline_approaching_qa_vids.each do |video|
-      # @users_to_email << video.qa_id
+      @users_to_email << video.qa_id
     end
-    puts "THE IDS TO EMAIL ARE:"
-    puts @users_to_email
+    # puts "ALL THE USERS ARE"
+    # puts @users_to_email
     @users_to_email.to_set.each do |user_id|
       Reminder.deadline_approaching(User.find_by_id(user_id)).deliver
     end
