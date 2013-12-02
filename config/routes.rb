@@ -7,7 +7,7 @@ KABT::Application.routes.draw do
   #match '/static_pages', to: 'omniauth_callbacks'
 
   #get '/static_pages', to: 'static_pages#index'
-  root :to => 'static_pages#login'
+  root :to => 'static_pages#index'
   match '/static_pages', to: 'static_pages#index', via: 'get', as: :front_page
   match '/login_page', to: 'static_pages#login', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'

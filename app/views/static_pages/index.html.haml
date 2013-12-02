@@ -1,15 +1,13 @@
 !!!
 %html
   %body
-    -#<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
-    .container
-      .masthead
-        .page-header
-          %img{:src=>'/assets/leaf-green.png'} 
-          %span.title <b>Khan</b>Academy Translations
-         
-      .col-xs-12.col-sm-6.col-md-6
-        -#%a.col-xs-6.col-sm-6.col-md-6.custom_button{:href=>"#"}About
-        -#%a.col-xs-6.col-sm-6.col-md-6.custom_button{:href=>"#"}Contact
+    .row.index-title
+      #wraparound
+        %p.no-margin <b>Khan</b>Academy Translation Portal
+      .col-xs-12.col-sm-12.col-md-12
+        .h3 Calling all translators!
+        %hr
+        %p.simpletext Here at KhanAcademy we have hundreds of videos viewed every day by students all across the world. Because KhanAcademy is used across the world, we need to make sure our videos are translated properly to ensure everyone can take part in the learning. That's where you come in.
+        %p.simpletext Help us translate our educational videos into as many languages as possible! Just sign up below, choose your language, and join an amazing community of translators! We wouldn't be where we are now without your help!
         .sign_button
-          %a.col-xs-12.col-sm-12.col-md-12{:href=>"#"}Sign in/Sign up
+          %a.col-xs-12.col-sm-12.col-md-12{:href=>"/login_page"}Sign in/Sign up
