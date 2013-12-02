@@ -15,3 +15,5 @@
 /tmp
 /coverage
 /config/initializers/Devise.rb
+
+/config/initializers/app_env_vars.rb
