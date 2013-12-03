@@ -67,12 +67,12 @@ class VideosController < ApplicationController
 
   def unassign_translator
     unassign_translater_by_ids(params[:video_id], params[:user_id])
+    flash[:notice] = "You have been successfully unassigned"
     redirect_to translate_path(current_user)
   end
 
   def unassign_translater_by_ids(video_id, user_id)
     v = Video.find_by_video_id video_id
-    # flash[:notice] = "You have been unassigned as the translator for #{v.title}."
     v.update_attributes!(
       :translator_id => nil
     )
@@ -93,12 +93,12 @@ class VideosController < ApplicationController
 
   def unassign_typer
     unassign_typer_by_ids(params[:video_id], params[:id])
+    flash[:notice] = "You have been successfully unassigned"
     redirect_to digitize_path(params[:id])
   end
 
   def unassign_typer_by_ids(video_id, user_id)
     v = Video.find_by_video_id video_id
-    # flash[:notice] = "You have been unassigned as the digitizer for #{v.title}."
     v.update_attributes!(
       :typer_id => nil
     )
@@ -119,12 +119,12 @@ class VideosController < ApplicationController
 
   def unassign_qa
     unassign_qa_by_ids(params[:video_id], params[:id])
+    flash[:notice] = "You have been successfully unassigned"
     redirect_to qa_path(params[:id])
   end
 
   def unassign_qa_by_ids(video_id, user_id)
     v = Video.find_by_video_id video_id
-    # flash[:notice] = "You have been unassigned as the Quality Assurer for #{v.title}."
     v.update_attributes!(
       :qa_id => nil
     )

@@ -26,7 +26,7 @@ Scenario: Translate View and Unassign Video
   Then I should see "Video Details"
   And I should see "Video Status"
   When I follow "Unassign Video To Me"
-  Then I should see "You have been unassigned as the translator for TitleA."
+  Then I should see "You have been successfully unassigned"
 
 
 Scenario: Digitize View
@@ -37,7 +37,7 @@ Scenario: Digitize View
   Then I should see "Video Details"
   And I should see "Video Status"
   When I follow "Unassign Video To Me"
-  Then I should see "You have been unassigned as the digitizer for TitleB."
+  Then I should see "You have been successfully unassigned"
 
 
 
@@ -49,5 +49,5 @@ Scenario: QA View
   Then I should see "Video Details"
   And I should see "Video Status"
   When I follow "Unassign Video To Me"
-  Then I should see "You have been unassigned as the Quality Assurer for TitleC."
+  Then I should see "You have been successfully unassigned"
 
