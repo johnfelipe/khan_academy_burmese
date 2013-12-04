@@ -25,7 +25,7 @@ Scenario: Translate View and Unassign Video
   And I follow "Translate" 
   Then I should see "Video Details"
   And I should see "Video Status"
-  When I follow "Unassign Video To Me"
+  When I follow "Unassign Me"
   Then I should see "You have been successfully unassigned"
 
 
@@ -36,7 +36,7 @@ Scenario: Digitize View
   And I follow "Digitize" 
   Then I should see "Video Details"
   And I should see "Video Status"
-  When I follow "Unassign Video To Me"
+  When I follow "Unassign Me"
   Then I should see "You have been successfully unassigned"
 
 
@@ -48,6 +48,6 @@ Scenario: QA View
   And I follow "QA" 
   Then I should see "Video Details"
   And I should see "Video Status"
-  When I follow "Unassign Video To Me"
+  When I follow "Unassign Me"
   Then I should see "You have been successfully unassigned"
 
