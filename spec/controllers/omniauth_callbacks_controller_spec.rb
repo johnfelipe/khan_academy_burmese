@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "OmniAuth Callbacks Controller" do
 
-  before { visit '/' }
+  before { visit '/login_page' }
 
   describe "Home page should have links to sign in with facebook and google" do
     it "should have the link to sign in with facebook" do

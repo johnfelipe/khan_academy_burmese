@@ -9,7 +9,7 @@ KABT::Application.routes.draw do
   #get '/static_pages', to: 'static_pages#index'
   root :to => 'static_pages#index'
   match '/static_pages', to: 'static_pages#index', via: 'get', as: :front_page
-  match '/login_page', to: 'static_pages#login', via: 'get'
+  match '/login_page', to: 'static_pages#login', via: 'get', as: :login_page
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
 
