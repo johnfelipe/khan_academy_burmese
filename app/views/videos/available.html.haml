@@ -29,7 +29,7 @@
                   %td
                     %button_to.btn.btn-primary{:id => "#{video.video_id}_translate_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_translator", {:method => :post,:style=> 'color:white;', :id => "To_Translate_translate_button"}
                   - if current_user.admin?
-                    %td= button_to 'Assign To Someone Else', assign_translate_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_translate_button", :class => "assign_button", :method => 'get'
+                    %td= link_to 'Assign To Someone Else', assign_translate_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_translate_button", :class => "btn btn-warning"
 
 
 
@@ -56,7 +56,8 @@
                   %td
                     %button_to.btn.btn-primary{:id => "#{video.video_id}_digitize_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_typer",{:style=> 'color:white;', :method => :post, :id => "To_Digitize_digitize_button"}
                   - if current_user.admin?
-                    %td= button_to 'Assign To Someone Else', assign_type_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_type_button", :class => "assign_button", :method => 'get'
+                    %td= link_to 'Assign To Someone Else', assign_type_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_type_button", :class => "btn btn-warning"
+
 
     .table-container
       .row
@@ -80,7 +81,8 @@
                   %td
                     %button_to.btn.btn-primary{:id => "#{video.video_id}_qa_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_qa",{:style=> 'color:white;', :method => :post, :id => "To_Qa_qa_button"}
                   - if current_user.admin?
-                    %td= button_to 'Assign To Someone Else', assign_qa_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_qa_button", :class => "assign_button", :method => 'get'
+                    %td= link_to 'Assign To Someone Else', assign_qa_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_qa_button", :class => "btn btn-warning"
+
 
 
 
