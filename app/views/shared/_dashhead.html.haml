@@ -14,5 +14,14 @@
         %li.dashboard
           =link_to "Dashboard", show_dashboard_path(current_user)
         - if current_user.admin?
-          %li.all-users
-            = link_to 'All users', users_index_path
+          %li.dropdown
+            %a.dropdown-toggle{ :href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#" }
+              Admin
+              %b.caret.white-caret
+            %ul.dropdown-menu{ :role => "menu" }
+              %li
+                = link_to "Add video", new_video_path
+              %li
+                = link_to "Edit Video", '#'
+              %li.all-users
+                = link_to 'All users', users_index_path

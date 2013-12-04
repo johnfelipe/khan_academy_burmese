@@ -3,7 +3,7 @@ require 'set'
 class VideosController < ApplicationController
   before_filter :require_user#, :except => [:assign_translate_to_someone_else, :assign_translator]
   before_filter :admin_user, :only => [:assign_translate_to_someone_else, 
-    :assign_type_to_someone_else, :assign_qa_to_someone_else ]
+    :assign_type_to_someone_else, :assign_qa_to_someone_else, :create, :new ]
 
   def update
     @video = Video.find(params[:video_id])
@@ -272,11 +272,25 @@ class VideosController < ApplicationController
     @video = Video.find_by_video_id(params[:video_id])
   end
 
+  def new
+    @video = Video.new
+  end
+
+  def create
+    @video = Video.new(params[:video])
+    @video.set_initial_values
+    if @video.save
+      flash[:success] = "Video added successfully!"
+      redirect_to @current_user
+    else
+      render 'new'
+    end
+  end
+
   ################################## Private Methods ################################
   private
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
-
 end

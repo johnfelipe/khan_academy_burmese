@@ -62,6 +62,10 @@ KABT::Application.routes.draw do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_session
   end
 
+  resources :videos
+  #match 'videos/new', to: 'videos#new', via: 'get'
+
+
   #get '/auth/:provider/callback' => 'sessions#create'
   #get '/auth/failure' => 'users/sessions#failure'
   #match '/logout' => 'sessions#destroy'
