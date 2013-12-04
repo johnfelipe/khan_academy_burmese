@@ -5,6 +5,14 @@ class VideosController < ApplicationController
   before_filter :admin_user, :only => [:assign_translate_to_someone_else, 
     :assign_type_to_someone_else, :assign_qa_to_someone_else ]
 
+  def update
+    @video = Video.find(params[:video_id])
+    if @video.update_attributes(params[:video_id])
+      flash[:notice] = "Successfully updated video."
+      redirect_to @video
+    end
+  end
+
   def video_setup
     @user = User.find_by_id(params[:id])
 
@@ -224,7 +232,7 @@ class VideosController < ApplicationController
       @video = Video.find_by_video_id(params[:video_id])
   end
 
-  def upload_video
+  def upload_translation_handwritten
       @video = Video.find_by_video_id(params[:video_id])
       flash[:success] = "Your translation has been successfully uploaded"
       translate_video_handwritten
