@@ -1,16 +1,23 @@
 -#view for admins
 %html
   %head
-    = stylesheet_link_tag 'users'
+    = stylesheet_link_tag 'videos'
   %body
     = render :partial => "shared/dashhead"
-    %h2 Assign video - #{@video.course}, #{@video.title} to:
-
-    %ul{ :class => "users" }
-      - @users.each do |user|
-        %li
-          = user.name
-          ,
-          = user.email
-          | 
-          = button_to 'Assign as Typer', "/users/#{user.id}/videos/#{@video.video_id}/assign_typer" , :id => "#{user.id}_type_#{@video.video_id}", :class => "assign_button"
+    
+    .table-container
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            .panel.panel-info{:id => "list_table"}
+              .panel-heading
+                %h4 Assign video - #{@video.course}, #{@video.title} to:
+              .panel-body
+                %ul.list-group
+                  - @users.each do |user|
+                    .list-group-item.h5 
+                      = user.name
+                      ,
+                      = user.email
+                      | 
+                      = link_to 'Assign as Typer', "/users/#{user.id}/videos/#{@video.video_id}/assign_typer" , :id => "#{user.id}_type_#{@video.video_id}", :class => "btn btn-info", :method => 'post'
