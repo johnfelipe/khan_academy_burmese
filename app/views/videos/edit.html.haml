@@ -1,0 +1,31 @@
+%html
+  %head
+    = stylesheet_link_tag 'videos'
+  %body.container
+    = render :partial => "shared/dashhead"
+    
+    .table-container
+      .row
+        .col-md-6.col-sm-6.col-xs-6
+          .form-vertical
+            = form_for @video do |f|
+              .form-group
+              .h2
+                Edit video
+              -#= render 'shared/error_messages'
+              %br
+              
+              = f.label :subject
+              = f.text_field :subject
+
+              = f.label :course
+              = f.text_field :course
+
+              = f.label :title
+              = f.text_field :title
+
+              = f.label :video_id, "Amara Video ID"
+              = f.text_field :video_id
+
+              = f.submit "Save Changes", class: "btn btn-primary", data: { :confirm => "This action might have destructive consequences. Please make sure you know what you are doing. Are you sure you want to save?" }
+              = link_to "Cancel", videos_index_path, :class => "btn btn-default"

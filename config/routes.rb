@@ -28,7 +28,7 @@ KABT::Application.routes.draw do
   match 'users/:id/videos/:video_id/assign_typer' => 'videos#assign_typer', via: 'post'
   match 'users/:id/videos/:video_id/assign_qa' => 'videos#assign_qa', via: 'post'
 
- match 'users/:id/videos/:video_id/unassign_translator' => 'videos#unassign_translator', via: 'post', as: :unassign_translator
+  match 'users/:id/videos/:video_id/unassign_translator' => 'videos#unassign_translator', via: 'post', as: :unassign_translator
   match 'users/:id/videos/:video_id/unassign_typer' => 'videos#unassign_typer', via: 'post', as: :unassign_typer
   match 'users/:id/videos/:video_id/unassign_qa' => 'videos#unassign_qa', via: 'post', as: :unassign_qa
 
@@ -63,8 +63,7 @@ KABT::Application.routes.draw do
   end
 
   resources :videos
-  #match 'videos/new', to: 'videos#new', via: 'get'
-
+  match '/videos_index', to: 'videos#videos_index', via: 'get'
 
   #get '/auth/:provider/callback' => 'sessions#create'
   #get '/auth/failure' => 'users/sessions#failure'

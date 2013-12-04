@@ -287,6 +287,24 @@ class VideosController < ApplicationController
     end
   end
 
+  def edit
+    @video = Video.find(params[:id])
+  end
+
+  def update
+    @video = Video.find(params[:id])
+    if @video.update_attributes(params[:video])
+      flash[:success] = "Video updated successfully"
+      redirect_to videos_index_path
+    else
+      render 'edit'
+    end
+  end
+
+  def videos_index
+    @videos = Video.order('subject ASC').order('course ASC').paginate(:per_page => 20, :page => params[:page])
+  end
+
   ################################## Private Methods ################################
   private
 
