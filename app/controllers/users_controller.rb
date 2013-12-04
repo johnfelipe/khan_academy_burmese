@@ -89,7 +89,7 @@ class UsersController < ApplicationController
 
 
   def users_index
-    @users = User.order('email ASC')
+    @users = User.order('email ASC').paginate(:per_page => 20, :page => params[:page])
   end
 
   def login
