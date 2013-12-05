@@ -281,7 +281,7 @@ class VideosController < ApplicationController
     @video.set_initial_values
     if @video.save
       flash[:success] = "Video added successfully!"
-      redirect_to @current_user
+      redirect_to videos_index_path
     else
       render 'new'
     end

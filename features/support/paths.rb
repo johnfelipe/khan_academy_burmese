@@ -14,10 +14,8 @@ module NavigationHelpers
     case page_name
 
     when /^the login page/ then login_page_path
-    when /^the create new user page/
-      begin
-        new_user_path
-      end
+    when /^the users index page/ then users_index_path
+    when /^the create new user page/ then new_user_path
     when /^the edit user page for "(.*)"/
       begin
         id = User.find_by_name($1).id
