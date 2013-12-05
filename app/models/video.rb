@@ -6,7 +6,7 @@ class Video < ActiveRecord::Base
 
   mount_uploader :translation_handwritten, TranslationsUploader
 
-  before_create :set_initial_values
+  before_create :set_due_date_to_month_from_now
 
   #prevent null due dates
   def set_due_date_to_month_from_now
