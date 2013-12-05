@@ -234,7 +234,9 @@ class VideosController < ApplicationController
 
   def upload_translation_handwritten
       @video = Video.find_by_video_id(params[:video_id])
-      flash[:success] = "Your translation has been successfully uploaded"
+      @video.translation_handwritten = params[:translation]
+      @video.save!
+      flash[:success] = "Your translation has been successfully uploaded" + params[:translation].to_s
       translate_video_handwritten
       redirect_to translate_video_handwritten_path
   end
