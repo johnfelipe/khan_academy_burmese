@@ -13,49 +13,91 @@ class VideosController < ApplicationController
     end
   end
 
-  def video_setup
+def video_setup
     @user = User.find_by_id(params[:id])
+    
+    @trans_vids = Video.find_user_trans(params[:id])
+    @digi_vids  = Video.find_user_digi(params[:id])
+    @qa_vids = Video.find_user_qa(params[:id])
 
-    find_avail(@user)
+    @trans_vids_num = @trans_vids.length
+    @digi_vids_num  = @digi_vids.length
+    @qa_vids_num = @qa_vids.length
 
-    @trans_vids = Video.where(:translate_complete => false, :translator_id => @user.id)
-    @digi_vids  = Video.where(:type_complete => false, :typer_id => @user.id)
-    @qa_vids = Video.where(:qa_complete => false, :qa_id => @user.id)
 
-    find_comp(@user) end
+    @avail_trans = Video.find_avail_trans(params[:id])
+    @avail_digi = Video.find_avail_digi(params[:id])
+    @avail_qa = Video.find_avail_qa(params[:id])
+    @avail = @avail_trans.length + @avail_digi.length + @avail_qa.length
 
-  def find_avail(user)
-    @avail_trans = Video.where(:translator_id => nil, :translate_complete => false)
-    @avail_digi = Video.where('typer_id IS NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ? AND translator_id != ?', true, false, user.id)
-    @avail_qa = Video.where('qa_id IS NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ? AND translator_id != ? AND typer_id != ?', true, false, user.id, user.id)
-    @avail = @avail_trans + @avail_digi + @avail_qa
+    @comp_trans = Video.find_comp_trans(params[:id])
+    @comp_digi = Video.find_comp_digi(params[:id])
+    @comp_qa = Video.find_comp_qa(params[:id])
+    @comp = @comp_trans.length + @comp_digi.length + @comp_qa.length
+
   end
 
-  def find_comp(user)
-    @comp_trans = Video.where(:translate_complete => true, :translator_id => user.id)
-    @comp_digi = Video.where('type_complete = ? AND typer_id = ? AND translator_id != ?', true, user.id, user.id)
-    @comp_qa = Video.where(:qa_complete => true, :qa_id => user.id)
-    @comp = @comp_trans + @comp_digi + @comp_qa
-  end
+
 
   def available
-    video_setup()
+  video_setup()
+  Rails.cache.write("avail", @avail)
+  Rails.cache.write("trans", @trans_vids_num)
+  Rails.cache.write("digi", @digi_vids_num)
+  Rails.cache.write("qa", @qa_vids_num)
+  Rails.cache.write("comp", @comp)
   end
+
 
   def translate
-    video_setup()
+    @user = current_user
+    @trans_vids = Video.find_user_trans(params[:id])
+    @trans_vids_num = @trans_vids.length
+
+    @avail = Rails.cache.fetch("avail")
+    @digi_vids_num = Rails.cache.fetch("digi")
+    @qa_vids_num = Rails.cache.fetch("qa")
+    @comp = Rails.cache.fetch("comp")
+    Rails.cache.write("trans", @trans_vids_num)
   end
 
+
   def digitize
-    video_setup()
+    @user = current_user
+    @digi_vids = Video.find_user_digi(params[:id])
+    @digi_vids_num = @digi_vids.length
+
+    @avail = Rails.cache.fetch("avail")
+    @trans_vids_num = Rails.cache.fetch("trans")
+    @qa_vids_num = Rails.cache.fetch("qa")
+    @comp = Rails.cache.fetch("comp")
+    Rails.cache.write("digi", @digi_vids_num)
   end
 
   def qa
-    video_setup()
+    @user = current_user
+    @qa_vids = Video.find_user_qa(params[:id])
+    @qa_vids_num = @qa_vids.length
+
+    @avail = Rails.cache.fetch("avail")
+    @trans_vids_num = Rails.cache.fetch("trans")
+    @digi_vids_num = Rails.cache.fetch("digi")
+    @comp = Rails.cache.fetch("comp")
+    Rails.cache.write("qa", @qa_vids_num)
   end
 
   def completed
-    video_setup()
+    @user = current_user
+    @comp_trans = Video.find_comp_trans(params[:id])
+    @comp_digi = Video.find_comp_digi(params[:id])
+    @comp_qa = Video.find_comp_qa(params[:id])
+    @comp = @comp_trans.length + @comp_digi.length + @comp_qa.length
+
+    @avail = Rails.cache.fetch("avail")
+    @trans_vids_num = Rails.cache.fetch("trans")
+    @digi_vids_num = Rails.cache.fetch("digi")
+    @qa_vids_num = Rails.cache.fetch("qa")
+    Rails.cache.write("comp", @comp)
   end
 
   #TODO: add notices to inform user of seccessful assign/unassign/complete
@@ -226,10 +268,19 @@ class VideosController < ApplicationController
     redirect_to qa_path(params[:id])
   end
 
+  def video_details(video_id)
+      @video = Video.find_by_video_id(video_id)
+      
+      @avail = Rails.cache.fetch("avail")
+      @trans_vids_num = Rails.cache.fetch("trans")
+      @digi_vids_num = Rails.cache.fetch("digi")
+      @qa_vids_num = Rails.cache.fetch("qa")
+      @comp = Rails.cache.fetch("comp")
+  end
+
   def qa_video
-      video_setup()
-      @user = User.find_by_id(params[:id])
-      @video = Video.find_by_video_id(params[:video_id])
+      @user = current_user
+      video_details(params[:video_id])
   end
 
   def upload_translation_handwritten
@@ -240,21 +291,18 @@ class VideosController < ApplicationController
   end
 
   def translate_video
-      video_setup()
-      @user = User.find_by_id(params[:id])
-      @video = Video.find_by_video_id(params[:video_id])
+      @user = current_user
+      video_details(params[:video_id])
   end
 
   def translate_video_handwritten
-      video_setup()
-      @user = User.find_by_id(params[:id])
-      @video = Video.find_by_video_id(params[:video_id])
+      @user = current_user
+      video_details(params[:video_id])
   end
 
   def digitize_video
-      video_setup()
-      @user = User.find_by_id(params[:id])
-      @video = Video.find_by_video_id(params[:video_id])
+      @user = current_user
+      video_details(params[:video_id])
   end
 
   def assign_translate_to_someone_else
