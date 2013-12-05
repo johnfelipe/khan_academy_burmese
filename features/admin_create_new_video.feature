@@ -13,6 +13,7 @@ Background: admin user in database
   Given "admin@example.com" is an admin user
   When I am logged in with email: "admin@example.com" and password: "adminpassword"
   
+# Happy path
 Scenario: Add new video to the database
   When I follow "Add video"
   Then I should see "Add new video"
