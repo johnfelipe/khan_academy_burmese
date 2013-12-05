@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125090032) do
+ActiveRecord::Schema.define(:version => 20131205025659) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -40,5 +40,7 @@ ActiveRecord::Schema.define(:version => 20131125090032) do
     t.string   "translation_handwritten"
     t.date     "due_date"
   end
+
+  add_index "videos", ["video_id"], :name => "index_videos_on_video_id", :unique => true
 
 end
