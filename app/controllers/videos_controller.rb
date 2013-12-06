@@ -214,15 +214,22 @@ def video_setup
       Reminder.deadline_approaching(User.find_by_id(user_id)).deliver
     end
   end
+  
+  def set_cache_complete
+    comp_vids_num = Rails.cache.fetch("comp")
+    Rails.cache.write("comp",comp_vids_num +1)
+  end
 
   def set_handwritten_translate_complete
     v = Video.find_by_video_id params[:video_id]
+    set_cache_complete()
     v.update_attributes!(:translate_complete => true)
     redirect_to translate_path(params[:id])
   end
 
   def set_digital_translate_complete
     v = Video.find_by_video_id(params[:video_id])
+    set_cache_complete()
     flash[:success]= "#{v.title} is now ready to be QAed."
     v.update_attributes!(:translate_complete => true, :type_complete => true, :typer_id => params[:id])
     redirect_to translate_path(params[:id])
@@ -230,6 +237,7 @@ def video_setup
 
  def set_type_complete
     v = Video.find_by_video_id params[:video_id]
+    set_cache_complete()
     flash[:success]= "#{v.title} is now ready to be QAed."
     v.update_attributes!(:type_complete => true)
     redirect_to digitize_path(params[:id])
@@ -237,6 +245,7 @@ def video_setup
 
   def set_qa_complete
     v = Video.find_by_video_id params[:video_id]
+    set_cache_complete()
     flash[:success]= "#{v.title} is now completed."
     v.update_attributes!(:qa_complete => true)
     redirect_to qa_path(params[:id])
