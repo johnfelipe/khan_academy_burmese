@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
     find_for_provider(access_token, signed_in_resource)
   end
 
+  def toggle_admin
+    self.toggle!(:admin)
+  end
 
   private
 

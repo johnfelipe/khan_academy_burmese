@@ -16,7 +16,8 @@ KABT::Application.routes.draw do
   match '/login', to: 'users#login', via: 'post'
   match '/logout', to: 'users#logout', via: 'delete'
   match '/users_index', to: 'users#users_index', via: 'get'
-  
+  match '/toggle_admin/:id', to: 'users#toggle_admin', via: 'put', as: :toggle_admin
+
   resources :users
   match 'users/:id/change_password' => 'users#change_password', via: 'get', as: :change_password
   match 'users/:id/update_password' => 'users#update_password', via: 'put', as: :update_password

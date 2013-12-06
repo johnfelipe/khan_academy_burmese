@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user, :except => [:new, :create, :login, :logout, :users_index]
-  before_filter :admin_user, only: [:users_index]
+  before_filter :admin_user, only: [:users_index, :make_admin, :revoke_admin]
 
   def show
     id = params[:id] # retrieve user id
@@ -108,6 +108,13 @@ class UsersController < ApplicationController
     flash[:warning] = "You have successfully logged out."
     redirect_to login_page_path
     #show_dashboard_path(User.find_by_id(session[:id]))
+  end
+
+  def toggle_admin
+    @user = User.find(params[:id])
+    @user.toggle_admin
+    flash[:success] = "#{@user.name} was updated successfully."
+    redirect_to users_index_path
   end
 
   ################################## Private Methods ################################
