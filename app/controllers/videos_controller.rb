@@ -8,7 +8,7 @@ class VideosController < ApplicationController
   def update
     @video = Video.find(params[:video_id])
     if @video.update_attributes(params[:video_id])
-      flash[:notice] = "Successfully updated video."
+      flash[:success] = "Successfully updated video."
       redirect_to @video
     end
   end
@@ -23,7 +23,6 @@ def video_setup
     @trans_vids_num = @trans_vids.length
     @digi_vids_num  = @digi_vids.length
     @qa_vids_num = @qa_vids.length
-
 
     @avail_trans = Video.find_avail_trans(params[:id])
     @avail_digi = Video.find_avail_digi(params[:id])
@@ -117,7 +116,7 @@ def video_setup
 
   def unassign_translator
     unassign_translater_by_ids(params[:video_id], params[:user_id])
-    flash[:notice] = "You have been successfully unassigned"
+    flash[:success] = "You have been successfully unassigned"
     redirect_to translate_path(current_user)
   end
 
@@ -143,7 +142,7 @@ def video_setup
 
   def unassign_typer
     unassign_typer_by_ids(params[:video_id], params[:id])
-    flash[:notice] = "You have been successfully unassigned"
+    flash[:success] = "You have been successfully unassigned"
     redirect_to digitize_path(params[:id])
   end
 
@@ -169,7 +168,7 @@ def video_setup
 
   def unassign_qa
     unassign_qa_by_ids(params[:video_id], params[:id])
-    flash[:notice] = "You have been successfully unassigned"
+    flash[:success] = "You have been successfully unassigned"
     redirect_to qa_path(params[:id])
   end
 
@@ -249,21 +248,21 @@ def video_setup
 
   def set_digital_translate_complete
     v = Video.find_by_video_id(params[:video_id])
-    flash[:notice]= "#{v.title} is now ready to be QAed."
+    flash[:success]= "#{v.title} is now ready to be QAed."
     v.update_attributes!(:translate_complete => true, :type_complete => true, :typer_id => params[:id])
     redirect_to translate_path(params[:id])
   end
 
  def set_type_complete
     v = Video.find_by_video_id params[:video_id]
-    flash[:notice]= "#{v.title} is now ready to be QAed."
+    flash[:success]= "#{v.title} is now ready to be QAed."
     v.update_attributes!(:type_complete => true)
     redirect_to digitize_path(params[:id])
   end
 
   def set_qa_complete
     v = Video.find_by_video_id params[:video_id]
-    flash[:notice]= "#{v.title} is now completed."
+    flash[:success]= "#{v.title} is now completed."
     v.update_attributes!(:qa_complete => true)
     redirect_to qa_path(params[:id])
   end
