@@ -21,7 +21,7 @@
                     ,
                     = video.title 
                     | 
-                    = link_to "edit", edit_video_path(video) ,:id => "#{video.id}_edit", :class => "btn btn-info"
+                    = link_to "edit", edit_video_path(video) ,:id => "#{video.id}_edit", :class => "btn btn-primary"
                     | 
                     = link_to "delete", video, :method => :delete ,:id => "#{video.id}_delete", :data => { confirm: "Are you sure you want to delete this video?" }, :class => "btn btn-danger"
               = will_paginate
