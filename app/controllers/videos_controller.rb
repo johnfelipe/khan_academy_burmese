@@ -27,12 +27,12 @@ def video_setup
     @avail_trans = Video.find_avail_trans(params[:id])
     @avail_digi = Video.find_avail_digi(params[:id])
     @avail_qa = Video.find_avail_qa(params[:id])
-    @avail = @avail_trans.length + @avail_digi.length + @avail_qa.length
+    @avail_vids_num = @avail_trans.length + @avail_digi.length + @avail_qa.length
 
     @comp_trans = Video.find_comp_trans(params[:id])
     @comp_digi = Video.find_comp_digi(params[:id])
     @comp_qa = Video.find_comp_qa(params[:id])
-    @comp = @comp_trans.length + @comp_digi.length + @comp_qa.length
+    @comp_vids_num = @comp_trans.length + @comp_digi.length + @comp_qa.length
 
   end
 
@@ -40,11 +40,11 @@ def video_setup
 
   def available
   video_setup()
-  Rails.cache.write("avail", @avail)
+  Rails.cache.write("avail", @avail_vids_num)
   Rails.cache.write("trans", @trans_vids_num)
   Rails.cache.write("digi", @digi_vids_num)
   Rails.cache.write("qa", @qa_vids_num)
-  Rails.cache.write("comp", @comp)
+  Rails.cache.write("comp", @comp_vids_num)
   end
 
 
@@ -53,11 +53,7 @@ def video_setup
     @trans_vids = Video.find_user_trans(params[:id])
     @trans_vids_num = @trans_vids.length
 
-    @avail = Rails.cache.fetch("avail")
-    @digi_vids_num = Rails.cache.fetch("digi")
-    @qa_vids_num = Rails.cache.fetch("qa")
-    @comp = Rails.cache.fetch("comp")
-    Rails.cache.write("trans", @trans_vids_num)
+    cache("trans")
   end
 
 
@@ -66,11 +62,7 @@ def video_setup
     @digi_vids = Video.find_user_digi(params[:id])
     @digi_vids_num = @digi_vids.length
 
-    @avail = Rails.cache.fetch("avail")
-    @trans_vids_num = Rails.cache.fetch("trans")
-    @qa_vids_num = Rails.cache.fetch("qa")
-    @comp = Rails.cache.fetch("comp")
-    Rails.cache.write("digi", @digi_vids_num)
+    cache("digi")
   end
 
   def qa
@@ -78,11 +70,7 @@ def video_setup
     @qa_vids = Video.find_user_qa(params[:id])
     @qa_vids_num = @qa_vids.length
 
-    @avail = Rails.cache.fetch("avail")
-    @trans_vids_num = Rails.cache.fetch("trans")
-    @digi_vids_num = Rails.cache.fetch("digi")
-    @comp = Rails.cache.fetch("comp")
-    Rails.cache.write("qa", @qa_vids_num)
+    cache("qa")
   end
 
   def completed
@@ -90,16 +78,21 @@ def video_setup
     @comp_trans = Video.find_comp_trans(params[:id])
     @comp_digi = Video.find_comp_digi(params[:id])
     @comp_qa = Video.find_comp_qa(params[:id])
-    @comp = @comp_trans.length + @comp_digi.length + @comp_qa.length
+    @comp_vids_num = @comp_trans.length + @comp_digi.length + @comp_qa.length
 
-    @avail = Rails.cache.fetch("avail")
+    cache("comp")
+  end
+
+  def cache(cache_write)
+    Rails.cache.write(cache_write, instance_variable_get('@'+cache_write+'_vids_num'))
+    @avail_vids_num = Rails.cache.fetch("avail")
     @trans_vids_num = Rails.cache.fetch("trans")
     @digi_vids_num = Rails.cache.fetch("digi")
     @qa_vids_num = Rails.cache.fetch("qa")
-    Rails.cache.write("comp", @comp)
+    @comp_vids_num = Rails.cache.fetch("comp")
   end
 
-  #TODO: add notices to inform user of seccessful assign/unassign/complete
+  #TODO: add notices to inform user of successful assign/unassign/complete
   def assign_translator
     assign_translator_by_ids(params[:video_id], params[:id])
     redirect_to show_dashboard_path(current_user)
@@ -270,11 +263,11 @@ def video_setup
   def video_details(video_id)
       @video = Video.find_by_video_id(video_id)
       
-      @avail = Rails.cache.fetch("avail")
+      @avail_vids_num = Rails.cache.fetch("avail")
       @trans_vids_num = Rails.cache.fetch("trans")
       @digi_vids_num = Rails.cache.fetch("digi")
       @qa_vids_num = Rails.cache.fetch("qa")
-      @comp = Rails.cache.fetch("comp")
+      @comp_vids_num = Rails.cache.fetch("comp")
   end
 
   def qa_video
