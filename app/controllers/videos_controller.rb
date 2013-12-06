@@ -103,7 +103,6 @@ def video_setup
     v.update_attributes!(
       :translator_id => user_id,
       :due_date => 1.month.from_now
-      # :due_date => 3.days.from_now
     )
   end
 
@@ -177,21 +176,6 @@ def video_setup
     redirect_to users_index_path
   end
 
-  # def unassign_overdue_videos
-  #   @all_overdue_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ?', false)
-  #   @all_overdue_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ?', true, false)
-  #   @all_overdue_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ?', true, false)
-  #   @all_overdue_trans_vids.each do |video|
-  #     unassign_translater_by_ids(video.video_id, video.translator_id)
-  #   end
-  #   @all_overdue_digi_vids.each do |video|
-  #     unassign_typer_by_ids(video.video_id, video.typer_id)
-  #   end
-  #   @all_overdue_qa_vids.each do |video|
-  #     unassign_qa_by_ids(video.video_id, video.qa_id)
-  #   end
-  # end
-
   def unassign_overdue_videos
     @all_overdue_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ? and due_date < ?', false, Date.today)
     @all_overdue_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ? and due_date < ?', true, false, Date.today)
@@ -226,8 +210,6 @@ def video_setup
     @all_deadline_approaching_qa_vids.each do |video|
       @users_to_email << video.qa_id
     end
-    # puts "ALL THE USERS ARE"
-    # puts @users_to_email
     @users_to_email.to_set.each do |user_id|
       Reminder.deadline_approaching(User.find_by_id(user_id)).deliver
     end

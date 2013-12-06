@@ -18,7 +18,7 @@
                 %ul.list-group
                   .list-group-item.h5= "Subject: #{@video.subject}"
                   .list-group-item.h5= "Course: #{@video.course}"
-                  .list-group-item.h5= link_to "Title: #{@video.title}", "#"
+                  .list-group-item.h5= "Title: #{@video.title}"
 
 
 
@@ -28,8 +28,7 @@
                 Video Status
               .panel-body
                 .list-group
-                  .list-group-item.h5= "Assigned to: #{@user.name}"
-                  .list-group-item.h5= "Due Date: #{@video.due_date}"
+                  .list-group-item.h5= "Due Date: #{@video.due_date.strftime('%b %d %Y')}"
                   .list-group-item
                     %button_to.btn.btn-info= link_to("Digitize on Amara", @video.amara_link,{:style=> 'color:white;', :target => "_blank"})
                   .list-group-item

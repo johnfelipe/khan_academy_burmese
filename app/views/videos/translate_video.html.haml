@@ -28,8 +28,7 @@
                 Video Status
               .panel-body
                 .list-group
-                  .list-group-item.h5= "Assigned to: #{@user.name}"
-                  .list-group-item.h5= "Due Date: #{@video.due_date}"
+                  .list-group-item.h5= "Due Date: #{@video.due_date.strftime('%b %d %Y')}"
                   .list-group-item
                     .bs-example 
                       .btn-group
