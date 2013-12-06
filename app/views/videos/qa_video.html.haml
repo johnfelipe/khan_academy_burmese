@@ -32,7 +32,7 @@
                   .list-group-item.h5= "Due Date: #{@video.due_date}"
 
                   .list-group-item
-                    %button_to.btn.btn-info= link_to("Watch on Amara", "http://www.amara.org/en/videos/#{@video.video_id}",{:style=> 'color:white;'})
+                    %button_to.btn.btn-info= link_to("Watch on Amara", "http://www.amara.org/en/videos/#{@video.video_id}",{:target => "_blank", :style=> 'color:white;'})
                   .list-group-item
                     %button_to.btn.btn-danger= link_to "Unassign Me",unassign_qa_path(),{:style=> 'color:white;', :confirm => "Are you sure you want to unassign #{@video.title} as your video to QA?", :method => :post}
   
