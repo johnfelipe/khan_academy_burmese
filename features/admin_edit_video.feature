@@ -13,13 +13,14 @@ Background: Admin user and video in database
   And the following videos exist:
   | video_id | subject  | course  | title  | translator_id | typer_id | qa_id | translate_complete | type_complete | qa_complete |
   | video_A  | SubjectA | CourseA | TitleA |               |          |       | false              | false         | false       | 
+  | video_B  | SubjectB | CourseB | TitleB |               |          |       | false              | false         | false       |
 
   Given "admin@example.com" is an admin user
   When I am logged in with email: "admin@example.com" and password: "adminpassword"
+  And I follow "All videos"
 
 # Happy path
 Scenario: Edit an existing video
-  When I follow "All videos"
   Then I should see "All videos"
   And I should see "SubjectA"
   And I should see "CourseA"
@@ -39,3 +40,17 @@ Scenario: Edit an existing video
   And I should not see "SubjectA"
   And I should not see "CourseA"
   And I should not see "TitleA"
+
+
+
+Scenario: Delete a video
+  Then I should see "All videos"
+  And I should see "SubjectB"
+  And I should see "CourseB"
+  And I should see "TitleB"
+  When I follow "2_delete"
+  Then I should see "Video deleted successfully"
+  And I should be on the videos index page
+  And I should not see "SubjectB"
+  And I should not see "CourseB"
+  And I should not see "TitleB"

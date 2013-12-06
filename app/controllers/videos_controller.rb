@@ -348,6 +348,13 @@ def video_setup
     end
   end
 
+  def destroy
+    @video = Video.find(params[:id])
+    @video.destroy
+    flash[:success] = "Video deleted successfully."
+    redirect_to videos_index_path
+  end
+
   def videos_index
     @videos = Video.order('subject ASC').order('course ASC').paginate(:per_page => 20, :page => params[:page])
   end

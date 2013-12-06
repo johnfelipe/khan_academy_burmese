@@ -14,7 +14,6 @@ class Video < ActiveRecord::Base
   end
 
   def set_initial_values
-  	set_due_date_to_month_from_now
   	self.translate_complete = false
   	self.type_complete = false
   	self.qa_complete = false
