@@ -34,7 +34,7 @@ KABT::Application.routes.draw do
   match 'users/:id/videos/:video_id/unassign_qa' => 'videos#unassign_qa', via: 'post', as: :unassign_qa
 
   match 'users/:id/videos/:video_id/set_translate_complete' => 'videos#set_digital_translate_complete', via: 'post', as: :set_digital_translate_complete 
-  match 'users/:id/videos/:video_id/set_handwritten_translate_complete' => 'videos#set_digital_translate_complete', via: 'post', as: :set_handwritten_translate_complete 
+  match 'users/:id/videos/:video_id/set_handwritten_translate_complete' => 'videos#set_handwritten_translate_complete', via: 'post', as: :set_handwritten_translate_complete 
   match 'users/:id/videos/:video_id/set_type_complete' => 'videos#set_type_complete', via: 'post', as: :set_type_complete
   match 'users/:id/videos/:video_id/set_qa_complete' => 'videos#set_qa_complete', via: 'post', as: :set_qa_complete
 
