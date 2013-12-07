@@ -4,62 +4,47 @@
   %head
     = stylesheet_link_tag 'videos'
   %body
-
     = render :partial => "shared/dashhead"
-    
-    .table-container
-      .row
-        .col-md-12
-          .col-md-12.col-sm-12.col-xs-12
-            %h4{:class => "list_title"} Videos I Have Translated
-            %table.table.table-striped.table-bordered{:id => "list_table"}
-              %tr
-                %th Course
-                %th Title
-                %th Due Date
+    = render :partial => "shared/nav"
+
+    .container
+      .content
+        %h4{:class => "list-title"} Videos I Have Translated
+        %table.table.table-bordered{:id => "list_table"}
+          %tr
+            %th.kabt_course Course
+            %th.kabt_title Title
+            %th.kabt_dd Due Date
 
 
-              - @comp_trans.each do |video|
-                %tr 
-                  %td= video.course
-                  %td= video.title
-                  %td= video.due_date.strftime('%b %d %Y')
+          - @comp_trans.each do |video|
+            %tr 
+              %td= video.course
+              %td= video.title
+              %td= video.due_date.strftime('%b %d %Y')
 
-    .table-container
-      .row
-        .col-md-12
-          .col-md-12.col-sm-12.col-xs-12
-            %h4{:class => "list_title"} Videos I Have Digitized
-            %table.table.table-striped.table-bordered{:id => "list_table"}
-              %tr
-                %th Course
-                %th Title
-                %th Due Date
+        %h4{:class => "list-title"} Videos I Have Digitized
+        %table.table.table-bordered{:id => "list_table"}
+          %tr
+            %th.kabt_course Course
+            %th.kabt_title Title
+            %th.kabt_dd Due Date
 
-              - @comp_digi.each do |video|
-                %tr 
-                  %td= video.course
-                  %td= video.title
-                  %td= video.due_date.strftime('%b %d %Y')
+          - @comp_digi.each do |video|
+            %tr 
+              %td= video.course
+              %td= video.title
+              %td= video.due_date.strftime('%b %d %Y')
 
+        %h4{:class => "list-title"} Videos I Have QA'd
+        %table.table.table-bordered{:id => "list_table"}
+          %tr
+            %th.kabt_course Course
+            %th.kabt_title Title
+            %th.kabt_dd Due Date
 
-    .table-container
-      .row
-        .col-md-12
-          .col-md-12.col-sm-12.col-xs-12
-            %h4{:class => "list_title"} Videos I Have QAed
-            %table.table.table-striped.table-bordered{:id => "list_table"}
-              %tr
-                %th Course
-                %th Title
-                %th Due Date
-
-              - @comp_qa.each do |video|
-                %tr 
-                  %td= video.course
-                  %td= video.title
-                  %td= video.due_date.strftime('%b %d %Y')
-
-= render :partial => "shared/nav"
-
-
+          - @comp_qa.each do |video|
+            %tr 
+              %td= video.course
+              %td= video.title
+              %td= video.due_date.strftime('%b %d %Y')

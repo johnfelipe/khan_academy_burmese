@@ -1,12 +1,11 @@
 .container
   .masthead
-    %a.title{:href=>show_dashboard_path(current_user)}
-      %div
-        %p <b>Khan</b>Academy Translations
+    %div
+      %a.title{:href=>show_dashboard_path(current_user)} <b>Khan</b>Academy Translations
     %nav
       %ul
         %li.welcome
-          Welcome, <span class="welcome-name">#{current_user.name}</span>!
+          Welcome, <b>#{current_user.name}</b>
         %li.logout{ :class => 'pull-right' }
           =link_to("Logout", "/logout", :method => :delete) #, :confirm => "Are you sure?")
         %li.profile
