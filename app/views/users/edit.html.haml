@@ -5,21 +5,24 @@
     = stylesheet_link_tag 'users'
   %body
     = render :partial => "shared/dashhead"
- 
-    %div.profile
-      %h1 Update account for #{@user.name}
+  .container
+    .content
+      %div.profile
+        %h2 Update account for #{@user.name}
+        %hr.stylish-outer.half-line
+        %hr.stylish-inner
+        %p Changes will not be made until you click "Update Account Info"
+        = form_tag user_path(@user), :method => :put do
 
-      = form_tag user_path(@user), :method => :put do
-
-        = label :user, :name, 'Name'
-        = text_field :user, 'name'
-        %br
-        %br
-        = label :user, :email, 'Email'
-        = text_field :user, 'email'
-        %br
-        %ul.profile_actions
-          %li
-            = link_to 'Change password', change_password_path(@user), :method => :get
-          %li
-            = submit_tag 'Update Account Info'
+          = label :user, :name, 'Name'
+          = text_field :user, 'name'
+          %br
+          %br
+          = label :user, :email, 'Email'
+          = text_field :user, 'email'
+          %br
+          %ul.profile_actions
+            %li
+              = link_to 'Change password', change_password_path(@user), :method => :get, :class => "small-custom-btn"
+            %li
+              = submit_tag 'Update Account Info', :class => "small-custom-btn"

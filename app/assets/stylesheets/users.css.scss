@@ -37,14 +37,43 @@ td, th {
     }
   }
 }
-
-div.profile {
-  text-align: center;
+.profile {
+  input[type="text"] {
+    width: 40%;
+    float: left;
+  }
+  label {
+    display: block;
+  }
 }
-
 ul.profile_actions {
+  padding-top: 20px;
   li {
     display: inline-block;
-    margin: 10px;
+    .small-custom-btn {
+      vertical-align: inherit;
+      color: #fff;
+      text-align: center;
+      border: none;
+      border-radius: 3px;
+      background-color: #2c3747;
+      box-shadow: 1px 1px 1px #222;
+      font-size: 15px;
+      transition: 0.3s all;
+      &:hover {
+        background-color: #1d2530;
+        box-shadow: 1px 1px 3px #222;
+      }
+      &:active, &:focus {
+        background-color: #1d2530;
+        box-shadow: 1px 1px 3px #222;
+      }
+    }
+    a.small-custom-btn {
+      text-decoration: none;
+      display: block;
+      padding: 1px 6px;
+      vertical-align: middle !important;
+    }
   }
 }

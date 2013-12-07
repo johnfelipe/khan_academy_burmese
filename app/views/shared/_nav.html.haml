@@ -1,17 +1,15 @@
+%ul.video-nav
+	%li{:id => "avail"} 
+		%a{:href => show_dashboard_path, :id => "the_avail_button"} <em>Available</em><br/><span class="counter">#{@avail_vids_num}</span>
 
+	%li{:id => "trans"}
+		%a{:href => translate_path, :id => "the_translate_button"} <em>Translate</em><br/><span class="counter">#{@trans_vids_num}</span>
 
-.avail_button{:class => "button", :id => "avail"} 
- %a{:class => 'a_link', :href => show_dashboard_path, :id => "the_avail_button"} Available(#{@avail_vids_num})
-
-.trans_button{:class => "button"}
- %a{:class => 'a_link', :href => translate_path, :id => "the_translate_button"} Translate(#{@trans_vids_num})
-
-.digi_button{:class => "button", :id => "digi"}
- %a{:class => 'a_link', :href => digitize_path, :id => "the_digitize_button"} Digitize(#{@digi_vids_num})
+	%li{:id => "digi"}
+		%a{:href => digitize_path, :id => "the_digitize_button"} <em>Digitize</em><br/><span class="counter">#{@digi_vids_num}</span>
  
-.qa_button{:class => "button", :id => "qa"}
- %a{:class => 'a_link', :href => qa_path, :id => "the_qa_button"} QA(#{@qa_vids_num})
+	%li{:id => "qa"}
+		%a{:href => qa_path, :id => "the_qa_button"} <em>QA</em><br/><span class="counter">#{@qa_vids_num}</span>
 
-.compl_button{:class => "button", :id => "compl"}
- %a{:class => 'a_link', :href => completed_path, :id => "the_completed_button"} Completed(#{@comp_vids_num})
-
+	%li{:id => "compl"}
+		%a{:href => completed_path, :id => "the_completed_button"} <em>Completed</em><br/><span class="counter">#{@comp_vids_num}</span>
