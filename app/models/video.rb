@@ -39,8 +39,9 @@ class Video < ActiveRecord::Base
   end
 
 
-  def self.find_avail_trans(user_id)
-  	videos = Video.where(:translator_id => nil, :translate_complete => false)
+  def self.find_avail_trans()
+  videos = Video.where(:translator_id => nil, :translate_complete => false)
+
   end
 
   def self.find_avail_digi(user_id)
