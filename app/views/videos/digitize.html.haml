@@ -12,7 +12,6 @@
         %h4{:class => "list-title"} Videos Assigned To Me To Digitize
         %table.table.table-bordered{:id => "list_table"}
           %tr
-            %th KABT ID
             %th Course
             %th Title
             %th Due Date
@@ -20,7 +19,6 @@
 
           - @digi_vids.each do |video|
             %tr 
-              %td= video.video_id
               %td= video.course
               %td= video.title
               %td= video.due_date.strftime('%b %d %Y')

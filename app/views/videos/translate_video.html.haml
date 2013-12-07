@@ -6,7 +6,7 @@
   %body
     = render :partial => "shared/dashhead"
     = render :partial => "shared/nav"
-    
+
     .container
       .content
         .panel.panel-success{:id => "list_table"}
@@ -17,10 +17,6 @@
               .list-group-item.h5 <b>Subject</b>: #{@video.subject}
               .list-group-item.h5 <b>Course</b>: #{@video.course}
               .list-group-item.h5 <b>Title</b>: #{@video.title}
-
-
-
-
         .panel.panel-info{:id => "list_table"}
           .panel-heading
             Video Status
@@ -34,8 +30,8 @@
                     %button.btn.btn-default.active Digital Translation
                     %button.btn.btn-default= link_to "Handwritten Translation", translate_video_handwritten_path()
               .list-group-item
-                %button_to.btn.btn-info= link_to("Translate Using Amara", @video.amara_link,{:style=> 'color:white;', :target => "_blank", :confirm => "When you are finished using Amara, be sure to come back to KhanAcademy Translations Portal to submit #{@video.title} for QA."})
+                %button_to.btn.btn-info= link_to("Translate Using Amara", @video.amara_link,{:style=> 'color:white;', :target => "_blank", :confirm => "When you are finished using Amara, be sure to come back and submit #{@video.title} for QA."})
               .list-group-item
                 %button_to.btn.btn-danger= link_to "Unassign Me", unassign_translator_path(:id => @user.id, :video_id => @video.video_id),{:style=> 'color:white;', :confirm => "Are you sure you want to unassign #{@video.title} as your video?", :method => :post}
 
-            %button_to.btn.btn-primary= link_to "Ready for QA",set_digital_translate_complete_path(),{:style=> 'color:white;', :confirm => "Are you sure #{@video.title} has been propery translated and submitted on Amara?", :method => :post}
+            %button_to.btn.btn-primary= link_to "Ready for QA",set_digital_translate_complete_path(),{:style=> 'color:white;', :confirm => "Are you sure #{@video.title} has been properly translated and submitted on Amara?", :method => :post}

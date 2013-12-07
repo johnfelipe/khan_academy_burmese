@@ -1,0 +1,43 @@
+-#view for admins
+%html
+  %head
+    = stylesheet_link_tag 'videos'
+  %body
+    = render :partial => "shared/dashhead"
+    .table-container
+      .row
+        .col-md-12.col-sm-12.col-xs-12
+          .panel.panel-info{:id => "list_table"}
+            .panel-heading
+              %h4 Handwritten translations assigned to me
+            .panel-body
+              = will_paginate
+              %ul.list-group
+                - @my_handwritten.each do |video|
+                  .list-group-item.h5
+                    = video.subject
+                    ,
+                    = video.course
+                    ,
+                    = video.title 
+                    | 
+                    = link_to "download", download_translation_path(video) ,:id => "#{video.id}_download", :class => "btn btn-primary"
+              = will_paginate
+
+    .table-container
+      .row
+        .col-md-12.col-sm-12.col-xs-12
+          .panel.panel-info{:id => "list_table"}
+            .panel-heading
+              %h4 All handwritten translations
+            .panel-body
+              = will_paginate
+              %ul.list-group
+                - @videos.each do |video|
+                  .list-group-item.h5
+                    = video.subject
+                    ,
+                    = video.course
+                    ,
+                    = video.title 
+              = will_paginate
