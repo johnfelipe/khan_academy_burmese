@@ -29,29 +29,30 @@ def video_setup
 
   def find_user_vids(user_id)
     @trans_vids = Video.find_user_trans(user_id)
+    @trans_vids_num = @trans_vids.length
+
     @digi_vids  = Video.find_user_digi(user_id)
+    @digi_vids_num  = @digi_vids.length
+
     @qa_vids = Video.find_user_qa(user_id)
+    @qa_vids_num = @qa_vids.length
   end 
 
   def find_avail_vids(user_id)
     @avail_trans = Video.find_avail_trans()
     @avail_digi = Video.find_avail_digi(user_id)
     @avail_qa = Video.find_avail_qa(user_id)
+    @avail_vids_num = @avail_trans.length + @avail_digi.length + @avail_qa.length
   end
  
   def find_comp_vids(user_id)
     @comp_trans = Video.find_comp_trans(user_id)
     @comp_digi = Video.find_comp_digi(user_id)
     @comp_qa = Video.find_comp_qa(user_id)
+    @comp_vids_num = @comp_trans.length + @comp_digi.length + @comp_qa.length
   end
 
   def initialize_cached_nums
-    @avail_vids_num = @avail_trans.length + @avail_digi.length + @avail_qa.length
-    @trans_vids_num = @trans_vids.length
-    @digi_vids_num  = @digi_vids.length
-    @qa_vids_num = @qa_vids.length
-    @comp_vids_num = @comp_trans.length + @comp_digi.length + @comp_qa.length
-
     $avail = @avail_vids_num
     $trans = @trans_vids_num
     $digi = @digi_vids_num
