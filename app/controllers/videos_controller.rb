@@ -351,10 +351,7 @@ def video_setup
 
   def download
     name = Video.find(params[:id]).translation_handwritten
-    send_file name.url, #or .current_path or .identifier
-      :type => "application/jpg",
-      :disposition  =>  'attachment',
-      :streaming    =>  'true'
+    send_file "public/assets/#{name.url}"
   end
 
   ################################## Private Methods ################################
