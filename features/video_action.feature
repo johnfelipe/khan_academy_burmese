@@ -47,5 +47,5 @@ Scenario:
   And I follow "QA" 
   Then I should see "Video Details"
   And I should see "Video Status"
-  Then I should see "Qa Complete"
+  Then I should see "QA Complete"
 
