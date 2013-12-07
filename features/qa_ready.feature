@@ -38,7 +38,7 @@ Scenario: Set translate video ready for digitization
   And I should see "Handwritten Translation"
   When I follow "Handwritten Translation"
   And I follow "Ready for Digitization"
-  Then I should see "TitleA is now ready to be QAed."
+  Then I should see "TitleA is now ready to be digitized"
 
 
 

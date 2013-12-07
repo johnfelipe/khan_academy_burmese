@@ -4,31 +4,29 @@
         = render :partial => "shared/masthead"
         = render :partial => "shared/error_messages"
         .container
-            .row
-                .col-md-12
-                    .col-md-6.col-sm-6.col-xs-6
-                        %form.form-sign{:action=>"login", :method=>"post"}
-                            .h2
-                                .form-sign-heading Sign In
-                            %hr
-                            %input.form-control.top#inputUsername{:type=>"text", :name=>"email", :placeholder=>"Email Address"}
-                            %input.form-control.bottom#loginPassword{:type=>"password", :placeholder=>"Password", :name=>"password"}
-                            %label.checkbox
-                                %input{:type=>"checkbox", :value=>"remember-me"}Remember Me
-                            %button.custom-btn.green{:type=>"submit"}Sign In
-                            .third-party-login#google-button= link_to image_tag('/assets/goog-red-signin-base.png'), user_omniauth_authorize_path(:google_oauth2), :id=>'google-login'
-                            .third-party-login#facebook-button= link_to image_tag('/assets/facebook-signin-base.png'), user_omniauth_authorize_path(:facebook), :id=>'facebook-login'
-                            -#%button.custom-btn.help{:type=>"button"}Help
+            .content
+                .col-md-6.col-sm-6.col-xs-6
+                    %form.form-sign{:action=>"login", :method=>"post"}
+                        .h2
+                            .indented Sign In
+                        %hr.login-fitted-hr
+                        %input.form-control.top#inputUsername{:type=>"text", :name=>"email", :placeholder=>"Email Address"}
+                        %input.form-control.bottom#loginPassword{:type=>"password", :placeholder=>"Password", :name=>"password"}
+                        %label.checkbox
+                            %input{:type=>"checkbox", :value=>"remember-me"}Remember Me
+                        %button.custom-btn{:type=>"submit"}Sign In
+                        .third-party-login#google-button= link_to image_tag('/assets/goog-red-signin-base.png'), user_omniauth_authorize_path(:google_oauth2), :id=>'google-login'
+                        .third-party-login#facebook-button= link_to image_tag('/assets/facebook-signin-base.png'), user_omniauth_authorize_path(:facebook), :id=>'facebook-login'
 
-                    .col-md-6.col-sm-6.col-xs-6
-                        %form.form-sign{:action=>"users", :method=>"post"}
-                            .h2
-                                .form-sign-heading Sign Up
-                            %hr
-                            %input.form-control.top#inputFirst{:name=>"firstName", :type=>"text", :placeholder=>"First Name"}
-                            %input.form-control#inputLast{:name=>"lastName", :type=>"text", :placeholder=>"Last Name"}
-                            %input.form-control#inputEmail{:name=>"email", :type=>"text", :placeholder=>"Email Address"}
-                            %input.form-control.bottom#createPassword{:name=>"password", :type=>"password", :placeholder=>"Password"}
-                            %label.checkbox
-                                %input{:type=>"checkbox", :value=>"tos-agree", :id => "Agree"}I agree to the <a href="#">Terms of Services</a>
-                            %button.custom-btn.green{:type=>"submit"}Sign Up
+                .col-md-6.col-sm-6.col-xs-6
+                    %form.form-sign{:action=>"users", :method=>"post"}
+                        .h2
+                            .indented Sign Up
+                        %hr.login-fitted-hr
+                        %input.form-control.top#inputFirst{:name=>"firstName", :type=>"text", :placeholder=>"First Name"}
+                        %input.form-control#inputLast{:name=>"lastName", :type=>"text", :placeholder=>"Last Name"}
+                        %input.form-control#inputEmail{:name=>"email", :type=>"text", :placeholder=>"Email Address"}
+                        %input.form-control.bottom#createPassword{:name=>"password", :type=>"password", :placeholder=>"Password"}
+                        %label.checkbox
+                            %input{:type=>"checkbox", :value=>"tos-agree", :id => "Agree"}I agree to the <a href="#">Terms of Services</a>
+                        %button.custom-btn.green{:type=>"submit"}Sign Up

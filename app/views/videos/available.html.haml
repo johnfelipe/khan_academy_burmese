@@ -14,7 +14,6 @@
             %h4{:class => "list_title"} Videos Available To Translate
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
-                %th KABT ID
                 %th Course
                 %th Title
                 %th Actions
@@ -23,7 +22,6 @@
 
               - @avail_trans.each do |video|
                 %tr 
-                  %td= video.video_id
                   %td= video.course
                   %td= video.title
                   %td
@@ -41,7 +39,6 @@
             %h4{:class => "list_title"} Videos Available To Digitize
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
-                %th KABT ID
                 %th Course
                 %th Title
                 %th Actions
@@ -50,7 +47,6 @@
 
               - @avail_digi.each do |video|
                 %tr 
-                  %td= video.video_id
                   %td= video.course
                   %td= video.title
                   %td
@@ -66,7 +62,6 @@
             %h4{:class => "list_title"} Videos Available To QA
             %table.table.table-striped.table-bordered{:id => "list_table"}
               %tr
-                %th KABT ID
                 %th Course
                 %th Title
                 %th Actions
@@ -75,7 +70,6 @@
 
               - @avail_qa.each do |video|
                 %tr 
-                  %td= video.video_id
                   %td= video.course
                   %td= video.title
                   %td

@@ -8,9 +8,12 @@ class Video < ActiveRecord::Base
 
 	before_create :set_due_date_to_month_from_now
 
+
   #prevent null due dates
   def set_due_date_to_month_from_now
-  	self.due_date = 1.month.from_now
+  	if self.due_date.nil?
+  		self.due_date = 1.month.from_now
+  	end
   end
 
   def set_initial_values
@@ -19,8 +22,12 @@ class Video < ActiveRecord::Base
   	self.qa_complete = false
   end
 
+  def amara_link
+  	"http://www.amara.org/en/subtitles/editor/#{video_id}/my/?base-language=en#"
+  end
+
   def self.find_user_trans(user_id)
-  	Video.where(:translate_complete => false, :translator_id => user_id)
+    Video.where(:translate_complete => false, :translator_id => user_id)
   end
 
   def self.find_user_digi(user_id)

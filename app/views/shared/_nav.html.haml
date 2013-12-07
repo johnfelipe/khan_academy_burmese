@@ -1,7 +1,7 @@
 
 
 .avail_button{:class => "button", :id => "avail"} 
- %a{:class => 'a_link', :href => show_dashboard_path, :id => "the_avail_button"} Available(#{@avail})
+ %a{:class => 'a_link', :href => show_dashboard_path, :id => "the_avail_button"} Available(#{@avail_vids_num})
 
 .trans_button{:class => "button"}
  %a{:class => 'a_link', :href => translate_path, :id => "the_translate_button"} Translate(#{@trans_vids_num})
@@ -13,5 +13,5 @@
  %a{:class => 'a_link', :href => qa_path, :id => "the_qa_button"} QA(#{@qa_vids_num})
 
 .compl_button{:class => "button", :id => "compl"}
- %a{:class => 'a_link', :href => completed_path, :id => "the_completed_button"} Completed(#{@comp})
+ %a{:class => 'a_link', :href => completed_path, :id => "the_completed_button"} Completed(#{@comp_vids_num})
 
