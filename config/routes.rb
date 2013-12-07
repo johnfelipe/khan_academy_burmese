@@ -65,6 +65,9 @@ KABT::Application.routes.draw do
 
   resources :videos
   match '/videos_index', to: 'videos#videos_index', via: 'get'
+  match '/handwritten_index', to: 'videos#handwritten_index', via: 'get'
+  match '/videos/:id/download', to: 'videos#download', via: 'get', as: :download_translation
+
 
   #get '/auth/:provider/callback' => 'sessions#create'
   #get '/auth/failure' => 'users/sessions#failure'

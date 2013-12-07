@@ -359,6 +359,19 @@ def video_setup
     @videos = Video.order('subject ASC').order('course ASC').paginate(:per_page => 20, :page => params[:page])
   end
 
+  def handwritten_index
+    @videos = Video.get_unfinished_handwritten.order('subject ASC').order('course ASC').paginate(:per_page => 20, :page => params[:page])
+    @my_handwritten = Video.get_unfinished_handwritten_assigned_to_me(current_user)
+  end
+
+  def download
+    name = Video.find(params[:id]).translation_handwritten
+    send_file name.url, #or .current_path or .identifier
+      :type => "application/jpg",
+      :disposition  =>  'attachment',
+      :streaming    =>  'true'
+  end
+
   ################################## Private Methods ################################
   private
 
