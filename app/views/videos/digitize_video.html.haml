@@ -31,6 +31,7 @@
                   .list-group-item.h5= "Due Date: #{@video.due_date.strftime('%b %d %Y')}"
                   .list-group-item
                     %button_to.btn.btn-info= link_to("Digitize on Amara", @video.amara_link,{:style=> 'color:white;', :target => "_blank"})
+                    = link_to "Download handwritten translation", download_translation_path(@video), :id => 'download_button', :class => 'btn btn-info'
                   .list-group-item
                     %button_to.btn.btn-danger= link_to "Unassign Me", unassign_typer_path(),{:style=> 'color:white;', :confirm => "Are you sure you want to unassign #{@video.title} as your video to digitize?", :method => :post}
   
