@@ -71,4 +71,16 @@ class Video < ActiveRecord::Base
   def self.get_unfinished_handwritten_assigned_to_me(user)
   	Video.where(:translate_complete => true, :type_complete => false, :typer_id => user)
   end
+
+  def self.trans_vids_deadline_approaching
+     Video.where('translator_id IS NOT NULL and translate_complete = ? and due_date > ? and due_date < ?', false, Date.today, 1.week.from_now)
+  end
+
+  def self.digi_vids_deadline_approaching
+     Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ? and due_date > ? and due_date < ?', true, false, Date.today, 1.week.from_now)
+  end
+
+  def self.qa_vids_deadline_approaching
+      Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ? and due_date > ? and due_date < ?', true, false, Date.today, 1.week.from_now)
+  end
 end

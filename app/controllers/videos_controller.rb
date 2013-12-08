@@ -216,23 +216,36 @@ def video_setup
   end
 
   def send_deadline_approaching_reminders
-    @all_deadline_approaching_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ? and due_date > ? and due_date < ?', false, Date.today, 1.week.from_now)
-    @all_deadline_approaching_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ? and due_date > ? and due_date < ?', true, false, Date.today, 1.week.from_now)
-    @all_deadline_approaching_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ? and due_date > ? and due_date < ?', true, false, Date.today, 1.week.from_now)
-    @users_to_email = []
-    @all_deadline_approaching_trans_vids.each do |video|
-      @users_to_email << video.translator_id
-    end
-    @all_deadline_approaching_digi_vids.each do |video|
-      @users_to_email << video.typer_id
-    end
-    @all_deadline_approaching_qa_vids.each do |video|
-      @users_to_email << video.qa_id
-    end
+    @user_to_email = trans_vids_emails + digi_vids_emails + qa_vids_email
     @users_to_email.to_set.each do |user_id|
       Reminder.deadline_approaching(User.find_by_id(user_id)).deliver
     end
   end
+
+  def trans_vids_emails
+    users_to_email = []
+    trans_vids_deadline_approaching.each do |video|
+      users_to_email << video.translator_id
+     end
+     users_to_email
+  end
+
+  def digi_vids_emails
+    users_to_email = []
+    digi_vids_deadline_approaching.each do |video|
+      users_to_email << video.typer_id
+    end
+    users_to_email
+  end
+
+  def qa_vids_emails
+    users_to_email = []
+    qa_vids_deadline_approaching.each do |video|
+      users_to_email << video.qa_id
+    end
+    users_to_email
+  end
+
   
 
 
