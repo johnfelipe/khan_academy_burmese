@@ -143,6 +143,12 @@ def video_setup
     )
   end
 
+  def admin_unassign_translator
+    unassign_translater_by_ids(params[:video_id], params[:id])
+    flash[:success] = "#{User.find(params[:id]).name} has been successfully unassigned from translating"
+    redirect_to unassign_videos_path
+  end
+
   def assign_typer
     assign_typer_by_ids(params[:video_id], params[:id])
     redirect_to show_dashboard_path(current_user)
@@ -169,6 +175,12 @@ def video_setup
     )
   end
 
+  def admin_unassign_typer
+    unassign_typer_by_ids(params[:video_id], params[:id])
+    flash[:success] = "#{User.find(params[:id]).name} has been successfully unassigned from typing"
+    redirect_to unassign_videos_path
+  end
+
   def assign_qa
     assign_qa_by_ids(params[:video_id], params[:id])
     redirect_to show_dashboard_path(params[:id])
@@ -193,6 +205,12 @@ def video_setup
     v.update_attributes!(
       :qa_id => nil
     )
+  end
+
+  def admin_unassign_qa
+    unassign_qa_by_ids(params[:video_id], params[:id])
+    flash[:success] = "#{User.find(params[:id]).name} has been successfully unassigned from QA"
+    redirect_to unassign_videos_path
   end
 
   def admin_unassign_overdue_videos
@@ -336,6 +354,12 @@ def video_setup
   def assign_qa_to_someone_else
     @users = User.order('email ASC')
     @video = Video.find_by_video_id(params[:video_id])
+  end
+
+  def unassign_videos
+    @assigned_trans = Video.find_all_assigned_trans
+    @assigned_digi = Video.find_all_assigned_digi
+    @assigned_qa = Video.find_all_assigned_qa
   end
 
   def new

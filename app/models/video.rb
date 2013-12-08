@@ -83,4 +83,16 @@ class Video < ActiveRecord::Base
   def self.qa_vids_deadline_approaching
       Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ? and due_date > ? and due_date < ?', true, false, Date.today, 1.week.from_now)
   end
+
+  def self.find_all_assigned_trans
+    Video.where('translate_complete = ? AND translator_id IS NOT NULL', false)
+  end
+
+  def self.find_all_assigned_digi
+    Video.where('translate_complete = ? AND type_complete = ? AND typer_id IS NOT NULL', true, false)
+  end
+
+  def self.find_all_assigned_qa
+    Video.where('translate_complete = ? AND type_complete = ? AND qa_complete = ? AND qa_id IS NOT NULL', true, true, false)
+  end
 end

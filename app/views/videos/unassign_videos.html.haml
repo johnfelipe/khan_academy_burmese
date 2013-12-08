@@ -1,0 +1,56 @@
+-#view for admins
+
+%html
+
+  %head
+    = stylesheet_link_tag 'videos'
+  %body
+    = render :partial => "shared/dashhead"
+    .container
+      .content
+        %h4{:class => "list-title"} Assigned Translators
+        %table.table.table-bordered{:id => "list_table"}
+          %tr
+            %th.kabt_course Course
+            %th.kabt_title Title
+            %th.kabt_actions UserID
+            %th Actions
+
+          - @assigned_trans.each do |video|
+            %tr 
+              %td= video.course
+              %td= video.title
+              %td= video.translator_id
+              %td= link_to 'Unassign', admin_unassign_translator_path(:id => video.translator_id, :video_id => video.video_id), :method => 'put', :id => "#{video.video_id}_unassign_translator", :class => "btn btn-danger"
+
+
+        %h4{:class => "list-title"} Assigned Typers
+        %table.table.table-bordered{:id => "list_table"}
+          %tr
+            %th.kabt_course Course
+            %th.kabt_title Title
+            %th.kabt_actions UserID
+            %th Actions
+
+          - @assigned_digi.each do |video|
+            %tr 
+              %td= video.course
+              %td= video.title
+              %td= video.typer_id
+              %td= link_to 'Unassign', admin_unassign_typer_path(:id => video.typer_id, :video_id => video.video_id), :method => 'put', :id => "#{video.video_id}_unassign_typer", :class => "btn btn-danger"
+
+
+        %h4{:class => "list-title"} Assigned to QA
+        %table.table.table-bordered{:id => "list_table"}
+          %tr
+            %th.kabt_course Course
+            %th.kabt_title Title
+            %th.kabt_actions UserID            
+            %th Actions
+
+          - @assigned_qa.each do |video|
+            %tr 
+              %td= video.course
+              %td= video.title
+              %td= video.qa_id                
+              %td= link_to 'Unassign', admin_unassign_qa_path(:id => video.qa_id, :video_id => video.video_id), :method => 'put', :id => "#{video.video_id}_unassign_qa", :class => "btn btn-danger"

@@ -14,7 +14,7 @@ Background: users in database
   | admin                    | admin@example.com      | adminpassword |
 
   And "admin@example.com" is an admin user
-  And I am logged in with email: "admin@example.com" and password: "adminpassword"
+  When I am logged in with email: "admin@example.com" and password: "adminpassword"
   And I am on the dashboard page for "admin"
   And I follow "All users"
 

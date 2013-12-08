@@ -20,4 +20,4 @@
                       ,
                       = user.email
                       | 
-                      = link_to 'Assign as Traslator', "/users/#{user.id}/videos/#{@video.video_id}/assign_translator" , :id => "#{user.id}_translate_#{@video.video_id}", :class => "btn btn-info", :method => 'post'
+                      = link_to 'Assign as Translator', "/users/#{user.id}/videos/#{@video.video_id}/assign_translator" , :id => "#{user.id}_translate_#{@video.video_id}", :class => "btn btn-info", :method => 'post'

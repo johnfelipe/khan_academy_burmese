@@ -45,7 +45,7 @@ Scenario: Assign a video to be digitized to a user
   Then I should see "Videos Available To Digitize"
   And I should not see "video_B"
 
-  Scenario: Assign a video to be QAed to a user
+Scenario: Assign a video to be QAed to a user
   Then I should see "Admin Actions"
   When I follow "video_C_someone_else_qa_button"
   Then I should see "Assign video -"

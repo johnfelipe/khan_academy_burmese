@@ -65,6 +65,7 @@ KABT::Application.routes.draw do
 
   resources :videos
   match '/videos_index', to: 'videos#videos_index', via: 'get'
+  match '/unassign_videos', to: 'videos#unassign_videos', via: 'get'
   match '/handwritten_index', to: 'videos#handwritten_index', via: 'get'
   match '/videos/:id/download', to: 'videos#download', via: 'get', as: :download_translation
   match '/download_zip', to: 'videos#download_zip', via: 'get', as: :download_zip
@@ -72,6 +73,10 @@ KABT::Application.routes.draw do
   match '/import_videos', to: 'videos#import_videos', via: 'post'
   match '/import_videos_confirmation', to: 'videos#import_videos_confirmation', via: 'post'
   match '/populate_videos_confirmation', to: 'videos#populate_videos_confirmation', via: 'get'
+
+  match '/unassign_videos/:video_id/:id/admin_unassign_translator', to: 'videos#admin_unassign_translator', via: 'put', as: :admin_unassign_translator
+  match '/unassign_videos/:video_id/:id/admin_unassign_typer', to: 'videos#admin_unassign_typer', via: 'put', as: :admin_unassign_typer
+  match '/unassign_videos/:video_id/:id/admin_unassign_qa', to: 'videos#admin_unassign_qa', via: 'put', as: :admin_unassign_qa
 
   #get '/auth/:provider/callback' => 'sessions#create'
   #get '/auth/failure' => 'users/sessions#failure'
