@@ -386,10 +386,16 @@ def video_setup
   def download_zip
     require 'zip'
     zipfile_name = "#{Rails.public_path}/tmp/translations.zip"
-    directory = "#{Rails.public_path}/assets/translations/" # TODO NEED TO CHANGE TO DIR WHERE TRANSLATIONS ARE STORED
+    directory = "#{Rails.public_path}/assets/" # TODO NEED TO CHANGE TO DIR WHERE TRANSLATIONS ARE STORED
+    to_zip = Array.new
+    my_handwritten = Video.get_unfinished_handwritten_assigned_to_me(current_user)
+    
+    #get all filenames
+    my_handwritten.each { |video| to_zip << "#{video.translation_handwritten.url}" }
+
     Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
-      Dir[File.join(directory, '**', '**')].each do |file|
-        zipfile.add(file.sub(directory, ''), file)
+      to_zip.each do |filename|
+        zipfile.add filename, directory + filename
       end
     end
     send_file zipfile_name, :type => 'application/zip', :x_sendfile => true
