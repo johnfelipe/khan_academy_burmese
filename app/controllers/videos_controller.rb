@@ -1,9 +1,14 @@
 require 'set'
+require 'nokogiri'
+require 'open-uri'
+require 'cgi'
+require 'csv'
+
 
 class VideosController < ApplicationController
   before_filter :require_user#, :except => [:assign_translate_to_someone_else, :assign_translator]
-  before_filter :admin_user, :only => [:assign_translate_to_someone_else, 
-    :assign_type_to_someone_else, :assign_qa_to_someone_else, :create, :new ]
+  before_filter :admin_user, :only => [:assign_translate_to_someone_else,
+    :assign_type_to_someone_else, :assign_qa_to_someone_else, :create, :new, :import_videos, :import_videos_confirmation ]
 
   def update
     @video = Video.find(params[:video_id])
@@ -16,13 +21,13 @@ class VideosController < ApplicationController
 
 def video_setup
     @user = User.find_by_id(params[:id])
-    
+
     find_user_vids(params[:id])
 
     find_avail_vids(params[:id])
 
     find_comp_vids(params[:id])
- 
+
     initialize_cached_nums()
 
   end
@@ -36,7 +41,7 @@ def video_setup
 
     @qa_vids = Video.find_user_qa(user_id)
     @qa_vids_num = @qa_vids.length
-  end 
+  end
 
   def find_avail_vids(user_id)
     @avail_trans = Video.find_avail_trans()
@@ -44,7 +49,7 @@ def video_setup
     @avail_qa = Video.find_avail_qa(user_id)
     @avail_vids_num = @avail_trans.length + @avail_digi.length + @avail_qa.length
   end
- 
+
   def find_comp_vids(user_id)
     @comp_trans = Video.find_comp_trans(user_id)
     @comp_digi = Video.find_comp_digi(user_id)
@@ -139,7 +144,7 @@ def video_setup
   end
 
   def assign_typer
-    assign_typer_by_ids(params[:video_id], params[:id])    
+    assign_typer_by_ids(params[:video_id], params[:id])
     redirect_to show_dashboard_path(current_user)
   end
 
@@ -147,7 +152,7 @@ def video_setup
     v = Video.find_by_video_id video_id
     v.update_attributes!(
       :typer_id => user_id,
-      :due_date => 1.month.from_now  
+      :due_date => 1.month.from_now
       )
   end
 
@@ -246,7 +251,7 @@ def video_setup
     users_to_email
   end
 
-  
+
 
 
   def set_handwritten_translate_complete
@@ -289,7 +294,7 @@ def video_setup
   def set_cache_complete
     $comp += 1
   end
-  
+
 
   def upload_translation_handwritten
       @video = Video.find_by_video_id(params[:video_id])
@@ -382,7 +387,7 @@ def video_setup
     name = Video.find(params[:id]).translation_handwritten
     send_file "#{Rails.public_path}/assets/#{name.url}"
   end
-  
+
   def download_zip
     require 'zip'
     zipfile_name = "#{Rails.public_path}/tmp/translations.zip"
@@ -401,9 +406,90 @@ def video_setup
     send_file zipfile_name, :type => 'application/zip', :x_sendfile => true
   end
 
+  def import_videos_confirmation
+    @links = get_links_from_csv(params[:videos]).join(',')
+  end
+
+  def populate_videos_confirmation
+    link = params[:link]
+    response = get_video_info_from_link(link)
+    respond_to do |format|
+      format.json { render :json => response.to_json }
+    end
+  end
+
+  def import_videos
+    params[:videos].each do |id,info|
+      info[:translate_complete] = false
+      info[:type_complete] = false
+      info[:qa_complete] = false
+      Video.create(info)
+    end
+    redirect_to show_dashboard_path(current_user)
+  end
 
   ################################## Private Methods ################################
   private
+
+    def get_links_from_csv(uploaded_file)
+      links = []
+      flag=true
+      link_index = -1
+      file_text = uploaded_file.read
+      file_lines = file_text.split(/\r|\n|\r\n/)
+      file_lines.each do |line|
+        row = line.split(',')
+        if flag
+          row.each_with_index do |field, i|
+            if field.downcase == "link to original video"
+              link_index = i
+              break
+            end
+          end
+          flag=false
+          next
+        end
+        if link_index == -1
+          return links
+        end
+        begin
+          khan_url = row[link_index]
+          links << khan_url
+        rescue
+          next
+        end
+      end
+      links
+    end
+
+    def get_video_info_from_link(khan_url)
+      begin
+        doc = Nokogiri::HTML(open(khan_url))
+        #Grab youtube url given link
+        #puts doc.text
+
+        a=doc.css('iframe')#/.*/.match(doc.text)
+        youtube_id = /data-youtubeid="([^"]*)"/.match("#{a[0]}")[1]
+        youtube_url = "\"http://www.youtube.com/watch?v=#{youtube_id}\""
+        escaped_url = CGI::escape(youtube_url)
+        video_url = "https://www.amara.org/widget/rpc/jsonp/show_widget?video_url=#{escaped_url}&is_remote=true"
+        doc = Nokogiri::HTML(open(video_url))
+        amara_id = /"video_id"[^"]*"([^"]*)"/.match(doc.text)[1]
+        fields = khan_url.split('/')
+        title = niceify(fields[-1])
+        course = niceify(fields[-3])
+        subject = niceify(fields[-4])
+        return {:video_id => amara_id, :title => title, :course => course, :subject => subject}
+      rescue
+        return {}
+      end
+    end
+
+
+    def niceify(str)
+      nice_string = str.gsub(/[-_]/, ' ')
+      CGI::unescape(nice_string.sub(nice_string[0],nice_string[0].capitalize))
+    end
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?

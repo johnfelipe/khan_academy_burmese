@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   def require_user
     if session[:id].nil?
-      flash[:notice] = "You have to be logged in to view that page"
+      flash[:notice] = "You have to be logged in to view that page #{session}"
       redirect_to login_page_path
       return
     end
