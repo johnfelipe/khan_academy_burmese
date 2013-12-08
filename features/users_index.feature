@@ -14,7 +14,7 @@ Background: users in database
   | admin                    | admin@example.com      | adminpassword |
 
   And "admin@example.com" is an admin user
-  When I am logged in with email: "admin@example.com" and password: "adminpassword"
+  And I am logged in with email: "admin@example.com" and password: "adminpassword"
   And I am on the dashboard page for "admin"
   And I follow "All users"
 
@@ -30,10 +30,7 @@ Scenario: Delete user account as admin
   And I should see "user1@example.com"
   When I follow "1_delete"
   Then I should see "The account was successfully deleted"
-  When I am logged in with email: "admin@example.com" and password: "adminpassword"
-  And I am on the dashboard page for "admin"
-  And I follow "All users"
-  Then I should not see "user1"
+  And I should not see "user1"
   And I should see "user2"
 
 Scenario: Give a user administrative rights

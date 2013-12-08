@@ -31,6 +31,7 @@ Then /the password for "(.*)" should be "(.*)"/ do |username, value|
   User.where(:name => username)[0].password.eql?(value)
 end
 
+
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
@@ -43,9 +44,4 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
 
   pos1.should < pos2
 #  flunk "Unimplemented"
-end
-
-Then /I should see all the movies/ do
-  # Make sure that all the movies in the app are visible in the table
-  Movie.count.should == page.all('#movies tbody tr').count
 end
