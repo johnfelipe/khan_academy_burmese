@@ -1,0 +1,30 @@
+-#view for translations
+
+%html
+
+  %head
+    = javascript_include_tag "import_videos/import_videos_confirmation"
+    = stylesheet_link_tag 'videos'
+  %body
+    = render :partial => "shared/dashhead"
+    = hidden_field_tag "links", @links.to_json
+    .table-container
+      .row
+        .col-md-12
+          .col-md-12.col-sm-12.col-xs-12
+            %h4{:class => "list_title"} Videos to be Imported 
+            %div{:id => "fetch_status"}
+              Fetching information for video 
+              %span{:id => "current_num"} 0
+              out of
+              %span{:id => "total_num"} 0
+              possible videos.
+            = form_tag "/import_videos", :method => :post do
+              %table.table.table-striped.table-bordered{:id => "list_table"}
+                %tr
+                  %th Amara Id
+                  %th Subject
+                  %th Course
+                  %th Title
+
+              = submit_tag 'Upload'
