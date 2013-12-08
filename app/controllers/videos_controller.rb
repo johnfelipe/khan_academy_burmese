@@ -351,8 +351,21 @@ def video_setup
 
   def download
     name = Video.find(params[:id]).translation_handwritten
-    send_file "public/assets/#{name.url}"
+    send_file "#{Rails.public_path}/assets/#{name.url}"
   end
+  
+  def download_zip
+    require 'zip'
+    zipfile_name = "#{Rails.public_path}/tmp/translations.zip"
+    directory = "#{Rails.public_path}/assets/translations/" # TODO NEED TO CHANGE TO DIR WHERE TRANSLATIONS ARE STORED
+    Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+      Dir[File.join(directory, '**', '**')].each do |file|
+        zipfile.add(file.sub(directory, ''), file)
+      end
+    end
+    send_file zipfile_name, :type => 'application/zip', :x_sendfile => true
+  end
+
 
   ################################## Private Methods ################################
   private
@@ -360,4 +373,5 @@ def video_setup
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
+
 end

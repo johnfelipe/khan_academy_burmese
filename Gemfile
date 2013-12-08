@@ -15,6 +15,9 @@ gem 'carrierwave'
 gem "mail", "2.5.4"
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
+#gem 'rubyzip'
+gem 'rubyzip', '>= 1.0.0'
+gem 'zip-zip'
 
 group :development, :test do
   gem 'sqlite3'
