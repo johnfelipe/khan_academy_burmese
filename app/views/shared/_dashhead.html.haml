@@ -14,7 +14,7 @@
           =link_to "Dashboard", show_dashboard_path(current_user)
         - if current_user.admin?
           %div{:id => "import_videos_form"}
-            = form_tag({:action => 'import_videos_confirmation', :method=> :post}, {:multipart => true}) do
+            = form_tag({:controller => 'videos', :action => 'import_videos_confirmation', :method=> :post}, {:multipart => true}) do
               = file_field_tag 'videos'    
               %br
               = submit_tag 'Upload', :id => "upload_csv"
