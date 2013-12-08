@@ -24,5 +24,5 @@ Scenario: QA View
   And I follow "QA" 
   Then I should see "Video Details"
   And I should see "Video Status"
-  When I follow "Qa Complete"
+  When I follow "QA Complete"
   Then I should see "TitleC is now completed."

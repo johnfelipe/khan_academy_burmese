@@ -69,7 +69,7 @@ And I follow "the_translate_button"
 
 Then I should be on the Translation Videos View for "User"
 
-And I should see "Welcome, User!"
+And I should see "Welcome, User"
 
 And I should see "A Great Video"
 

@@ -13,47 +13,74 @@ class VideosController < ApplicationController
     end
   end
 
+
 def video_setup
     @user = User.find_by_id(params[:id])
     
-    @trans_vids = Video.find_user_trans(params[:id])
-    @digi_vids  = Video.find_user_digi(params[:id])
-    @qa_vids = Video.find_user_qa(params[:id])
+    find_user_vids(params[:id])
 
+    find_avail_vids(params[:id])
+
+    find_comp_vids(params[:id])
+ 
+    initialize_cached_nums()
+
+  end
+
+  def find_user_vids(user_id)
+    @trans_vids = Video.find_user_trans(user_id)
     @trans_vids_num = @trans_vids.length
+
+    @digi_vids  = Video.find_user_digi(user_id)
     @digi_vids_num  = @digi_vids.length
+
+    @qa_vids = Video.find_user_qa(user_id)
     @qa_vids_num = @qa_vids.length
+  end 
 
-    @avail_trans = Video.find_avail_trans(params[:id])
-    @avail_digi = Video.find_avail_digi(params[:id])
-    @avail_qa = Video.find_avail_qa(params[:id])
+  def find_avail_vids(user_id)
+    @avail_trans = Video.find_avail_trans()
+    @avail_digi = Video.find_avail_digi(user_id)
+    @avail_qa = Video.find_avail_qa(user_id)
     @avail_vids_num = @avail_trans.length + @avail_digi.length + @avail_qa.length
-
-    @comp_trans = Video.find_comp_trans(params[:id])
-    @comp_digi = Video.find_comp_digi(params[:id])
-    @comp_qa = Video.find_comp_qa(params[:id])
+  end
+ 
+  def find_comp_vids(user_id)
+    @comp_trans = Video.find_comp_trans(user_id)
+    @comp_digi = Video.find_comp_digi(user_id)
+    @comp_qa = Video.find_comp_qa(user_id)
     @comp_vids_num = @comp_trans.length + @comp_digi.length + @comp_qa.length
+  end
 
+  def initialize_cached_nums
+    $avail = @avail_vids_num
+    $trans = @trans_vids_num
+    $digi = @digi_vids_num
+    $qa = @qa_vids_num
+    $comp = @comp_vids_num
   end
 
 
 
   def available
+  @user = current_user
   video_setup()
-  Rails.cache.write("avail", @avail_vids_num)
-  Rails.cache.write("trans", @trans_vids_num)
-  Rails.cache.write("digi", @digi_vids_num)
-  Rails.cache.write("qa", @qa_vids_num)
-  Rails.cache.write("comp", @comp_vids_num)
   end
 
+  def set_cache_nums
+    @avail_vids_num = $avail
+    @trans_vids_num = $trans
+    @digi_vids_num = $digi
+    @qa_vids_num = $qa
+    @comp_vids_num = $comp
+  end
 
   def translate
     @user = current_user
     @trans_vids = Video.find_user_trans(params[:id])
     @trans_vids_num = @trans_vids.length
-
-    cache("trans")
+    $trans = @trans_vids_num
+    set_cache_nums()
   end
 
 
@@ -61,36 +88,28 @@ def video_setup
     @user = current_user
     @digi_vids = Video.find_user_digi(params[:id])
     @digi_vids_num = @digi_vids.length
+    $digi = @digi_vids_num
+    set_cache_nums()
 
-    cache("digi")
   end
 
   def qa
     @user = current_user
     @qa_vids = Video.find_user_qa(params[:id])
     @qa_vids_num = @qa_vids.length
-
-    cache("qa")
+    $qa = @qa_vids_num
+    set_cache_nums()
   end
 
   def completed
     @user = current_user
-    @comp_trans = Video.find_comp_trans(params[:id])
-    @comp_digi = Video.find_comp_digi(params[:id])
-    @comp_qa = Video.find_comp_qa(params[:id])
+    find_comp_vids(params[:id])
     @comp_vids_num = @comp_trans.length + @comp_digi.length + @comp_qa.length
-
-    cache("comp")
+    $comp = @comp_vids_num
+    set_cache_nums()
   end
 
-  def cache(cache_write)
-    Rails.cache.write(cache_write, instance_variable_get('@'+cache_write+'_vids_num'))
-    @avail_vids_num = Rails.cache.fetch("avail")
-    @trans_vids_num = Rails.cache.fetch("trans")
-    @digi_vids_num = Rails.cache.fetch("digi")
-    @qa_vids_num = Rails.cache.fetch("qa")
-    @comp_vids_num = Rails.cache.fetch("comp")
-  end
+
 
   #TODO: add notices to inform user of successful assign/unassign/complete
   def assign_translator
@@ -197,75 +216,80 @@ def video_setup
   end
 
   def send_deadline_approaching_reminders
-    @all_deadline_approaching_trans_vids = Video.where('translator_id IS NOT NULL and translate_complete = ? and due_date > ? and due_date < ?', false, Date.today, 1.week.from_now)
-    @all_deadline_approaching_digi_vids  = Video.where('typer_id IS NOT NULL AND translator_id IS NOT NULL AND translate_complete = ? and type_complete = ? and due_date > ? and due_date < ?', true, false, Date.today, 1.week.from_now)
-    @all_deadline_approaching_qa_vids = Video.where('qa_id IS NOT NULL AND typer_id IS NOT NULL AND type_complete = ? AND qa_complete = ? and due_date > ? and due_date < ?', true, false, Date.today, 1.week.from_now)
-    @users_to_email = []
-    @all_deadline_approaching_trans_vids.each do |video|
-      @users_to_email << video.translator_id
-    end
-    @all_deadline_approaching_digi_vids.each do |video|
-      @users_to_email << video.typer_id
-    end
-    @all_deadline_approaching_qa_vids.each do |video|
-      @users_to_email << video.qa_id
-    end
+    @user_to_email = trans_vids_emails + digi_vids_emails + qa_vids_email
     @users_to_email.to_set.each do |user_id|
       Reminder.deadline_approaching(User.find_by_id(user_id)).deliver
     end
   end
-  
-  def set_cache_complete
-    comp_vids_num = Rails.cache.fetch("comp")
-    Rails.cache.write("comp",comp_vids_num +1)
+
+  def trans_vids_emails
+    users_to_email = []
+    trans_vids_deadline_approaching.each do |video|
+      users_to_email << video.translator_id
+     end
+     users_to_email
   end
 
+  def digi_vids_emails
+    users_to_email = []
+    digi_vids_deadline_approaching.each do |video|
+      users_to_email << video.typer_id
+    end
+    users_to_email
+  end
+
+  def qa_vids_emails
+    users_to_email = []
+    qa_vids_deadline_approaching.each do |video|
+      users_to_email << video.qa_id
+    end
+    users_to_email
+  end
+
+  
+
+
   def set_handwritten_translate_complete
-    v = Video.find_by_video_id params[:video_id]
-    set_cache_complete()
-    flash[:success] = "#{v.title} is now ready to be digitized"
-    v.update_attributes!(:translate_complete => true)
+    set_complete("translate")
+    flash[:success] = "#{@vid.title} is now ready to be digitized"
     redirect_to translate_path(params[:id])
   end
 
   def set_digital_translate_complete
-    v = Video.find_by_video_id(params[:video_id])
-    set_cache_complete()
-    flash[:success]= "#{v.title} is now ready to be QAed."
-    v.update_attributes!(:translate_complete => true, :type_complete => true, :typer_id => params[:id])
+    set_complete("translate")
+    flash[:success]= "#{@vid.title} is now ready to be QAed."
+    @vid.update_attributes!(:type_complete => true, :typer_id => params[:id])
     redirect_to translate_path(params[:id])
   end
 
  def set_type_complete
-    v = Video.find_by_video_id params[:video_id]
-    set_cache_complete()
-    flash[:success]= "#{v.title} is now ready to be QAed."
-    v.update_attributes!(:type_complete => true)
+    set_complete("type")
+    flash[:success]= "#{@vid.title} is now ready to be QAed."
     redirect_to digitize_path(params[:id])
   end
 
   def set_qa_complete
-    v = Video.find_by_video_id params[:video_id]
-    set_cache_complete()
-    flash[:success]= "#{v.title} is now completed."
-    v.update_attributes!(:qa_complete => true)
+    set_complete("qa")
+    flash[:success]= "#{@vid.title} is now completed."
     redirect_to qa_path(params[:id])
+  end
+
+  def set_complete(type)
+   @vid = Video.find_by_video_id(params[:video_id])
+   set_cache_complete()
+   sym = (type+"_complete").to_sym
+   @vid.update_attributes!(sym => true)
   end
 
   def video_details(video_id)
       @video = Video.find_by_video_id(video_id)
-      
-      @avail_vids_num = Rails.cache.fetch("avail")
-      @trans_vids_num = Rails.cache.fetch("trans")
-      @digi_vids_num = Rails.cache.fetch("digi")
-      @qa_vids_num = Rails.cache.fetch("qa")
-      @comp_vids_num = Rails.cache.fetch("comp")
+      set_cache_nums()
   end
 
-  def qa_video
-      @user = current_user
-      video_details(params[:video_id])
+  def set_cache_complete
+    $comp += 1
   end
+  
 
   def upload_translation_handwritten
       @video = Video.find_by_video_id(params[:video_id])
@@ -282,6 +306,11 @@ def video_setup
   def translate_video_handwritten
       @user = current_user
       video_details(params[:video_id])
+  end
+
+  def qa_video
+     @user = current_user
+     video_details(params[:video_id])
   end
 
   def digitize_video
