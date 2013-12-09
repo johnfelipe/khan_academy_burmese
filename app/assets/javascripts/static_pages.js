@@ -1,21 +1,7 @@
-/*$(document).ready(function() {
-	var navbar = $('.video-nav');
-
-	$(window).on('scroll', function() {
-		var fromTop = $(window).scrollTop();
-		var navbarClass = navbar.hasClass('fixed-video-nav');
-
-		if (fromTop > 170 && !navbarClass) {
-			navbar.toggleClass('fixed-video-nav');
-			navbar.toggleClass('video-nav');
-		} else if (fromTop <= 170 && navbarClass) {
-			navbar.toggleClass('fixed-video-nav');
-			navbar.toggleClass('video-nav');
-		};
-	});
+$(document).ready(function() {
     $("#import_videos").click(show_import);
     $("#upload_csv").click(warn_length);
-});*/
+});
 
 function show_import() {
     //Show new pop-up allowing users to input a csv file
