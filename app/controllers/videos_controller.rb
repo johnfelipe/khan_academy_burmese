@@ -239,7 +239,7 @@ def video_setup
   end
 
   def send_deadline_approaching_reminders
-    @user_to_email = trans_vids_emails + digi_vids_emails + qa_vids_email
+    @users_to_email = trans_vids_emails + digi_vids_emails + qa_vids_emails
     @users_to_email.to_set.each do |user_id|
       Reminder.deadline_approaching(User.find_by_id(user_id)).deliver
     end
@@ -247,7 +247,7 @@ def video_setup
 
   def trans_vids_emails
     users_to_email = []
-    trans_vids_deadline_approaching.each do |video|
+    Video.trans_vids_deadline_approaching.each do |video|
       users_to_email << video.translator_id
      end
      users_to_email
@@ -255,7 +255,7 @@ def video_setup
 
   def digi_vids_emails
     users_to_email = []
-    digi_vids_deadline_approaching.each do |video|
+    Video.digi_vids_deadline_approaching.each do |video|
       users_to_email << video.typer_id
     end
     users_to_email
@@ -263,7 +263,7 @@ def video_setup
 
   def qa_vids_emails
     users_to_email = []
-    qa_vids_deadline_approaching.each do |video|
+    Video.qa_vids_deadline_approaching.each do |video|
       users_to_email << video.qa_id
     end
     users_to_email
