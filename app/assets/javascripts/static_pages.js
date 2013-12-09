@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	var navbar = $('.video-nav');
 
 	$(window).on('scroll', function() {
@@ -15,7 +15,7 @@ $(document).ready(function() {
 	});
     $("#import_videos").click(show_import);
     $("#upload_csv").click(warn_length);
-});
+});*/
 
 function show_import() {
     //Show new pop-up allowing users to input a csv file

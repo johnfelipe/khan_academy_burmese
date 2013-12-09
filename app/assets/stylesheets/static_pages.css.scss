@@ -107,7 +107,7 @@ hr.stylish-inner {
       height: 40px;
       width: 100%;
       margin: auto;
-      ul {
+      .main-nav {
         text-align: center;
         margin: 0px;
         font-size: 20px;
@@ -130,12 +130,27 @@ hr.stylish-inner {
             background-color: #0d1116;
             transition: 0.3s all;
           }
-          a {
+        }
+        li > a {
             border-bottom: 0px solid #fff;
             color: #fff;
             text-decoration: none;
             display: block;
             padding: 10px 15px;
+        }
+      }
+      .admin-dropdown {
+        height: auto;
+        width: auto;
+        font-size: 15px;
+        li {
+          width: 100%;
+          text-align: left;
+          a {
+            &:hover {
+              background-image: none;
+              background-color: rgba(85, 106, 138, 0.8);
+            }
           }
         }
       }
@@ -208,6 +223,33 @@ hr.stylish-inner {
     box-shadow: 1px 1px 1px #222;
     border: 1px solid #555;
   }
+}
+
+.custom-btn2 {
+  display: block;
+  transition: 0.3s all;
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+  background-color: #2c3747;
+  border-radius: 4px;
+  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
+  box-shadow: 1px 1px 1px #d1d1d1;
+  &:hover {
+    text-decoration: none;
+    color: #2c3747;
+    background-color: rgba(82, 243, 82, 0.4);
+  }
+  &:active, &:focus {
+    background-color: rgba(82, 243, 82, 1);
+    box-shadow: 1px 1px 3px #999;
+  }
+}
+custom-btn2-sized {
+  text-align: center;
+  width: 25%;
+  margin: auto;
 }
 
 .third-party-login {
