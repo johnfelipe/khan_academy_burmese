@@ -20,7 +20,6 @@ class VideosController < ApplicationController
 
 
 def video_setup
-    @user = User.find_by_id(params[:id])
 
     find_user_vids(params[:id])
 
