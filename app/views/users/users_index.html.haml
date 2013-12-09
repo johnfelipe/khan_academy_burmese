@@ -4,9 +4,6 @@
     = stylesheet_link_tag 'videos'
   %body
     = render :partial => "shared/dashhead"
-    %button_to= link_to "Unassign All Overdue Videos", admin_unassign_overdue_videos_path(), {:method => :post}
-    <br>
-    %button_to= link_to "Email users with approaching deadlines", admin_send_deadline_approaching_reminders_path(), {:method => :post}
     .table-container
       .row
         .col-md-12
@@ -28,5 +25,12 @@
                       - if user.admin?
                         = link_to "revoke admin rights", toggle_admin_path(user), :method => :put ,:id => "#{user.id}_revoke_admin", :data => { confirm: "Are you sure you want to revoke admin privileges for #{user.name}?" }, :class => "btn btn-primary"
                       - else
-                        = link_to "make admin", toggle_admin_path(user), :method => :put ,:id => "#{user.id}_make_admin", :data => { confirm: "Are you sure you want to give #{user.name} admin privileges?" }, :class => "btn btn-danger"
+                        = link_to "make admin", toggle_admin_path(user), :method => :put ,:id => "#{user.id}_make_admin", :data => { confirm:  "Are you sure you want to give #{user.name} admin privileges?" }, :class => "btn btn-danger"
+
+                <br>
+                %button_to= link_to "Unassign All Overdue Videos", admin_unassign_overdue_videos_path(), {:method => :post,:class => "btn btn-danger", :confirm => "All overdue videos are automatically unassigned.  Do you still want to unassign all overdue videos?"}
+                <br>
+                <br>
+                %button_to= link_to "Email users with approaching deadlines", admin_send_deadline_approaching_reminders_path(), {:method => :post,:class => "btn btn-danger", :confirm => "Users with approaching deadlines are automatically emailed.  Do you still want to send email reminders?"}
+                <br>
                 = will_paginate
