@@ -38,13 +38,13 @@ Scenario: Give a user administrative rights
   And I should see "user3@example.com"
   When I follow "3_make_admin"
   Then I should see "user3 was updated successfully"
-  And I should see "user3 , user3@example.com | delete | revoke admin rights"
+  And I should see "user3 , user3@example.com | Delete | Revoke Admin Rights"
 
 Scenario: Revoke admin rights
   Given "user3@example.com" is an admin user
   #Need to refresh page to see user3 as admin
   When I follow "All users"
-  Then I should see "user3 , user3@example.com | delete | revoke admin rights"
+  Then I should see "user3 , user3@example.com | Delete | Revoke Admin Rights"
   When I follow "3_revoke_admin"
   Then I should see "user3 was updated successfully"
-  And I should see "user3 , user3@example.com | delete | make admin"
+  And I should see "user3 , user3@example.com | Delete | Make Admin"
