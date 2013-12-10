@@ -7,7 +7,7 @@
         %li.welcome
           Welcome, <b>#{current_user.name}</b>
         %li.logout{ :class => 'pull-right' }
-          =link_to("Logout", "/logout", :method => :delete) #, :confirm => "Are you sure?")
+          =link_to "Logout", "/logout", :method => :delete, :confirm => "Are you sure you wish to logout?"
         %li.profile
           =link_to("Profile", user_path(current_user))
         %li.dashboard
