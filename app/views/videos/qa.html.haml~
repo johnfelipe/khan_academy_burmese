@@ -1,43 +1,23 @@
--#view for translations
-
 %html
   %head
     = stylesheet_link_tag 'videos'
   %body
+    = render :partial => "shared/dashhead"
+    = render :partial => "shared/nav"
+    .container
+      .content
+        %h4{:class => "list-title"} Videos Assigned To Me To QA
+        %table.table.table-bordered{:id => "list_table"}
+          %tr
+            %th Course
+            %th Title
+            %th Due Date
+            %th Actions
 
-    .welcome Hi, #{@user.name}
-    
-    .table-container
-      %h2{:id => "list_title"} Videos Assigned To Me To QA
-      %table.table.table-striped.table-bordered{:id => "list_table"}
-        %tr
-          %th KABT ID
-          %th Course Title
-          %th Due Date
-          %th Actions
-
-        - @qa_trans.each do |video|
-          %tr 
-            %td= video.video_id
-            %td= video.title
-            %td 12/25/2013
-            %td 
-              %a.glyphicon.glyphicon-pencil{:href=>"#", :class => "icon"}
-              %a.glyphicon.glyphicon-facetime-video{:href=>"#", :class => "icon"}
-           
-  .aval_button{:class => "button"}
-    %a{:id => 'a_link', :href => 'available'} Available(#{@avail.count})
-
-  .trans_button{:class => "button"}
-    %a{:id => 'a_link', :href => 'translate'} Translate(#{@trans_vids.count})
-
-  .digi_button{:class => "button"}
-    %a{:id => 'a_link', :href => 'digitize'} Digitize(#{@digi_vids.count})
- 
-  .qa_button{:class => "button", :id => "qb"}
-    %a{:id => 'a_link', :href => 'qa'} QA(#{@qa_vids.count})
-
-  .compl_button{:class => "button"}
-    %a{:id => 'a_link', :href => 'completed'} Completed(#{@comp.count})
-
-  .background_bar Khan Academy Burmese Translations Portal
+          - @qa_vids.each do |video|
+            %tr 
+              %td= video.course
+              %td= video.title
+              %td= video.due_date.strftime('%b %d %Y')
+              %td
+                %div= link_to "QA", qa_video_path(:id => @user.id, :video_id => video.video_id)

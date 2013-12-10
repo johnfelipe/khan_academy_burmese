@@ -14,4 +14,3 @@ function warn_length() {
     alert("This operation may take a while, especially if importing lots of videos.");
     return true;
 }
-

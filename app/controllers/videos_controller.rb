@@ -10,17 +10,11 @@ class VideosController < ApplicationController
   before_filter :admin_user, :only => [:assign_translate_to_someone_else,
     :assign_type_to_someone_else, :assign_qa_to_someone_else, :create, :new, :import_videos, :import_videos_confirmation ]
 
-
-def video_setup
-
+  def video_setup
     find_user_vids(params[:id])
-
     find_avail_vids(params[:id])
-
     find_comp_vids(params[:id])
-
     initialize_cached_nums()
-
   end
 
   def find_user_vids(user_id)
