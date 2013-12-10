@@ -27,8 +27,8 @@
               .list-group-item
                 .bs-example 
                   .btn-group
-                    %button.btn.btn-default.active Digital Translation
-                    %button.btn.btn-default= link_to "Handwritten Translation", translate_video_handwritten_path()
+                    %button_to.btn.btn-default.active Digital Translation
+                    %button_to.btn.btn-default= link_to "Handwritten Translation", translate_video_handwritten_path()
               .list-group-item
                 %button_to.btn.btn-info= link_to("Translate Using Amara", @video.amara_link,{:style=> 'color:white;', :target => "_blank", :confirm => "When you are finished using Amara, be sure to come back and submit #{@video.title} for QA."})
               .list-group-item
