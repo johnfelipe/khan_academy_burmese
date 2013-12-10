@@ -3,11 +3,11 @@
     %div
       %a.title{:href=>show_dashboard_path(current_user)} <b>Khan</b>Academy Translations
     %nav
-      %ul
+      %ul.main-nav
         %li.welcome
           Welcome, <b>#{current_user.name}</b>
         %li.logout{ :class => 'pull-right' }
-          =link_to("Logout", "/logout", :method => :delete) #, :confirm => "Are you sure?")
+          =link_to "Logout", "/logout", :method => :delete, :confirm => "Are you sure you wish to logout?"
         %li.profile
           =link_to("Profile", user_path(current_user))
         %li.dashboard
@@ -23,7 +23,7 @@
             %a.dropdown-toggle{ :href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#" }
               Admin
               %b.caret.white-caret
-            %ul.dropdown-menu{ :role => "menu" }
+            %ul.admin-dropdown.dropdown-menu{ :role => "menu" }
               %li
                 = link_to "Add video", new_video_path
               %li

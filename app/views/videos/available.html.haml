@@ -23,9 +23,10 @@
               %td= video.course
               %td= video.title
               %td
-                %div{:id => "#{video.video_id}_translate_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_translator", {:method => :post, :id => "To_Translate_translate_button"}
+                %div{:id => "#{video.video_id}_translate_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_translator", {:method => :post, :id => "To_Translate_translate_button", :class => "custom-btn2"}
               - if current_user.admin?
-                %td= link_to 'Assign To Someone Else', assign_translate_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_translate_button", :class => "btn btn-primary"
+                %td
+                  %div= link_to 'Assign To Someone Else', assign_translate_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_translate_button", :class => "custom-btn2"
 
 
         %h4{:class => "list-title"} Videos Available To Digitize
@@ -42,9 +43,10 @@
               %td= video.course
               %td= video.title
               %td
-                %div{:id => "#{video.video_id}_digitize_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_typer",{:method => :post, :id => "To_Digitize_digitize_button"}
+                %div{:id => "#{video.video_id}_digitize_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_typer",{:method => :post, :id => "To_Digitize_digitize_button", :class => "custom-btn2"}
               - if current_user.admin?
-                %td= link_to 'Assign To Someone Else', assign_type_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_type_button", :class => "btn btn-primary"
+                %td
+                  %div= link_to 'Assign To Someone Else', assign_type_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_type_button", :class => "custom-btn2"
 
 
         %h4{:class => "list-title"} Videos Available To QA
@@ -61,6 +63,7 @@
               %td= video.course
               %td= video.title
               %td
-                %div{:id => "#{video.video_id}_qa_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_qa",{:method => :post, :id => "To_Qa_qa_button"}
+                %div{:id => "#{video.video_id}_qa_button"}= link_to "Assign To Me", "/users/#{@user.id}/videos/#{video.video_id}/assign_qa",{:method => :post, :id => "To_Qa_qa_button", :class => "custom-btn2"}
               - if current_user.admin?
-                %td= link_to 'Assign To Someone Else', assign_qa_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_qa_button", :class => "btn btn-primary"
+                %td
+                  %div= link_to 'Assign To Someone Else', assign_qa_to_someone_else_path(video.video_id) , :id => "#{video.video_id}_someone_else_qa_button", :class => "custom-btn2"

@@ -4,33 +4,28 @@
     = stylesheet_link_tag 'videos'
   %body
     = render :partial => "shared/dashhead"
-    .table-container
-      .row
-        .col-md-12
-          .col-md-12.col-sm-12.col-xs-12
-            .panel.panel-info{:id => "list_table"}
-              .panel-heading
-                %h4 All Users
-              .panel-body
-                = will_paginate
-                %ul.list-group
-                  - @users.each do |user|
-                    .list-group-item.h5 
-                      = user.name
-                      ,
-                      = user.email
-                      | 
-                      = link_to "delete", user, :method => :delete ,:id => "#{user.id}_delete", :data => { confirm: "Are you sure you want to delete this user?" }, :class => "btn btn-danger"
-                      | 
-                      - if user.admin?
-                        = link_to "revoke admin rights", toggle_admin_path(user), :method => :put ,:id => "#{user.id}_revoke_admin", :data => { confirm: "Are you sure you want to revoke admin privileges for #{user.name}?" }, :class => "btn btn-primary"
-                      - else
-                        = link_to "make admin", toggle_admin_path(user), :method => :put ,:id => "#{user.id}_make_admin", :data => { confirm:  "Are you sure you want to give #{user.name} admin privileges?" }, :class => "btn btn-danger"
 
-                <br>
-                %button_to= link_to "Unassign All Overdue Videos", admin_unassign_overdue_videos_path(), {:method => :post,:class => "btn btn-danger", :confirm => "All overdue videos are automatically unassigned.  Do you still want to unassign all overdue videos?"}
-                <br>
-                <br>
-                %button_to= link_to "Email users with approaching deadlines", admin_send_deadline_approaching_reminders_path(), {:method => :post,:class => "btn btn-danger", :confirm => "Users with approaching deadlines are automatically emailed.  Do you still want to send email reminders?"}
-                <br>
-                = will_paginate
+    .container
+      .content
+        = link_to "Unassign All Overdue Videos", admin_unassign_overdue_videos_path(), {:method => :post, :class => "custom-btn2 custom-btn2-sized"}
+        <br>
+        = link_to "Email users with approaching deadlines", admin_send_deadline_approaching_reminders_path(), {:method => :post, :class => "custom-btn2 custom-btn2-sized"}
+        .panel.panel-info{:id => "list_table"}
+          .panel-heading
+            %h4 All Users
+          .panel-body
+            = will_paginate
+            %ul.list-group
+              - @users.each do |user|
+                .list-group-item.h5 
+                  = user.name
+                  ,
+                  = user.email
+                  | 
+                  = link_to "Delete", user, :method => :delete ,:id => "#{user.id}_delete", :data => { confirm: "Are you sure you want to delete this user?" }, :class => "btn btn-danger"
+                  | 
+                  - if user.admin?
+                    = link_to "Revoke Admin Rights", toggle_admin_path(user), :method => :put ,:id => "#{user.id}_revoke_admin", :data => { confirm: "Are you sure you want to revoke admin privileges for #{user.name}?" }, :class => "btn btn-primary"
+                  - else
+                    = link_to "Make Admin", toggle_admin_path(user), :method => :put ,:id => "#{user.id}_make_admin", :data => { confirm: "Are you sure you want to give #{user.name} admin privileges?" }, :class => "btn btn-danger"
+            = will_paginate

@@ -5,19 +5,17 @@
   %body
     = render :partial => "shared/dashhead"
     
-    .table-container
-      .row
-        .col-md-12
-          .col-md-12.col-sm-12.col-xs-12
-            .panel.panel-info{:id => "list_table"}
-              .panel-heading
-                %h4 Assign video - #{@video.course}, #{@video.title} to:
-              .panel-body
-                %ul.list-group
-                  - @users.each do |user|
-                    .list-group-item.h5 
-                      = user.name
-                      ,
-                      = user.email
-                      | 
-                      = link_to 'Assign as QA', "/users/#{user.id}/videos/#{@video.video_id}/assign_qa" , :id => "#{user.id}_qa_#{@video.video_id}", :class => 'btn btn-info', :method => 'post'
+    .container
+      .content
+        .panel.panel-info{:id => "list_table"}
+          .panel-heading
+            %h4 Assign video - #{@video.course}, #{@video.title} to:
+          .panel-body
+            %ul.list-group
+              - @users.each do |user|
+                .list-group-item.h5 
+                  = user.name
+                  ,
+                  = user.email
+                  | 
+                  = link_to 'Assign as QA', "/users/#{user.id}/videos/#{@video.video_id}/assign_qa" , :id => "#{user.id}_qa_#{@video.video_id}", :class => 'assign_other_btn', :method => 'post'

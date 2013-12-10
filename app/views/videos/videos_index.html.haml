@@ -4,24 +4,22 @@
     = stylesheet_link_tag 'videos'
   %body
     = render :partial => "shared/dashhead"
-    .table-container
-      .row
-        .col-md-12.col-sm-12.col-xs-12
-          .panel.panel-info{:id => "list_table"}
-            .panel-heading
-              %h4 All videos
-            .panel-body
-              = will_paginate
-              %ul.list-group
-                - @videos.each do |video|
-                  .list-group-item.h5 
-                    = video.subject
-                    ,
-                    = video.course
-                    ,
-                    = video.title 
-                    | 
-                    = link_to "edit", edit_video_path(video) ,:id => "#{video.id}_edit", :class => "btn btn-primary"
-                    | 
-                    = link_to "delete", video, :method => :delete ,:id => "#{video.id}_delete", :data => { confirm: "Are you sure you want to delete this video?" }, :class => "btn btn-danger"
-              = will_paginate
+    .container
+      .content
+        .panel.panel-info{:id => "list_table"}
+          .panel-heading
+            %h4 All videos
+          .panel-body
+            = will_paginate
+            %ul.list-group
+              - @videos.each do |video|
+                .list-group-item.h5 
+                  = video.subject
+                  ,
+                  = video.course
+                  ,
+                  = video.title 
+                  = link_to "edit", edit_video_path(video) ,:id => "#{video.id}_edit", :class => "btn btn-primary"
+                  | 
+                  = link_to "delete", video, :method => :delete ,:id => "#{video.id}_delete", :data => { confirm: "Are you sure you want to delete this video?" }, :class => "btn btn-danger"
+            = will_paginate

@@ -20,4 +20,4 @@
               %td= video.title
               %td= video.due_date.strftime('%b %d %Y')
               %td
-                %div= link_to "QA", qa_video_path(:id => @user.id, :video_id => video.video_id)
+                %div= link_to "QA", qa_video_path(:id => @user.id, :video_id => video.video_id), :class => "custom-btn2"

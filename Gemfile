@@ -17,6 +17,7 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'rubyzip', '>= 1.0.0'
 gem 'zip-zip'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'sqlite3'

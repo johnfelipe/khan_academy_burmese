@@ -4,12 +4,11 @@
   %body.container
     = render :partial => "shared/dashhead"
     
-    .table-container
-      .row
-        .col-md-6.col-sm-6.col-xs-6
-          .form-vertical
-            = form_for :video, :url => {:action => :create} do |f|
-              .form-group
+    .container
+      .content
+        .form-vertical
+          = form_for :video, :url => {:action => :create} do |f|
+            .form-group
               .h2
                 Add new video
               -#= render 'shared/error_messages'
@@ -27,4 +26,4 @@
               = f.label :video_id, "Amara Video ID"
               = f.text_field :video_id
 
-              = f.submit "Create Video", class: "btn btn-primary"
+              = f.submit "Create Video", class: "custom-btn"
