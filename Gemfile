@@ -18,6 +18,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'rubyzip', '>= 1.0.0'
 gem 'zip-zip'
 gem 'nokogiri'
+gem 'selenium-webdriver'
 
 group :development, :test do
   gem 'sqlite3'
