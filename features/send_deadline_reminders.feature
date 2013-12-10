@@ -13,7 +13,7 @@ Background: users and videos in database
   | user3                    | user3@example.com      | mypassword    | 3  |
   | admin                    | admin@example.com      | adminpassword | 4  |
 
-  And the following videos exist:
+  And the following videos with upcoming deadlines exist:
   | video_id     | subject  | course   | title  | translator_id | typer_id | qa_id | translate_complete | type_complete | qa_complete | due_date     |
   | To_Translate | SubjectA | CourseA  | TitleA | 4             |          |       | false              | false         | false       | 2001-1-1 |
   | To_Digitize  | SubjectB | CourseB  | TitleB | 2             | 4        |       | true               | false         | false       | 2001-1-1 |
