@@ -412,10 +412,10 @@ def video_setup
     zipfile_name = "#{Rails.public_path}/assets/translations/translations.zip"
     directory = "#{Rails.public_path}/assets/translations/" # TODO NEED TO CHANGE TO DIR WHERE TRANSLATIONS ARE STORED
     to_zip = Array.new
-    my_handwritten = Video.get_unfinished_handwritten_assigned_to_me(current_user)
+    my_handwritten_trans = Video.get_unfinished_handwritten_assigned_to_me(current_user)
     
     #get all filenames
-    my_handwritten.each { |video| to_zip << "#{video.translation_handwritten.url}".split('/').last }
+    my_handwritten_trans.each { |video| to_zip << "#{video.translation_handwritten.url}".split('/').last }
 
     Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
       to_zip.each do |filename|

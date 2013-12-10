@@ -13,19 +13,20 @@
             .panel-body
               = will_paginate
               %ul.list-group
-                .list-group-item.h5
-                  Download all as zip 
-                  |
-                  = link_to "download all", download_zip_path, :id => 'download_all', :class => "btn btn-danger"
-                - @my_handwritten.each do |video|
+                - if !@my_handwritten.nil?
                   .list-group-item.h5
-                    = video.subject
-                    ,
-                    = video.course
-                    ,
-                    = video.title 
-                    | 
-                    = link_to "download", download_translation_path(video) ,:id => "#{video.id}_download", :class => "btn btn-primary"
+                    Download all as zip 
+                    |
+                    = link_to "download all", download_zip_path, :id => 'download_all', :class => "btn btn-danger"
+                  - @my_handwritten.each do |video|
+                    .list-group-item.h5
+                      = video.subject
+                      ,
+                      = video.course
+                      ,
+                      = link_to video.title, video.translation_handwritten.url
+                      | 
+                      = link_to "download", download_translation_path(video) ,:id => "#{video.id}_download", :class => "btn btn-primary"
               = will_paginate
 
     .table-container
@@ -43,5 +44,5 @@
                     ,
                     = video.course
                     ,
-                    = video.title 
+                    = link_to video.title, video.translation_handwritten.url 
               = will_paginate
