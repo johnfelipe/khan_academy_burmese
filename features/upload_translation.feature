@@ -27,4 +27,4 @@ Scenario: upload a handwritten translation
   When I follow "Translate"
   When I follow "Handwritten Translation"
   When I press "upload_handwritten_translation"
-  Then I should see "Your translation has been successfully uploaded"
+  Then I should see "Video updated successfully"

@@ -6,7 +6,7 @@ require 'csv'
 
 
 class VideosController < ApplicationController
-  before_filter :require_user#, :except => [:assign_translate_to_someone_else, :assign_translator]
+  before_filter :require_user#, :except => [:assign_translate_to_someone_else, :assign_translator, :download]
   before_filter :admin_user, :only => [:assign_translate_to_someone_else,
     :assign_type_to_someone_else, :assign_qa_to_someone_else, :create, :new, :import_videos, :import_videos_confirmation ]
 
@@ -312,14 +312,6 @@ def video_setup
     $comp += 1
   end
 
-
-  def upload_translation_handwritten
-      @video = Video.find_by_video_id(params[:video_id])
-      flash[:success] = "Your translation has been successfully uploaded"
-      translate_video_handwritten
-      redirect_to translate_video_handwritten_path
-  end
-
   def translate_video
       @user = current_user
       video_details(params[:video_id])
@@ -328,6 +320,7 @@ def video_setup
   def translate_video_handwritten
       @user = current_user
       video_details(params[:video_id])
+      session[:return_to] = request.fullpath
   end
 
   def qa_video
@@ -378,13 +371,15 @@ def video_setup
 
   def edit
     @video = Video.find(params[:id])
+    session[:return_to] = request.referer
   end
 
   def update
     @video = Video.find(params[:id])
     if @video.update_attributes(params[:video])
+      #if @video.translation_handwritten.nil?
       flash[:success] = "Video updated successfully"
-      redirect_to videos_index_path
+      redirect_to session.delete(:return_to)
     else
       render 'edit'
     end
@@ -408,18 +403,19 @@ def video_setup
 
   def download
     name = Video.find(params[:id]).translation_handwritten
-    send_file "#{Rails.public_path}/assets/#{name.url}"
+    Rails.logger.debug("#{Rails.public_path}#{name.url}")
+    send_file "#{Rails.public_path}#{name.url}"
   end
 
   def download_zip
     require 'zip'
-    zipfile_name = "#{Rails.public_path}/tmp/translations.zip"
-    directory = "#{Rails.public_path}/assets/" # TODO NEED TO CHANGE TO DIR WHERE TRANSLATIONS ARE STORED
+    zipfile_name = "#{Rails.public_path}/assets/translations/translations.zip"
+    directory = "#{Rails.public_path}/assets/translations/" # TODO NEED TO CHANGE TO DIR WHERE TRANSLATIONS ARE STORED
     to_zip = Array.new
     my_handwritten = Video.get_unfinished_handwritten_assigned_to_me(current_user)
     
     #get all filenames
-    my_handwritten.each { |video| to_zip << "#{video.translation_handwritten.url}" }
+    my_handwritten.each { |video| to_zip << "#{video.translation_handwritten.url}".split('/').last }
 
     Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
       to_zip.each do |filename|
