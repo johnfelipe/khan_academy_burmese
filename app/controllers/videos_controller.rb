@@ -10,13 +10,13 @@ class VideosController < ApplicationController
   before_filter :admin_user, :only => [:assign_translate_to_someone_else,
     :assign_type_to_someone_else, :assign_qa_to_someone_else, :create, :new, :import_videos, :import_videos_confirmation ]
 
-  def update
-    @video = Video.find(params[:video_id])
-    if @video.update_attributes(params[:video_id])
-      flash[:success] = "Successfully updated video."
-      redirect_to @video
-    end
-  end
+  #def update
+   # @video = Video.find(params[:video_id])
+    #if @video.update_attributes(params[:video_id])
+     # flash[:success] = "Successfully updated video."
+      #redirect_to @video
+    #end
+  #end
 
 
 def video_setup
