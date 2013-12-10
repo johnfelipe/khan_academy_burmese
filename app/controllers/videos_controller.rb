@@ -10,25 +10,11 @@ class VideosController < ApplicationController
   before_filter :admin_user, :only => [:assign_translate_to_someone_else,
     :assign_type_to_someone_else, :assign_qa_to_someone_else, :create, :new, :import_videos, :import_videos_confirmation ]
 
-  #def update
-   # @video = Video.find(params[:video_id])
-    #if @video.update_attributes(params[:video_id])
-     # flash[:success] = "Successfully updated video."
-      #redirect_to @video
-    #end
-  #end
-
-
-def video_setup
-
+  def video_setup
     find_user_vids(params[:id])
-
     find_avail_vids(params[:id])
-
     find_comp_vids(params[:id])
-
     initialize_cached_nums()
-
   end
 
   def find_user_vids(user_id)
@@ -377,12 +363,11 @@ def video_setup
   def update
     @video = Video.find(params[:id])
     if @video.update_attributes(params[:video])
-      #if @video.translation_handwritten.nil?
       flash[:success] = "Video updated successfully"
-      redirect_to session.delete(:return_to)
     else
-      render 'edit'
+      flash[:danger] = "An error occured while trying to update video"
     end
+    redirect_to session.delete(:return_to)
   end
 
   def destroy
