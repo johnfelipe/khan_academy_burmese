@@ -26,6 +26,10 @@ class Video < ActiveRecord::Base
   	"http://www.amara.org/en/subtitles/editor/#{video_id}/my/?base-language=en#"
   end
 
+  def handwritten_link_format
+    "http://www.amara.org/en/videos/#{video_id}/en/" #TODO check link works
+  end
+
   def self.find_user_trans(user_id)
     Video.where(:translate_complete => false, :translator_id => user_id)
   end
